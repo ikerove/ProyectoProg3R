@@ -3,7 +3,7 @@ package datos;
 public class Objeto {
 	protected int codigo;
 	protected String titulo;
-	
+	//prueba
 	public Objeto() {
 		super();
 	}
