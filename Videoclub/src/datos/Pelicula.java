@@ -15,8 +15,7 @@ public class Pelicula extends Objeto implements Serializable{
 		super(codigo, titulo);
 		this.guion = guion;
 		this.musica = musica;
-		this.oscars = oscars;
-		
+		this.oscars = oscars;		
 	}
 
 	public String getGuion() {
