@@ -1,18 +1,29 @@
 package baseDatos;
 
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import principal.Main;
+import principal.Videoclub;
 public class BD {
 	
+	private static Logger logger = Logger.getLogger( Main.class.getName() );
+
 	/** Inicializa una BD SQLITE y devuelve una conexión con ella
 	 * @param nombreBD	Nombre de fichero de la base de datos
 	 * @return	Conexión con la base de datos indicada. Si hay algún error, se devuelve null
 	 */
 	public static Connection initBD( String nombreBD ) {
+		
+		logger.log(Level.INFO, "Tratando de conectar al servidor");
 		try {
 		    Class.forName("org.sqlite.JDBC");
 		    Connection con = DriverManager.getConnection("jdbc:sqlite:" + nombreBD );
+		    logger.log(Level.INFO, "Conexion realizada");
 		    return con;
 		} catch (ClassNotFoundException | SQLException e) {
+			logger.log(Level.SEVERE, "No se ha podido realizar la conexion ");
 			return null;
 		}
 	}
@@ -26,7 +37,7 @@ public class BD {
 		//statement.executeUpdate : Cuando queramos hacer create, insert, delete, update, drop
 		//statement.executeQuery : Cuando queramos hacer select
 		
-		
+		logger.log(Level.INFO, "Creando tablas...");
 		try {
 			Statement statement = con.createStatement();
 			try {
@@ -44,7 +55,9 @@ public class BD {
 									   " capitulos integer,"+
 									   " duracionCap integer," + 
 									   " rutaFoto string)");
-			}catch(SQLException ex) {} //Si la tabla ya existe, no hacemos nada
+			}catch(SQLException ex) {
+				logger.log(Level.WARNING, "Tabla Serie ya existente");
+			} //Si la tabla ya existe, no hacemos nada
 			
 			try {
 				statement.executeUpdate("create table if not exists Pelicula "+
@@ -61,7 +74,10 @@ public class BD {
 						   " oscars boolean, " +
 						   " rutaFoto string)");
 
-			}catch(SQLException ex) {} //Si la tabla ya existe, no hacemos nada
+			}catch(SQLException ex) {
+				logger.log(Level.WARNING, "Tabla Pelicula ya existente");
+
+			} //Si la tabla ya existe, no hacemos nada
 			
 			try {
 				statement.executeUpdate("create table if not exists Documental "+
@@ -76,21 +92,30 @@ public class BD {
 						   " animales boolean,"+
 						   " rutaFoto string)");
 
-			}catch(SQLException ex) {} //Si la tabla ya existe, no hacemos nada
+			}catch(SQLException ex) {
+				logger.log(Level.WARNING, "Tabla Documental ya existente");
+
+			} //Si la tabla ya existe, no hacemos nada
 			
 			try {
 				statement.executeUpdate("create table if not exists Usuario "+
 						   "(nick string, "+
 						   " con string)");
 
-			}catch(SQLException ex) {} //Si la tabla ya existe, no hacemos nada
+			}catch(SQLException ex) {
+				logger.log(Level.WARNING, "Tabla Usuario ya existente");
+
+			} //Si la tabla ya existe, no hacemos nada
 
 			try {
 				statement.executeUpdate("create table if not exists Admin "+
 						   "(nick string, "+
 						   " con string)");
 
-			}catch(SQLException ex) {} //Si la tabla ya existe, no hacemos nada
+			}catch(SQLException ex) {
+				logger.log(Level.WARNING, "Tabla Admin ya existente");
+
+			} //Si la tabla ya existe, no hacemos nada
 			return statement;
 		} catch (SQLException e) {
 			return null;
@@ -103,6 +128,8 @@ public class BD {
 	 * @return	sentencia de trabajo si se borra correctamente, null si hay cualquier error
 	 */
 	public static Statement reiniciarBD( Connection con ) {
+		logger.log(Level.INFO, "Reiniciando la base de datos...");
+
 		try {
 			Statement statement = con.createStatement();
 			statement.executeUpdate("drop table if exists Serie");
@@ -110,6 +137,8 @@ public class BD {
 			statement.executeUpdate("drop table if exists Documental");
 			return usarCrearTablasBD( con );
 		} catch (SQLException e) {
+			logger.log(Level.SEVERE, "No se ha podido reiniar la base de datos");
+
 			return null;
 		}
 	}
@@ -119,10 +148,14 @@ public class BD {
 	 * @param st	Sentencia abierta de la BD
 	 */
 	public static void cerrarBD( Connection con, Statement st ) {
+		logger.log(Level.INFO, "Cerrando la base de datos");
+
 		try {
 			if (st!=null) st.close();
 			if (con!=null) con.close();
 		} catch (SQLException e) {
+			logger.log(Level.SEVERE, "No se ha podido cerrar la BD");
+
 		}
 	}
 }

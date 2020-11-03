@@ -1,9 +1,14 @@
 package principal;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import datos.Objeto;
 import datos.Usuario;
 
 public class Main {
+	
+	private static Logger logger = Logger.getLogger( Main.class.getName() );
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Objeto a = new Objeto(1,"aa");
@@ -25,6 +30,8 @@ public class Main {
 		
 		
 		Videoclub.aniadirUsuario(h);
+		
+		logger.log(Level.INFO, "Llamadas a los componentes del sistema");
 		
 		Videoclub.printMap(Videoclub.getObjetos());
 		Videoclub.printTreeMap(Videoclub.getUsuarios());

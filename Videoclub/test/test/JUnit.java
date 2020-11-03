@@ -12,22 +12,28 @@ import junit.framework.TestCase;
 
 public class JUnit  extends TestCase{
 public void testconexionBD() {
-	assertNotNull("No se ha establecido conexion", BD.initBD("videoclub.sqlite3"));
+	assertNotNull("Se ha establediconexcion", BD.initBD("videoclub.sqlite3"));
 }
 
 
 
 public void testaniadirUsuario() {
 	TreeMap<String, Usuario> map = new TreeMap<>();
+	
 	Usuario u1 = new Usuario("nombre", "contrasenia");
 	Usuario u2 = new Usuario("nombre", "contrasenia");
 	Usuario u3 = new Usuario("nombre", "contrasenia");
-
-	map.put(u1.getNick(), u1);
-	map.put(u2.getNick(), u2);
 	
 	assertEquals(true, Videoclub.aniadirUsuario(u1));
-	assertEquals(true, Videoclub.aniadirUsuario(u2));
+
+	map.put(u2.getNick(), u2);
+	assertEquals(false, Videoclub.aniadirUsuario(u2));
+
+	
+	
+	
+	
+	
 	
 }
 
