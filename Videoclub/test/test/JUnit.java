@@ -26,9 +26,9 @@ public void testaniadirUsuario() {
 	map.put(u1.getNick(), u1);
 	map.put(u2.getNick(), u2);
 	
-	assertEquals(false, Videoclub.aniadirUsuario(u1));
-	assertEquals(false, Videoclub.aniadirUsuario(u2));
-	assertEquals(true, Videoclub.aniadirUsuario(u3));
+	assertEquals(true, Videoclub.aniadirUsuario(u1));
+	assertEquals(true, Videoclub.aniadirUsuario(u2));
+	
 }
 
 
@@ -43,7 +43,7 @@ public void testeliminarUsuario() {
 	
 	map.remove(0,u1);
 	
-	assertEquals(null, map.remove(0, u1));
+	assertEquals(false, map.remove(0, u1));
 	
 }
 
