@@ -2,7 +2,7 @@ package datos;
 
 import java.io.Serializable;
 
-public class Pelicula extends Multimedia implements Serializable{
+public class Pelicula extends Objeto implements Serializable{
 	private String guion;
 	private String musica;
 	private boolean oscars;

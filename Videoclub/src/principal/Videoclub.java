@@ -11,25 +11,25 @@ import java.util.logging.Logger;
 
 
 
-import datos.Multimedia;
+import datos.Objeto;
 import datos.Usuario;
 
 
 public class Videoclub {
-	private static HashMap<Integer, Multimedia> objetos = new HashMap<>();
+	private static HashMap<Integer, Objeto> objetos = new HashMap<>();
 	private static TreeMap<String,Usuario> usuarios  = new TreeMap<>();
-	private static HashMap<String, ArrayList<Multimedia>> favoritos = new HashMap<>();
+	private static HashMap<String, ArrayList<Objeto>> favoritos = new HashMap<>();
 	private static Logger logger = Logger.getLogger( Videoclub.class.getName() );
 	
 	
 	
 	
 	
-	public static HashMap<Integer, Multimedia> getObjetos() {
+	public static HashMap<Integer, Objeto> getObjetos() {
 		return objetos;
 	}
 
-	public static void setObjetos(HashMap<Integer, Multimedia> objetos) {
+	public static void setObjetos(HashMap<Integer, Objeto> objetos) {
 		Videoclub.objetos = objetos;
 	}
 
@@ -41,11 +41,11 @@ public class Videoclub {
 		Videoclub.usuarios = usuarios;
 	}
 
-	public static HashMap<String, ArrayList<Multimedia>> getFavoritos() {
+	public static HashMap<String, ArrayList<Objeto>> getFavoritos() {
 		return favoritos;
 	}
 
-	public static void setFavoritos(HashMap<String, ArrayList<Multimedia>> favoritos) {
+	public static void setFavoritos(HashMap<String, ArrayList<Objeto>> favoritos) {
 		Videoclub.favoritos = favoritos;
 	}
 	
@@ -53,20 +53,20 @@ public class Videoclub {
 	
 	
 
-	public static boolean aniadirObjeto(Multimedia o) {
+	public static boolean aniadirObjeto(Objeto o) {
 		if(objetos.containsKey(o.getCodigo())) {
-			logger.log(Level.WARNING,"Objeto previamente aï¿½adido");
+			logger.log(Level.WARNING,"Objeto previamente añadido");
 			return false;
 			
 		}else {
 			objetos.put(o.getCodigo(), o);
-			logger.log(Level.INFO,"Objeto correctamente aï¿½adido");
+			logger.log(Level.INFO,"Objeto correctamente añadido");
 			return true;
 		}
 		
 	}
 	
-	public static Multimedia eliminarObjeto(int codigo) {
+	public static Objeto eliminarObjeto(int codigo) {
 		return objetos.remove(codigo);
 	}
 	
@@ -82,17 +82,17 @@ public class Videoclub {
 	
 	public static boolean aniadirUsuario(Usuario u) {
 		if(usuarios.containsKey(u.getNick())) {
-			logger.log(Level.WARNING,"Usuario previamente aï¿½adido");
+			logger.log(Level.WARNING,"Usuario previamente añadido");
 			return false;
 		
 		}else {
 			usuarios.put(u.getNick(), u);
-			logger.log(Level.INFO,"Usuario aï¿½adido correctamente");
+			logger.log(Level.INFO,"Usuario añadido correctamente");
 			return true;
 		}
 	}
 	
-	public static Multimedia eliminarUsuario(String nick) {
+	public static Objeto eliminarUsuario(String nick) {
 		return objetos.remove(nick);
 		
 	}

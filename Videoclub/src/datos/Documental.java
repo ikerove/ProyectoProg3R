@@ -2,7 +2,7 @@ package datos;
 
 import java.io.Serializable;
 
-public class Documental extends Multimedia implements Serializable{
+public class Documental extends Objeto implements Serializable{
 	private boolean animales;
 
 	public Documental() {
