@@ -7,6 +7,8 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+
+//Fondo para la VentanaUsuario
 public class PanelFondo extends JPanel {
 	private String fondo;
 	public PanelFondo(String fondo){
