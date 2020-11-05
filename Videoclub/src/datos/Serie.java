@@ -2,7 +2,7 @@ package datos;
 
 import java.io.Serializable;
 
-public class Serie extends Objeto implements Serializable{
+public class Serie extends Multimedia implements Serializable{
 	private String formato;
 	private int temporadas;
 	private int capitulos;

@@ -1,14 +1,14 @@
 package datos;
 
-public class Objeto {
+public class Multimedia {
 	protected int codigo;
 	protected String titulo;
 	//prueba
-	public Objeto() {
+	public Multimedia() {
 		super();
 	}
 
-	public Objeto(int codigo, String titulo) {
+	public Multimedia(int codigo, String titulo) {
 		super();
 		this.codigo = codigo;
 		this.titulo = titulo;
