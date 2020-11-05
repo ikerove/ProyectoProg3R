@@ -3,7 +3,7 @@ package principal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import datos.Objeto;
+import datos.Multimedia;
 import datos.Usuario;
 
 public class Main {
@@ -11,12 +11,12 @@ public class Main {
 	private static Logger logger = Logger.getLogger( Main.class.getName() );
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Objeto a = new Objeto(1,"aa");
-		Objeto b = new Objeto(2,"bb");
-		Objeto c = new Objeto(3,"cc");
-		Objeto d = new Objeto(4,"dd");
-		Objeto e = new Objeto(5,"ee");
-		Objeto f = new Objeto(6,"ff");
+		Multimedia a = new Multimedia(1,"aa");
+		Multimedia b = new Multimedia(2,"bb");
+		Multimedia c = new Multimedia(3,"cc");
+		Multimedia d = new Multimedia(4,"dd");
+		Multimedia e = new Multimedia(5,"ee");
+		Multimedia f = new Multimedia(6,"ff");
 		
 		Usuario h = new Usuario("hh","hh");
 		
