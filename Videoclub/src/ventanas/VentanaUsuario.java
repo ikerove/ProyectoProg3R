@@ -1,6 +1,12 @@
 package ventanas;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -27,14 +33,88 @@ public class VentanaUsuario extends JFrame {
 		
 		setSize(500,250);
 		setTitle("Inicio de sesion");
-		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		//setExtendedState(MAXIMIZED_BOTH);
 		
 		panelCentro = new PanelFondo("imagenes/fondo.jpg");
 		panelCentro.setLayout(new BoxLayout(panelCentro, BoxLayout.Y_AXIS));
 		panelCentro.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10, true));
-		    
 		
+		
+		panelBase = new JPanel();
+		panelBase.setBackground(Color.DARK_GRAY);
+		    
+		panelBotonera = new JPanel();
+		panelBotonera.setBackground(Color.DARK_GRAY);
+		    
+		getContentPane().add(panelCentro,BorderLayout.CENTER);
+		getContentPane().add(panelBase, BorderLayout.NORTH);
+		getContentPane().add(panelBotonera, BorderLayout.SOUTH);
+		
+		
+		//usuario = new JLabel();
+		//usuario.setText("Introduzca el nombre de usuario");
+		
+		txtNombre = new JTextField();
+		txtNombre.setPreferredSize(new Dimension (200, 50));
+		posicionaLinea(panelCentro, "Introduzca el usuario", txtNombre);
+		
+		 
+		//contrasenia = new JLabel();
+		//contrasenia.setText("Introduzca la contrasenia");
+		
+		txtContrasenia = new JPasswordField();
+		txtContrasenia.setPreferredSize(new Dimension (200, 50));
+		posicionaLinea(panelCentro, "Introduzca la contrasenia", txtContrasenia);
+		
+		
+		btnEntrar = new JButton();
+		btnEntrar.setToolTipText("Añade los parametros pedidos y pulsa el boton");
+		btnEntrar.setText("Iniciar sesion");
+		panelBotonera.add(btnEntrar);
+		
+		btnSalir = new JButton();
+		btnSalir.setToolTipText("Pulsa para salir");
+		btnSalir.setText("Salir");
+		panelBotonera.add(btnSalir);
+		
+		btnRegistrar = new JButton();
+		btnRegistrar.setToolTipText("Pulsa para registrarte");
+		btnRegistrar.setText("Registro");
+		btnRegistrar.setVisible(false);
+		panelBotonera.add(btnRegistrar);
+			
+		
+		
+		btnAdmin = new JButton();
+		btnAdmin.setToolTipText("Administracion");
+		btnAdmin.setText("Admin");
+		panelBotonera.add(btnAdmin);
+		
+		btnFavoritos = new JButton();
+		btnFavoritos.setToolTipText("Haz una lista de favoritos");
+		btnFavoritos.setText("Favoritos");
+		btnFavoritos.setVisible(false);
+		panelBotonera.add(btnFavoritos);
+		
+		
+		setVisible(true);
+		
+	}
+	
+	
+	
+	private void posicionaLinea(Container cont, String etiqueta, Component campo) {
+		JPanel tempPanel = new JPanel();
+		tempPanel.setOpaque(false);
+		tempPanel.setLayout(new FlowLayout(FlowLayout.LEFT)); // flow ajustado a la izquierda
+		JLabel l = new JLabel(etiqueta);
+		l.setPreferredSize(new Dimension(250, 50));
+		l.setFont(new Font(Font.SANS_SERIF,Font.BOLD,18));
+		l.setForeground(Color.WHITE);
+		tempPanel.add(l);
+		tempPanel.add(campo);
+		cont.add(tempPanel);
 	}
 	
 }
