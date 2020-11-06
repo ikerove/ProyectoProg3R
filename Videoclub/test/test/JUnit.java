@@ -9,7 +9,7 @@ import datos.Usuario;
 import principal.Videoclub;
 import junit.framework.TestCase;
 
-
+//Pruebas unitarias
 public class JUnit  extends TestCase{
 public void testconexionBD() {
 	assertNotNull("Se ha establediconexcion", BD.initBD("videoclub.sqlite3"));

@@ -1,5 +1,6 @@
 package datos;
 
+//Esta clase es la clase padre de todos los contenidos multimedia y atributos que heredan las clases hijas
 public class Multimedia {
 	protected int codigo;
 	protected String titulo;

@@ -2,6 +2,8 @@ package datos;
 
 import java.io.Serializable;
 
+
+//Esta clase es para las Series y los atributos que tienen
 public class Serie extends Multimedia implements Serializable{
 	private String formato;
 	private int temporadas;

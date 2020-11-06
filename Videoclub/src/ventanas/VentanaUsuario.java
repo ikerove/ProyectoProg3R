@@ -19,6 +19,8 @@ import javax.swing.JTextField;
 
 import paneles.PanelFondo;
 
+
+//Ventana de inicio de sesión donde se meten usuario y contraseña
 public class VentanaUsuario extends JFrame {
 	private JPanel panelCentro, panelBase, panelBotonera ;
 	private JTextField txtNombre;

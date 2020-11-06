@@ -7,13 +7,18 @@ import datos.Multimedia;
 import datos.Usuario;
 import ventanas.VentanaUsuario;
 
+
+//Clase Main donde se inicia el projecto
 public class Main {
 	
 	private static Logger logger = Logger.getLogger( Main.class.getName() );
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
 		new VentanaUsuario();
+		
+		
 		Multimedia a = new Multimedia(1,"aa");
 		Multimedia b = new Multimedia(2,"bb");
 		Multimedia c = new Multimedia(3,"cc");

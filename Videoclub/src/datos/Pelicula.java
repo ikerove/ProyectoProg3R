@@ -2,6 +2,7 @@ package datos;
 
 import java.io.Serializable;
 
+//Esta clase es para las Peliculas y los atributos que tienen
 public class Pelicula extends Multimedia implements Serializable{
 	private String guion;
 	private String musica;

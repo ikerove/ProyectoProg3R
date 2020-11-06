@@ -2,6 +2,8 @@ package datos;
 
 import java.io.Serializable;
 
+
+//Esta clase es para los Domunetales y los atributos que tienen
 public class Documental extends Multimedia implements Serializable{
 	private boolean animales;
 

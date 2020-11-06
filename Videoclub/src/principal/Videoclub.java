@@ -14,7 +14,8 @@ import java.util.logging.Logger;
 import datos.Multimedia;
 import datos.Usuario;
 
-
+//En esta clase tenemos diferentes "listas" para almacenar los objetos, usuarios y favoritos
+//Ademas tenemos diferentes metodos para interectuar con cada lista
 public class Videoclub {
 	private static HashMap<Integer, Multimedia> objetos = new HashMap<>();
 	private static TreeMap<String,Usuario> usuarios  = new TreeMap<>();
