@@ -1,6 +1,7 @@
 package datos;
 
 import java.io.Serializable;
+import java.util.Date;
 
 
 //Esta clase es para las Series y los atributos que tienen
@@ -16,8 +17,9 @@ public class Serie extends Multimedia implements Serializable{
 		super();
 	}
 
-	public Serie(int codigo, String titulo, String formato, int temporadas, int capitulos, int duracionCap) {
-		super(codigo, titulo);
+	public Serie(int codigo, String titulo, String director, String genero, int duracion, String distribuidora,
+			Date fecha, String calificacion, String guion, String musica, boolean oscars, String rutaFoto) {
+		super( codigo, titulo, director, genero, duracion, distribuidora, fecha, calificacion, rutaFoto);
 		this.formato = formato;
 		this.temporadas = temporadas;
 		this.capitulos = capitulos;
@@ -59,6 +61,12 @@ public class Serie extends Multimedia implements Serializable{
 	@Override
 	public String toString() {
 		return "Serie [codigo=" + codigo + ", titulo=" + titulo + "]";
+	}
+
+	@Override
+	public String getTexto() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

@@ -1,6 +1,7 @@
 package datos;
 
 import java.io.Serializable;
+import java.util.Date;
 
 //Esta clase es para las Peliculas y los atributos que tienen
 public class Pelicula extends Multimedia implements Serializable{
@@ -12,8 +13,9 @@ public class Pelicula extends Multimedia implements Serializable{
 		super();
 	}
 
-	public Pelicula(int codigo, String titulo,String guion, String musica, boolean oscars) {
-		super(codigo, titulo);
+	public Pelicula(int codigo, String titulo, String director, String genero, int duracion, String distribuidora,
+			Date fecha, String calificacion, String guion, String musica, boolean oscars, String rutaFoto) {
+		super(codigo, titulo, director, genero, duracion, distribuidora, fecha, calificacion, rutaFoto);
 		this.guion = guion;
 		this.musica = musica;
 		this.oscars = oscars;		
@@ -46,6 +48,12 @@ public class Pelicula extends Multimedia implements Serializable{
 	@Override
 	public String toString() {
 		return "Pelicula [guion=" + guion + ", musica=" + musica + ", oscars=" + oscars + "]";
+	}
+
+	@Override
+	public String getTexto() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

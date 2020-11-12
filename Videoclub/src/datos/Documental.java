@@ -1,6 +1,7 @@
 package datos;
 
 import java.io.Serializable;
+import java.util.Date;
 
 
 //Esta clase es para los Domunetales y los atributos que tienen
@@ -11,8 +12,9 @@ public class Documental extends Multimedia implements Serializable{
 		super();
 	}
 
-	public Documental(int codigo, String titulo,boolean animales) {
-		super(codigo, titulo);
+	public Documental(int codigo, String titulo, String director, String genero, int duracion, String distribuidora,
+			Date fecha, String calificacion, boolean animales, String rutaFoto) {
+		super(codigo, titulo, director, genero, duracion, distribuidora, fecha, calificacion, rutaFoto);
 		this.animales = animales;
 	}
 
@@ -27,6 +29,12 @@ public class Documental extends Multimedia implements Serializable{
 	@Override
 	public String toString() {
 		return "Documental [animales=" + animales + "]";
+	}
+
+	@Override
+	public String getTexto() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
