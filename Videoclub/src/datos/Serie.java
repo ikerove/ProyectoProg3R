@@ -9,6 +9,8 @@ public class Serie extends Multimedia implements Serializable{
 	private int temporadas;
 	private int capitulos;
 	private int duracionCap;
+	
+	
 
 	public Serie() {
 		super();
