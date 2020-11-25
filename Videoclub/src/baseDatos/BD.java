@@ -137,4 +137,29 @@ public class BD {
 
 		}
 	}
+	
+	
+	public static int existeUsuario(String nick, String contrasenia) {
+		Connection con = initBD("videoclub.sqlite3");
+		String sql = "SELECT * FROM Usuario WHERE nick='"+nick+"'";
+		Statement st;
+		int resultado=0;
+		try {
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(!rs.next())
+				resultado = 0;
+			else {
+				String c = rs.getString(1);
+				if(c.equals(contrasenia))
+					resultado = 2;
+				else
+					resultado = 1;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
+	}
 }
