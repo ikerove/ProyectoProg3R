@@ -7,16 +7,20 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import baseDatos.BD;
 import paneles.PanelFondo;
 
 
@@ -100,10 +104,44 @@ public class VentanaUsuario extends JFrame {
 		panelBotonera.add(btnFavoritos);
 		
 		
+		
+		
+		
+		btnEntrar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				String nick = txtNombre.getText();
+				String contrasenia = txtContrasenia.getText();				
+				int resultado = BD.existeUsuario(nick, contrasenia);
+				
+				if(resultado == 2) {
+					JOptionPane.showMessageDialog(null, "BIENVENIDO AL VIDEOCLUB");
+					//new VentanaCliente(nick);
+					new VentanaMain();
+					btnFavoritos.setVisible(true);
+				}else if(resultado == 1) {
+					JOptionPane.showMessageDialog(null, "La contraseña no es correcta", "ERROR!", JOptionPane.ERROR_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, "Para poder acceder, primero tienes que registrarte");
+					btnRegistrar.setVisible(true);
+
+				}
+				vaciarCampos();
+			}
+		});
+		
+		
 		setVisible(true);
 		
 	}
 	
+	public void vaciarCampos(){
+		txtNombre.setText("");
+		txtContrasenia.setText("");
+	}
 	
 	
 	private void posicionaLinea(Container cont, String etiqueta, Component campo) {
