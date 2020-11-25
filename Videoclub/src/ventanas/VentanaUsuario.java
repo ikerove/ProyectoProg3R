@@ -9,9 +9,12 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.Statement;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -133,7 +136,40 @@ public class VentanaUsuario extends JFrame {
 			}
 		});
 		
+		btnSalir.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.exit(0);
+			}
+		});
 		
+		btnRegistrar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				vaciarCampos();
+				String nick = JOptionPane.showInputDialog("Introduce tu nick: ");
+				String contrasenia = JOptionPane.showInputDialog("Introduce la contraseña: ");
+				if(nick!=null && contrasenia!=null) {
+					int resultado = BD.existeUsuario(nick, contrasenia);
+					if(resultado!=0) {
+						JOptionPane.showMessageDialog(null, "Ese nick ya está en uso", "ERROR!", JOptionPane.ERROR_MESSAGE);
+					}else {
+						BD.insertarUsuario(nick, contrasenia);
+						ImageIcon im = new ImageIcon("imagenes/ok.jpg");
+						JOptionPane.showMessageDialog(null, "Te has registrado correctamente","REGISTRO",JOptionPane.INFORMATION_MESSAGE,im);
+						btnRegistrar.setVisible(false);
+					}
+				}
+			}
+		});
+		
+		Connection con = BD.initBD("videoclub.sqlite3");
+		Statement st = BD.usarCrearTablasBD(con);
+		BD.cerrarBD(con, st);
 		setVisible(true);
 		
 	}
