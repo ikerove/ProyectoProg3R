@@ -162,4 +162,17 @@ public class BD {
 		}
 		return resultado;
 	}
+	
+	public static void insertarUsuario(String nick, String contrasenia) {
+		Connection con = initBD("videoclub.sqlite3");
+		String sql = "INSERT INTO Usuario VALUES('"+nick+"','"+contrasenia+"')";
+		Statement st;	
+		try {
+			st = con.createStatement();
+			st.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
