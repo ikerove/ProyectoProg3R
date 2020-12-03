@@ -150,7 +150,7 @@ public class BD {
 			if(!rs.next())
 				resultado = 0;
 			else {
-				String c = rs.getString(1);
+				String c = rs.getString(2);
 				if(c.equals(contrasenia))
 					resultado = 2;
 				else
