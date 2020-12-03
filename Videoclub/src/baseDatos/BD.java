@@ -142,19 +142,25 @@ public class BD {
 	public static int existeUsuario(String nick, String contrasenia) {
 		Connection con = initBD("videoclub.sqlite3");
 		String sql = "SELECT * FROM Usuario WHERE nick='"+nick+"'";
+		logger.log(Level.INFO,"Seleccionando usuario: "+nick);
 		Statement st;
 		int resultado=0;
 		try {
 			st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
-			if(!rs.next())
+			if(!rs.next()) {
 				resultado = 0;
-			else {
+				logger.log(Level.WARNING,"Usuario no exixtente");
+
+			}else {
 				String c = rs.getString(2);
-				if(c.equals(contrasenia))
+				if(c.equals(contrasenia)) {
 					resultado = 2;
-				else
+					logger.log(Level.FINE,"Usuario existente");
+				
+				}else
 					resultado = 1;
+				logger.log(Level.WARNING,"Contrase�a incorrecta");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -170,6 +176,7 @@ public class BD {
 		try {
 			st = con.createStatement();
 			st.executeUpdate(sql);
+			logger.log(Level.INFO,"Usuario a�adido correctamente");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
