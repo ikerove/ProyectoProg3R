@@ -42,12 +42,19 @@ public class BD {
 			Statement statement = con.createStatement();
 			try {
 				statement.executeUpdate("create table if not exists Serie "+
-									   "(codigo integer, "+
-									   " titulo string, "+								
-									   " formato string,"+
-									   " temporadas integer,"+
-									   " capitulos integer,"+
-									   " duracionCap integer)");
+						   "(codigo integer, "+
+						   " titulo string, "+
+						   " director string, "+
+						   " genero string, "+
+						   " duracion integer, "+
+						   " distribuidora string,"+
+						   " fecha string,"+
+						   " calificacion string,"+
+						   " formato string,"+
+						   " temporadas integer,"+
+						   " capitulos integer,"+
+						   " duracionCap integer," + 
+						   " rutaFoto string)");
 			}catch(SQLException ex) {
 				logger.log(Level.WARNING, "Tabla Serie ya existente");
 			} //Si la tabla ya existe, no hacemos nada
@@ -55,11 +62,17 @@ public class BD {
 			try {
 				statement.executeUpdate("create table if not exists Pelicula "+
 						   "(codigo integer, "+
-						   " titulo string, "+						  
+						   " titulo string, "+
+						   " director string, "+
+						   " genero string, "+
+						   " duracion integer, "+
+						   " distribuidora string,"+
+						   " fecha string,"+
+						   " calificacion integer,"+
 						   " guion string,"+
 						   " musica string,"+
-						   " oscars boolean, ");
-
+						   " oscars boolean, " +
+						   " rutaFoto string)");
 			}catch(SQLException ex) {
 				logger.log(Level.WARNING, "Tabla Pelicula ya existente");
 
@@ -67,9 +80,16 @@ public class BD {
 			
 			try {
 				statement.executeUpdate("create table if not exists Documental "+
-						 "(codigo integer, "+
-						   " titulo string, "+						  
-						   " animales boolean,");
+						   "(codigo integer, "+
+						   " titulo string, "+
+						   " director string, "+
+						   " genero string, "+
+						   " duracion integer, "+
+						   " distribuidora string,"+
+						   " fecha string,"+
+						   " calificacion integer,"+
+						   " animales boolean,"+
+						   " rutaFoto string)");
 
 			}catch(SQLException ex) {
 				logger.log(Level.WARNING, "Tabla Documental ya existente");
