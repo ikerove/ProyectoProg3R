@@ -182,4 +182,41 @@ public class BD {
 			e.printStackTrace();
 		}
 	}
+	
+	public static int existeAdmin(String nick, String contrasenia) {
+		Connection con = initBD("videoclub.sqlite3");
+		String sql = "SELECT * FROM Admin WHERE nick='"+nick+"'";
+		Statement st;
+		int resultado=0;
+		try {
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(!rs.next())
+				resultado = 0;
+			else {
+				String c = rs.getString(2);
+				if(c.equals(contrasenia))
+					resultado = 2;
+				else
+					resultado = 1;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+	
+	public static void insertarAdmin(String nick, String contrasenia) {
+		Connection con = initBD("videoclub.sqlite3");
+		String sql = "INSERT INTO Admin VALUES('"+nick+"','"+contrasenia+"')";
+		Statement st;	
+		try {
+			st = con.createStatement();
+			st.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
