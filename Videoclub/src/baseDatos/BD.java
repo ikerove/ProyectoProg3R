@@ -246,7 +246,14 @@ public class BD {
 		String sql = "INSERT INTO Serie VALUES('"+codigo+"','"+titulo+"','"+director+"','"+genero+"','"+duracion+"','"+distribuidora+"','"+fecha+"','"
 		+calificacion+"','"+formato+"','"+temporadas+"','"+capitulos+"','"+duracionCap+"','"+rutaFoto+"')";
 		Statement st = null;	
-	
+		try {
+			st = con.createStatement();
+			st.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		cerrarBD(con, st);
 	}
