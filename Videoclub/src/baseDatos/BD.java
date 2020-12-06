@@ -239,4 +239,15 @@ public class BD {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void insertarSerie(int codigo, String titulo, String director, String genero, int duracion, String distribuidora,
+			String fecha, String calificacion, String formato, int temporadas, int capitulos, int duracionCap, String rutaFoto) {
+		Connection con = initBD("videoclub.sqlite3");
+		String sql = "INSERT INTO Serie VALUES('"+codigo+"','"+titulo+"','"+director+"','"+genero+"','"+duracion+"','"+distribuidora+"','"+fecha+"','"
+		+calificacion+"','"+formato+"','"+temporadas+"','"+capitulos+"','"+duracionCap+"','"+rutaFoto+"')";
+		Statement st = null;	
+	
+		
+		cerrarBD(con, st);
+	}
 }
