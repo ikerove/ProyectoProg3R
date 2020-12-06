@@ -94,6 +94,23 @@ public class PanelSerie extends JPanel{
 		txtRutaFoto.setPreferredSize(new Dimension(100, 50));
 		posicionaLinea(panel, "Introduce la ruta de la foto: ", txtRutaFoto);
 		
+		
+		btnAniadir = new JButton("AÑADIR");
+		posicionaLinea(panel, "", btnAniadir);
+		
+		
+		//EVENTOS
+		btnAniadir.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				//SpinnerNumberModel snm = (SpinnerNumberModel) unidades.getModel();
+				
+				BD.insertarSerie(Integer.parseInt(txtCodigo.getText()), txtTitulo.getText(),  txtDirector.getText(), txtGenero.getText(),Integer.parseInt(txtDuracion.getText()),txtDistribuidora.getText(),txtFecha.getText(),txtCalificacion.getText(),txtFormato.getText(),Integer.parseInt(txtTemporadas.getText()),Integer.parseInt(txtCapitulos.getText()),Integer.parseInt(txtDuracionCap.getText()), txtRutaFoto.getText());
+			}
+		});
+		
 	}
 		private void posicionaLinea(Container cont, String etiqueta, Component campo) {
 			JPanel tempPanel = new JPanel();
