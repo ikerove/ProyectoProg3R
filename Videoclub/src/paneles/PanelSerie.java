@@ -43,12 +43,6 @@ public class PanelSerie extends JPanel{
 		txtTitulo.setPreferredSize(new Dimension(100, 50));
 		posicionaLinea(panel, "Introduce el titulo: ", txtTitulo);
 		
-	/*
-		tipo = new JComboBox<>(TipoArticulo.values());
-		tipo.setSelectedItem(TipoArticulo.LIBRO);
-		tipo.setEnabled(false);
-		tipo.setPreferredSize(new Dimension(100, 50));
-		posicionaLinea(panel, "Tipo: ", tipo);*/
 		
 		txtDirector = new JTextField();
 		txtDirector.setPreferredSize(new Dimension(100, 50));
@@ -99,13 +93,12 @@ public class PanelSerie extends JPanel{
 		posicionaLinea(panel, "", btnAniadir);
 		
 		
-		//EVENTOS
+		
 		btnAniadir.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				//SpinnerNumberModel snm = (SpinnerNumberModel) unidades.getModel();
 				
 				BD.insertarSerie(Integer.parseInt(txtCodigo.getText()), txtTitulo.getText(),  txtDirector.getText(), txtGenero.getText(),Integer.parseInt(txtDuracion.getText()),txtDistribuidora.getText(),txtFecha.getText(),txtCalificacion.getText(),txtFormato.getText(),Integer.parseInt(txtTemporadas.getText()),Integer.parseInt(txtCapitulos.getText()),Integer.parseInt(txtDuracionCap.getText()), txtRutaFoto.getText());
 			}

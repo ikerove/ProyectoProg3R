@@ -18,7 +18,7 @@ public class Serie extends Multimedia implements Serializable{
 	}
 
 	public Serie(int codigo, String titulo, String director, String genero, int duracion, String distribuidora,
-			Date fecha, String calificacion, String guion, String musica, boolean oscars, String rutaFoto) {
+			Date fecha, String calificacion, String formato, int temporadas, int capitulos, int duracionCap, String rutaFoto) {
 		super( codigo, titulo, director, genero, duracion, distribuidora, fecha, calificacion, rutaFoto);
 		this.formato = formato;
 		this.temporadas = temporadas;

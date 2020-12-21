@@ -108,7 +108,16 @@ public class VentanaUsuario extends JFrame {
 		
 		
 		
-		
+		btnFavoritos.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String nick1 = txtNombre.getText();
+				//JOptionPane.showMessageDialog(null, "BIENVENIDO AL VIDEOCLUB");
+				new VentanaCliente(nick1);
+			}
+		});
 		
 		btnEntrar.addActionListener(new ActionListener() {
 			
@@ -165,6 +174,36 @@ public class VentanaUsuario extends JFrame {
 					}
 				}
 			}
+		});
+		
+		btnAdmin.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String nick = JOptionPane.showInputDialog("Introduce tu nick: ");
+				String contrasenia = JOptionPane.showInputDialog("Introduce la contraseña: ");
+				//String contrasenia2 = "VIDEOCLUB";
+				if(nick!=null && contrasenia!=null){
+					int resultado = BD.existeAdmin(nick, contrasenia);
+					if(resultado!=0) {
+						//JOptionPane.showMessageDialog(null, "Ese admin ya existe", "ERROR!", JOptionPane.ERROR_MESSAGE);
+						new VentanaUtilidades();
+					}else {
+						JOptionPane.showMessageDialog(null, "Admin incorrecto", "ERROR!", JOptionPane.ERROR_MESSAGE);
+						String contrasenia2 = JOptionPane.showInputDialog("Inserte contrasenia de administrador");
+						if(contrasenia2.equals("VIDEOCLUB")) {
+							BD.insertarAdmin(nick, contrasenia);
+							ImageIcon im = new ImageIcon("imagenes/ok.jpg");
+							JOptionPane.showMessageDialog(null, "Nuevo administrador registrado","REGISTRO",JOptionPane.INFORMATION_MESSAGE,im);
+							new VentanaUtilidades();
+						}else{
+							JOptionPane.showMessageDialog(null, "Contrasenia incorrecta", "ERROR!", JOptionPane.ERROR_MESSAGE);
+						}
+					}
+				}
+			}
+			
 		});
 		
 		Connection con = BD.initBD("videoclub.sqlite3");

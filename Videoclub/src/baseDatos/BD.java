@@ -1,9 +1,18 @@
 package baseDatos;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
 
+import datos.Documental;
+import datos.Multimedia;
+import datos.Pelicula;
+import datos.Serie;
+import datos.Usuario;
 import principal.Main;
 import principal.Videoclub;
 public class BD {
@@ -256,5 +265,377 @@ public class BD {
 		
 		
 		cerrarBD(con, st);
+	}
+	
+	public static void insertarPelicula(int codigo, String titulo, String director, String genero, int duracion, String distribuidora,
+			String fecha, String calificacion, String guion, String musica, boolean oscars, String rutaFoto) {
+		Connection con = initBD("videoclub.sqlite3");
+		String sql = "INSERT INTO Pelicula VALUES('"+codigo+"','"+titulo+"','"+director+"','"+genero+"','"+duracion+"','"+distribuidora+ "','"+fecha+ "','"+calificacion+"','"+guion+"','"+musica+"','"+oscars+"','"+rutaFoto+"')";
+		Statement st = null;	
+		try {
+			st = con.createStatement();
+			st.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		cerrarBD(con, st);
+	}
+	
+	public static void insertarDocumental(int codigo, String titulo, String director, String genero, int duracion, String distribuidora,
+			String fecha, String calificacion,boolean animales, String rutaFoto) {
+		Connection con = initBD("videoclub.sqlite3");
+		String sql = "INSERT INTO Documental VALUES('"+codigo+"','"+titulo+"','"+director+"','"+genero+"','"+duracion+"','"+distribuidora+ "','"+fecha+ "','"+calificacion+"','"+animales+"','"+rutaFoto+"')";
+		Statement st = null;	
+		try {
+			st = con.createStatement();
+			st.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		cerrarBD(con, st);
+	}
+	
+	
+	
+	public static void borrarSeries() {
+		Connection con = initBD("videoclub.sqlite3");
+		String sql = "DELETE FROM Serie";
+		Statement st = null;	
+		try {
+			st = con.createStatement();
+			st.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		cerrarBD(con, st);	
+	}
+	
+	public static void borrarPeliculas() {
+		Connection con = initBD("videoclub.sqlite3");
+		String sql = "DELETE FROM Pelicula";
+		Statement st = null;	
+		try {
+			st = con.createStatement();
+			st.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		cerrarBD(con, st);	
+	}
+	
+	public static void borrarDocumentales() {
+		Connection con = initBD("videoclub.sqlite3");
+		String sql = "DELETE FROM Documental";
+		Statement st = null;	
+		try {
+			st = con.createStatement();
+			st.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		cerrarBD(con, st);	
+	}
+	
+	public static void actualizarHistorial(String nick,int codigo, int unidades, String fecha) {
+		Connection con = initBD("videoclub.sqlite3");
+		String sql = "INSERT INTO historial VALUES ('"+nick+"',"+codigo+","+unidades+",'"+fecha+"')";
+		Statement st = null;	
+		try {
+			st = con.createStatement();
+			st.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		cerrarBD(con, st);	
+	}
+	
+	
+	public static Serie obtenerSerie(String rutaFoto) {
+		Connection con = initBD("videoclub.sqlite3");
+		String sql = "SELECT * FROM serie WHERE rutaFoto='"+rutaFoto+"'";
+		Statement st = null;	
+		Serie s = null;
+		try {
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(rs.next()) {
+				int codigo = rs.getInt("codigo");
+				String titulo = rs.getString("titulo");
+				String director = rs.getString("director");
+				String genero = rs.getString("genero");
+				int duracion = rs.getInt("duracion");
+				String distribuidora = rs.getString("distribuidora");
+				String fecha = rs.getString("fecha");
+				String calificacion = rs.getString("calificacion");
+				String formato = rs.getString("formato");
+				int temporadas = rs.getInt("temporadas");
+				int capitulos = rs.getInt("capitulos");
+				int duracionCap = rs.getInt("duracionCap");
+				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+				Date d = sdf.parse(fecha);
+				s = new Serie(codigo, titulo, director, genero, duracion, distribuidora, d, calificacion, formato, temporadas, capitulos, duracionCap, rutaFoto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		cerrarBD(con, st);
+		return s;
+	}
+
+	public static Usuario obtenerUsuario(){
+		Connection con = initBD("videoclub.sqlite3");
+		String sql = "SELECT * FROM Usuario";
+		Statement st = null;	
+		Usuario u = null;
+		try {
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(rs.next()) {
+				String usuario = rs.getString("nick");
+				String contrasenia = rs.getString("con");
+				
+				u = new Usuario(usuario, contrasenia);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		cerrarBD(con, st);
+		return u;
+	}
+	
+	public static ArrayList<Serie> obtenerSeries(){
+		ArrayList<Serie> series = new ArrayList<Serie>();
+		Connection con = initBD("videoclub.sqlite3");
+		String sql = "SELECT * FROM Serie";
+		Statement st = null;	
+		try {
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				int codigo = rs.getInt("codigo");
+				String titulo = rs.getString("titulo");
+				String director = rs.getString("director");
+				String genero = rs.getString("genero");
+				int duracion = rs.getInt("duracion");
+				String distribuidora = rs.getString("distribuidora");
+				String fecha = rs.getString("fecha");
+				String calificacion = rs.getString("calificacion");
+				String formato = rs.getString("formato");
+				int temporadas = rs.getInt("temporadas");
+				int capitulos = rs.getInt("capitulos");
+				int duracionCap = rs.getInt("duracionCap");
+				String rutaFoto = rs.getString("rutaFoto");
+				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+				Date d = sdf.parse(fecha);
+				Serie s = new Serie(codigo, titulo, director, genero, duracion, distribuidora, d, calificacion, formato, temporadas, capitulos, duracionCap, rutaFoto);
+				series.add(s);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		cerrarBD(con, st);	
+		return series;
+	}
+	
+	
+	
+	public static ArrayList<Pelicula> obtenerPeliculas(){
+		ArrayList<Pelicula> peliculas = new ArrayList<Pelicula>();
+		Connection con = initBD("videoclub.sqlite3");
+		String sql = "SELECT * FROM Pelicula";
+		Statement st = null;	
+		try {
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				int codigo = rs.getInt("codigo");
+				String titulo = rs.getString("titulo");
+				String director = rs.getString("director");
+				String genero = rs.getString("genero");
+				int duracion = rs.getInt("duracion");
+				String distribuidora = rs.getString("distribuidora");
+				String fecha = rs.getString("fecha");
+				String calificacion = rs.getString("calificacion");
+				String guion = rs.getString("guion");
+				String musica = rs.getString("musica");
+				boolean oscars = rs.getBoolean("oscars");
+				String rutaFoto = rs.getString("rutaFoto");
+				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+				Date d = sdf.parse(fecha);
+				Pelicula p = new Pelicula(codigo, titulo, director, genero, duracion, distribuidora, d, calificacion, guion, musica, oscars,  rutaFoto);
+				peliculas.add(p);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		cerrarBD(con, st);	
+		return peliculas;
+	}
+	
+	public static ArrayList<Documental> obtenerDocumentales(){
+		ArrayList<Documental> documentales = new ArrayList<Documental>();
+		Connection con = initBD("videoclub.sqlite3");
+		String sql = "SELECT * FROM Documental";
+		Statement st = null;	
+		try {
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				int codigo = rs.getInt("codigo");
+				String titulo = rs.getString("titulo");
+				String director = rs.getString("director");
+				String genero = rs.getString("genero");
+				int duracion = rs.getInt("duracion");
+				String distribuidora = rs.getString("distribuidora");
+				String fecha = rs.getString("fecha");
+				String calificacion = rs.getString("calificacion");
+				boolean animales = rs.getBoolean("animales");
+				String rutaFoto = rs.getString("rutaFoto");
+				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+				Date d = sdf.parse(fecha);
+				Documental doc = new Documental(codigo, titulo, director, genero, duracion, distribuidora, d, calificacion, animales,  rutaFoto);
+				
+				documentales.add(doc);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		cerrarBD(con, st);	
+		return documentales;
+	}
+	
+	
+	
+	
+	
+	
+	
+	public static ArrayList<Multimedia> obtenerObjetos(){
+		Connection con = initBD("videoclub.sqlite3");
+		String sql = "SELECT * FROM Serie";
+		Statement st = null;
+		ArrayList<Multimedia> objetos = new ArrayList<>();
+		try {
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				int codigo = rs.getInt(1);
+				String titulo = rs.getString(2);
+				String director = rs.getString(3);
+				String genero = rs.getString(4);
+				int duracion = rs.getInt(5);
+				String  distribuidora = rs.getString(6);
+				String fecha = rs.getString(7);
+				String calificacion = rs.getString(8);
+				String formato = rs.getString(9);
+				int temporadas = rs.getInt(10);
+				int capitulos = rs.getInt(11);
+				int duracionCap = rs.getInt(12);
+				String rutaFoto = rs.getString(13);
+				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+				Date d;
+				try {
+					d = sdf.parse(fecha);
+					objetos.add(new Serie(codigo, titulo, director, genero, duracion, distribuidora, d, calificacion, formato, temporadas, capitulos, duracionCap, rutaFoto));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			    
+			    
+			}
+			rs.close();
+			sql = "SELECT * FROM Pelicula";
+			rs = st.executeQuery(sql);
+			while(rs.next()) {
+				int codigo = rs.getInt(1);
+				String titulo = rs.getString(2);
+				String director = rs.getString(3);
+				String genero = rs.getString(4);
+				int duracion = rs.getInt(5);
+				String  distribuidora = rs.getString(6);
+				String fecha = rs.getString(7);
+				String calificacion = rs.getString(8);
+				String guion = rs.getString(9);
+				String musica = rs.getString(10);
+				boolean oscars = rs.getBoolean(11);
+				String rutaFoto = rs.getString(12);
+				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+				Date d ;
+				try {
+					d = sdf.parse(fecha);
+					objetos.add(new Pelicula(codigo, titulo, director, genero, duracion, distribuidora, d, calificacion, guion, musica, oscars, rutaFoto));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} //Convierte de String a Date
+				
+				
+			}
+			rs.close();
+			sql = "SELECT * FROM Documental";
+			rs = st.executeQuery(sql);
+			while(rs.next()) {
+				int codigo = rs.getInt(1);
+				String titulo = rs.getString(2);
+				String director = rs.getString(3);
+				String genero = rs.getString(4);
+				int duracion = rs.getInt(5);
+				String  distribuidora = rs.getString(6);
+				String fecha = rs.getString(7);
+				String calificacion = rs.getString(8);
+				boolean animales = rs.getBoolean(9);
+				String rutaFoto = rs.getString(10);
+				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+				Date d ;
+				try {
+					d = sdf.parse(fecha);
+					objetos.add(new Documental(codigo, titulo, director, genero, duracion, distribuidora, d, calificacion, animales, rutaFoto));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} //Convierte de String a Date
+				
+				
+			}
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		cerrarBD(con, st);
+		return objetos;
 	}
 }

@@ -106,4 +106,36 @@ public class Videoclub {
 	           it.remove(); // avoids a ConcurrentModificationException
 	       }
 	}
+	
+	
+	public static void aniadirAFavoritos(String nombre,Multimedia o) {
+		if(!favoritos.containsKey(nombre)) {
+			favoritos.put(nombre, new ArrayList<>());
+		}
+		favoritos.get(nombre).add(o);
+	}
+	
+	public static Multimedia eliminarDeFavoritos(String nombre, int codigo) {
+		boolean enc=false;
+		int pos = 0;
+		Multimedia eliminado;
+		
+		while(!enc && pos<favoritos.get(nombre).size()) {
+			if(favoritos.get(nombre).get(pos).getCodigo()==codigo)
+				enc = true;
+			else
+				pos++;
+		}
+		if(enc) {
+			eliminado = favoritos.get(nombre).get(pos);
+			favoritos.get(nombre).remove(pos);
+			return eliminado;
+		}
+		return null;
+		
+	}
+	
+	public static ArrayList<Multimedia> obtenerComprasCliente(String nick){
+		return favoritos.get(nick);
+	}
 }
