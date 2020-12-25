@@ -99,21 +99,21 @@ public class VentanaFicha extends JFrame{
 		pSur.add(btnVolver);
 		pSur.add(btnPagar);		
 		pCentro = new JPanel(new GridLayout(1, 2));
-		lblFoto = lblFotoSeleccionada;
-		pCentro.add(lblFoto);
+		//lblFoto = lblFotoSeleccionada;
+		//pCentro.add(lblFoto);
 		
 		pSegundaColumna = new JPanel(new GridLayout(4,1));
 		//lblTitulo = new JLabel(s.getTitulo());
 
 
-		lblPrecio = new JLabel(BD.obtenerSerie(lblFoto.toString()).getTitulo());
+		//lblPrecio = new JLabel(BD.obtenerSerie(lblFoto.toString()).getTitulo());
 
 
 
 		String items[] = {"720p","1080p","4k"};
 		comboCalidad = new JComboBox<String>(items);
-		pSegundaColumna.add(lblTitulo);
-		pSegundaColumna.add(lblPrecio);
+		//pSegundaColumna.add(lblTitulo);
+		//pSegundaColumna.add(lblPrecio);
 		pSegundaColumna.add(comboCalidad);
 		pCentro.add(pSegundaColumna);
 		cp.add(pSur, BorderLayout.SOUTH);
