@@ -1,10 +1,11 @@
 package datos;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 //Esta clase es para las Peliculas y los atributos que tienen
-public class Pelicula extends Multimedia implements Serializable{
+public class Pelicula extends Multimedia implements Serializable, InterfaceReserva{
 	private String guion;
 	private String musica;
 	private boolean oscars;
@@ -52,6 +53,12 @@ public class Pelicula extends Multimedia implements Serializable{
 
 	@Override
 	public String getTexto() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public SimpleDateFormat reservar() {
 		// TODO Auto-generated method stub
 		return null;
 	}
