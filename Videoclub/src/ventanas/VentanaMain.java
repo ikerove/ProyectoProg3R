@@ -125,7 +125,10 @@ public class VentanaMain extends JFrame{
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
+				Point p = e.getPoint();
 				
+				JLabel lblFotoSeleccionada = (JLabel) panCentro.getComponentAt(p);
+				lblFotoSeleccionada.getClass();
 			}
 			
 			@Override
@@ -144,13 +147,22 @@ public class VentanaMain extends JFrame{
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
 				Point p = e.getPoint();
+				
 				JLabel lblFotoSeleccionada = (JLabel) panCentro.getComponentAt(p);
 				v.dispose();
 				new VentanaFicha(lblFotoSeleccionada,v);
-			}
+				
+				}
 		});
 		panSur.add(reserv);
-		
+		reserv.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cargarReservas();
+			}
+		});
 		
 
 		
@@ -205,6 +217,46 @@ public class VentanaMain extends JFrame{
 		}
 		panCentro.updateUI();
 	}
-}
+	private void cargarReservas() {
+		ArrayList<Serie> series = BD.obtenerSeries();
+		panCentro.removeAll();
+		for(Serie s: series) {
+			JLabel lblFoto = new JLabel();
+			lblFoto.setSize(100,100);
+			ImageIcon im = new ImageIcon(s.getRutaFoto());
+			ImageIcon imagenConDimensiones = new ImageIcon(im.getImage().getScaledInstance(lblFoto.getWidth(),lblFoto.getHeight(),Image.SCALE_DEFAULT));
+			imagenConDimensiones.setDescription(s.getRutaFoto());
+			lblFoto.setIcon(imagenConDimensiones); 
+			panCentro.add(lblFoto);
+		}
+		panCentro.updateUI();
+		ArrayList<Pelicula> peliculas = BD.obtenerPeliculas();
+		
+		for(Pelicula p: peliculas) {
+			JLabel lblFoto = new JLabel();
+			lblFoto.setSize(100,100);
+			ImageIcon im = new ImageIcon(p.getRutaFoto());
+			ImageIcon imagenConDimensiones = new ImageIcon(im.getImage().getScaledInstance(lblFoto.getWidth(),lblFoto.getHeight(),Image.SCALE_DEFAULT));
+			imagenConDimensiones.setDescription(p.getRutaFoto());
+			lblFoto.setIcon(imagenConDimensiones); 
+			panCentro.add(lblFoto);
+		}
+		panCentro.updateUI();
+		ArrayList<Documental> documentales = BD.obtenerDocumentales();
+		
+		for(Documental d: documentales) {
+			JLabel lblFoto = new JLabel();
+			lblFoto.setSize(100,100);
+			ImageIcon im = new ImageIcon(d.getRutaFoto());
+			ImageIcon imagenConDimensiones = new ImageIcon(im.getImage().getScaledInstance(lblFoto.getWidth(),lblFoto.getHeight(),Image.SCALE_DEFAULT));
+			imagenConDimensiones.setDescription(d.getRutaFoto());
+			lblFoto.setIcon(imagenConDimensiones); 
+			panCentro.add(lblFoto);
+		}
+		panCentro.updateUI();
+	}
+	}
+	
+
 
 

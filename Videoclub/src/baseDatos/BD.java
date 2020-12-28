@@ -81,7 +81,8 @@ public class BD {
 						   " guion string,"+
 						   " musica string,"+
 						   " oscars boolean, " +
-						   " rutaFoto string)");
+						   " rutaFoto string,"+
+						   "tiempoReserva float)");
 			}catch(SQLException ex) {
 				logger.log(Level.WARNING, "Tabla Pelicula ya existente");
 
@@ -268,9 +269,9 @@ public class BD {
 	}
 	
 	public static void insertarPelicula(int codigo, String titulo, String director, String genero, int duracion, String distribuidora,
-			String fecha, String calificacion, String guion, String musica, boolean oscars, String rutaFoto) {
+			String fecha, String calificacion, String guion, String musica, boolean oscars, String rutaFoto,float tiempoReserva) {
 		Connection con = initBD("videoclub.sqlite3");
-		String sql = "INSERT INTO Pelicula VALUES('"+codigo+"','"+titulo+"','"+director+"','"+genero+"','"+duracion+"','"+distribuidora+ "','"+fecha+ "','"+calificacion+"','"+guion+"','"+musica+"','"+oscars+"','"+rutaFoto+"')";
+		String sql = "INSERT INTO Pelicula VALUES('"+codigo+"','"+titulo+"','"+director+"','"+genero+"','"+duracion+"','"+distribuidora+ "','"+fecha+ "','"+calificacion+"','"+guion+"','"+musica+"','"+oscars+"','"+rutaFoto+"','"+tiempoReserva+"')";
 		Statement st = null;	
 		try {
 			st = con.createStatement();
@@ -482,9 +483,10 @@ public class BD {
 				String musica = rs.getString("musica");
 				boolean oscars = rs.getBoolean("oscars");
 				String rutaFoto = rs.getString("rutaFoto");
+				float tiempoReserva=rs.getFloat("tiempoReserva");
 				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 				Date d = sdf.parse(fecha);
-				Pelicula p = new Pelicula(codigo, titulo, director, genero, duracion, distribuidora, d, calificacion, guion, musica, oscars,  rutaFoto);
+				Pelicula p = new Pelicula(codigo, titulo, director, genero, duracion, distribuidora, d, calificacion, guion, musica, oscars,  rutaFoto,tiempoReserva);
 				peliculas.add(p);
 			}
 		} catch (SQLException e) {
@@ -592,11 +594,12 @@ public class BD {
 				String musica = rs.getString(10);
 				boolean oscars = rs.getBoolean(11);
 				String rutaFoto = rs.getString(12);
+				float tiempoReserva=rs.getFloat(13);
 				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 				Date d ;
 				try {
 					d = sdf.parse(fecha);
-					objetos.add(new Pelicula(codigo, titulo, director, genero, duracion, distribuidora, d, calificacion, guion, musica, oscars, rutaFoto));
+					objetos.add(new Pelicula(codigo, titulo, director, genero, duracion, distribuidora, d, calificacion, guion, musica, oscars, rutaFoto,tiempoReserva));
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

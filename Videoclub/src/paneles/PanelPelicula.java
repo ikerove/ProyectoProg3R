@@ -25,7 +25,7 @@ import baseDatos.BD;
 
 public class PanelPelicula extends JPanel{
 	JPanel panel;
-	JTextField txtCodigo, txtTitulo,txtDirector,txtGenero,txtDuracion,txtDistribuidora, txtFecha, txtCalificacion,txtGuion,txtMusica, txtRutaFoto;
+	JTextField txtCodigo, txtTitulo,txtDirector,txtGenero,txtDuracion,txtDistribuidora, txtFecha, txtCalificacion,txtGuion,txtMusica, txtRutaFoto,txtTiempoReserva;
 	JSpinner unidades;
 	JCheckBox txtOscars;
 	
@@ -93,6 +93,10 @@ public class PanelPelicula extends JPanel{
 		txtRutaFoto.setPreferredSize(new Dimension(100, 50));
 		posicionaLinea(panel, "Introduce la ruta de la foto: ", txtRutaFoto);
 		
+		txtTiempoReserva = new JTextField();
+		txtTiempoReserva.setPreferredSize(new Dimension(100, 50));
+		posicionaLinea(panel, "Tiempo de reserva restante: ", txtTiempoReserva);
+		
 		/*SpinnerNumberModel snm = new SpinnerNumberModel(1, 1, 1, 1);
 		unidades = new JSpinner(snm);
 		posicionaLinea(panel, "Selecciona el numero de unidades: ", unidades);*/
@@ -112,7 +116,7 @@ public class PanelPelicula extends JPanel{
 				if(txtOscars.isSelected()) {
 					oscars = true;
 				}
-				BD.insertarPelicula(Integer.parseInt(txtCodigo.getText()), txtTitulo.getText(),  txtDirector.getText(), txtGenero.getText(),Integer.parseInt(txtDuracion.getText()),txtDistribuidora.getText(),txtFecha.getText(),txtCalificacion.getText(),txtGuion.getText(),txtMusica.getText(),oscars, txtRutaFoto.getText());
+				BD.insertarPelicula(Integer.parseInt(txtCodigo.getText()), txtTitulo.getText(),  txtDirector.getText(), txtGenero.getText(),Integer.parseInt(txtDuracion.getText()),txtDistribuidora.getText(),txtFecha.getText(),txtCalificacion.getText(),txtGuion.getText(),txtMusica.getText(),oscars, txtRutaFoto.getText(),Float.parseFloat(txtTiempoReserva.getText()));
 			}
 		});
 		

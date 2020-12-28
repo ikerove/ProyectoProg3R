@@ -9,17 +9,21 @@ public class Pelicula extends Multimedia implements Serializable, InterfaceReser
 	private String guion;
 	private String musica;
 	private boolean oscars;
+	private float tiempoReserva;
 	
+	
+
 	public Pelicula() {
 		super();
 	}
 
 	public Pelicula(int codigo, String titulo, String director, String genero, int duracion, String distribuidora,
-			Date fecha, String calificacion, String guion, String musica, boolean oscars, String rutaFoto) {
+			Date fecha, String calificacion, String guion, String musica, boolean oscars, String rutaFoto, float tiempoReserva ) {
 		super(codigo, titulo, director, genero, duracion, distribuidora, fecha, calificacion, rutaFoto);
 		this.guion = guion;
 		this.musica = musica;
-		this.oscars = oscars;		
+		this.oscars = oscars;	
+		this.tiempoReserva=tiempoReserva;
 	}
 
 	public String getGuion() {
@@ -44,6 +48,13 @@ public class Pelicula extends Multimedia implements Serializable, InterfaceReser
 
 	public void setOscars(boolean oscars) {
 		this.oscars = oscars;
+	}
+	public float getTiempoReserva() {
+		return tiempoReserva;
+	}
+
+	public void setTiempoReserva(float tiempoReserva) {
+		this.tiempoReserva = tiempoReserva;
 	}
 
 	@Override
