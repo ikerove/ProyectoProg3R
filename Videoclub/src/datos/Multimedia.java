@@ -108,7 +108,7 @@ public abstract class Multimedia implements InterfaceReserva {
 	public abstract String getTexto() ;
 
 	public SimpleDateFormat reservar() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 		

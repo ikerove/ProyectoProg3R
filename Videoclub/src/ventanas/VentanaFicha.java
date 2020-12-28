@@ -35,7 +35,7 @@ public class VentanaFicha extends JFrame{
 	private String nick;
 	
 	
-	public VentanaFicha(JLabel lblFotoSeleccionada, JFrame va) {
+	public VentanaFicha(JLabel lblFotoSeleccionada, JFrame va)  {
 		super();
 		JFrame v = this;
 		ventanaAnterior = va;

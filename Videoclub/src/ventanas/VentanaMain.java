@@ -1,6 +1,7 @@
 package ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.Point;
@@ -32,13 +33,13 @@ import datos.Pelicula;
 import datos.Serie;
 
 public class VentanaMain extends JFrame{
-	private JPanel panCentro ;
+	private JPanel panCentro, panSur ;
 	private JScrollPane panScrol;
 	private JMenuBar menuBar;
 	private JMenu menuS, menuP, menuD;
 	private JMenuItem mi1, mi2, mi3;
 	private JFrame v;
-	
+	private JButton reserv;
 	
 	
 	public VentanaMain() {
@@ -51,6 +52,7 @@ public class VentanaMain extends JFrame{
 		
 		
 		panCentro = new JPanel();
+		panSur = new JPanel();
 		panScrol = new JScrollPane(panCentro,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		
 		
@@ -68,6 +70,7 @@ public class VentanaMain extends JFrame{
 		mi2 = new JMenuItem("Peliculas");
 		mi3 = new JMenuItem("Documentales");
 		
+		reserv =new JButton("Reservar");
 		
 		menuS.add(mi1);
 		menuP.add(mi2);
@@ -77,6 +80,8 @@ public class VentanaMain extends JFrame{
 		menuBar.add(menuD);
 		this.getContentPane().add(menuBar, BorderLayout.NORTH);
 		this.getContentPane().add(panScrol,BorderLayout.CENTER);
+		this.getContentPane().add(panSur,BorderLayout.SOUTH);
+		
 		
 		
 		mi1.addActionListener(new ActionListener() {
@@ -144,14 +149,16 @@ public class VentanaMain extends JFrame{
 				new VentanaFicha(lblFotoSeleccionada,v);
 			}
 		});
+		panSur.add(reserv);
+		
 		
 
 		
 		setVisible(true);
 		
 		
-		
 	}
+	
 	
 	private void cargaSeries() {
 		ArrayList<Serie> series = BD.obtenerSeries();
