@@ -57,11 +57,8 @@ public class Pelicula extends Multimedia implements Serializable, InterfaceReser
 		return null;
 	}
 
-	@Override
-	public SimpleDateFormat reservar() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
+	
 	
 	
 	
