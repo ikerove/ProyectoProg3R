@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -60,13 +61,20 @@ public class VentanaMain extends JFrame{
 		panSur.setBounds(0, 328, 384, 33);
 		panScrol = new JScrollPane(panCentro,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		panScrol.setBounds(0, 22, 384, 306);
+		panCentro.setLayout(null);
+		
+
+		
 		
 		Estrenos = new JLabel("ESTRENOS: ");
+		Estrenos.setBounds(10, 11, 97, 21);
 		Estrenos.setFont(new Font("AR DARLING", Font.PLAIN, 16));
 		panCentro.add(Estrenos);
 		
 		table = new JTable();
-		panCentro.add(table);
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setBounds(0, 34, 382, 270);
+		panCentro.add(scrollPane);
 		
 		
 		
@@ -169,6 +177,7 @@ public class VentanaMain extends JFrame{
 				
 				}
 		});
+		
 		panSur.add(reserv);
 		reserv.addActionListener(new ActionListener() {
 			
