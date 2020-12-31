@@ -111,7 +111,7 @@ public class VentanaFicha extends JFrame{
 
 
 		String items[] = {"720p","1080p","4k"};
-		comboCalidad = new JComboBox<String>(items);
+		//comboCalidad = new JComboBox<String>(items);
 		//pSegundaColumna.add(lblTitulo);
 		//pSegundaColumna.add(lblPrecio);
 		pSegundaColumna.add(comboCalidad);
