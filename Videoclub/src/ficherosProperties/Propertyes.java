@@ -31,6 +31,7 @@ public class Propertyes {
             config.setProperty(property, value);
         } catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error guardando configuración\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            
         }
     }
 }
