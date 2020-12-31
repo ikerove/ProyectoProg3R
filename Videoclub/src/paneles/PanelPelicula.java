@@ -37,6 +37,7 @@ public class PanelPelicula extends JPanel{
 	public PanelPelicula() {
 		
 		panel = this;
+		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 
 		
 		txtCodigo = new JTextField();
@@ -125,7 +126,7 @@ public class PanelPelicula extends JPanel{
 	}
 
 	private void posicionaLinea(Container cont, String etiqueta, Component campo) {
-		setLayout(null);
+		
 		JPanel tempPanel = new JPanel();
 		tempPanel.setBounds(0, 0, 450, 60);
 		tempPanel.setOpaque(false);
