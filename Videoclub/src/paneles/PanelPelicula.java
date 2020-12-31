@@ -22,6 +22,9 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
 import baseDatos.BD;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
 
 public class PanelPelicula extends JPanel{
 	JPanel panel;
@@ -30,16 +33,29 @@ public class PanelPelicula extends JPanel{
 	JCheckBox txtOscars;
 	
 	JButton btnAniadir;
+	private JTable table;
 	
 	public PanelPelicula() {
 		
 		panel = this;
-		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 
 		
 		txtCodigo = new JTextField();
 		txtCodigo.setPreferredSize(new Dimension(100, 50));
 		posicionaLinea(panel, "Introduce el codigo: ", txtCodigo);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(0, 60, 510, 240);
+		add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		
+		JLabel lblNewLabel = new JLabel("TODAS LAS PELICULAS");
+		lblNewLabel.setLabelFor(this);
+		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
+		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 11));
+		scrollPane.setColumnHeaderView(lblNewLabel);
 		
 		txtTitulo = new JTextField();
 		txtTitulo.setPreferredSize(new Dimension(100, 50));
@@ -123,7 +139,9 @@ public class PanelPelicula extends JPanel{
 	}
 
 	private void posicionaLinea(Container cont, String etiqueta, Component campo) {
+		setLayout(null);
 		JPanel tempPanel = new JPanel();
+		tempPanel.setBounds(0, 0, 450, 60);
 		tempPanel.setOpaque(false);
 		tempPanel.setLayout(new FlowLayout(FlowLayout.LEFT)); // flow ajustado a la izquierda
 		JLabel l = new JLabel(etiqueta);
