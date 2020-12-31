@@ -33,7 +33,6 @@ public class PanelPelicula extends JPanel{
 	JCheckBox txtOscars;
 	
 	JButton btnAniadir;
-	private JTable table;
 	
 	public PanelPelicula() {
 		
@@ -43,19 +42,6 @@ public class PanelPelicula extends JPanel{
 		txtCodigo = new JTextField();
 		txtCodigo.setPreferredSize(new Dimension(100, 50));
 		posicionaLinea(panel, "Introduce el codigo: ", txtCodigo);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 60, 510, 240);
-		add(scrollPane);
-		
-		table = new JTable();
-		scrollPane.setViewportView(table);
-		
-		JLabel lblNewLabel = new JLabel("TODAS LAS PELICULAS");
-		lblNewLabel.setLabelFor(this);
-		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
-		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 11));
-		scrollPane.setColumnHeaderView(lblNewLabel);
 		
 		txtTitulo = new JTextField();
 		txtTitulo.setPreferredSize(new Dimension(100, 50));
