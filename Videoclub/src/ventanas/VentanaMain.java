@@ -82,6 +82,7 @@ public class VentanaMain extends JFrame{
 		reserv =new JButton("Reservar");
 		getContentPane().setLayout(null);
 		
+		
 		menuS.add(mi1);
 		menuP.add(mi2);
 		menuD.add(mi3);
