@@ -58,16 +58,13 @@ public class VentanaMain extends JFrame{
 		
 		panCentro = new JPanel();
 		panSur = new JPanel();
-		panSur.setBounds(0, 328, 384, 33);
 		
 		
 		panScrol = new JScrollPane(panCentro,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		panScrol.setBounds(0, 22, 384, 306);
 		//panCentro.setLayout(null);
 		
 
 		menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 384, 22);
 		
 		menuS = new JMenu("Series");		
 		menuP = new JMenu("Peliculas");		
@@ -80,7 +77,7 @@ public class VentanaMain extends JFrame{
 		mi4 = new JMenuItem("Estrenos");
 		
 		reserv =new JButton("Reservar");
-		getContentPane().setLayout(null);
+		getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		
 		menuS.add(mi1);
@@ -92,8 +89,8 @@ public class VentanaMain extends JFrame{
 		menuBar.add(menuD);
 		menuBar.add(menuE);
 		this.getContentPane().add(menuBar, BorderLayout.NORTH);
-		this.getContentPane().add(panScrol,BorderLayout.CENTER);
-		this.getContentPane().add(panSur,BorderLayout.SOUTH);
+		this.getContentPane().add(panScrol);
+		this.getContentPane().add(panSur, BorderLayout.SOUTH);
 		
 		
 		
