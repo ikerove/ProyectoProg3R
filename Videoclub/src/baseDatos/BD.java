@@ -188,10 +188,10 @@ public class BD {
 					resultado = 2;
 					logger.log(Level.FINE,"Usuario existente");
 				
-				}else
+				}else {
 					resultado = 1;
-				logger.log(Level.WARNING,"Contraseï¿½a incorrecta");
-			}
+				logger.log(Level.WARNING,"Contraseña incorrecta");
+				}}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
