@@ -223,6 +223,7 @@ public class BD {
 			ResultSet rs = st.executeQuery(sql);
 			if(!rs.next())
 				resultado = 0;
+			
 			else {
 				String c = rs.getString(2);
 				if(c.equals(contrasenia))
@@ -244,6 +245,7 @@ public class BD {
 		try {
 			st = con.createStatement();
 			st.executeUpdate(sql);
+			logger.log(Level.INFO,"Admin añadido correctamente");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -259,6 +261,7 @@ public class BD {
 		try {
 			st = con.createStatement();
 			st.executeUpdate(sql);
+			logger.log(Level.INFO,"Serie añadida correctamente");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -276,6 +279,7 @@ public class BD {
 		try {
 			st = con.createStatement();
 			st.executeUpdate(sql);
+			logger.log(Level.INFO,"Película añadida correctamente");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -292,6 +296,7 @@ public class BD {
 		try {
 			st = con.createStatement();
 			st.executeUpdate(sql);
+			logger.log(Level.INFO,"Documental añadido correctamente");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
