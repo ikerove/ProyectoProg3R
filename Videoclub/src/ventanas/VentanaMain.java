@@ -39,8 +39,8 @@ public class VentanaMain extends JFrame{
 	private JPanel panCentro, panSur ;
 	private JScrollPane panScrol;
 	private JMenuBar menuBar;
-	private JMenu menuS, menuP, menuD;
-	private JMenuItem mi1, mi2, mi3;
+	private JMenu menuS, menuP, menuD, menuE;
+	private JMenuItem mi1, mi2, mi3, mi4;
 	private JFrame v;
 	private JButton reserv;
 	private JLabel Estrenos;
@@ -59,38 +59,25 @@ public class VentanaMain extends JFrame{
 		panCentro = new JPanel();
 		panSur = new JPanel();
 		panSur.setBounds(0, 328, 384, 33);
+		
+		
 		panScrol = new JScrollPane(panCentro,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		panScrol.setBounds(0, 22, 384, 306);
-		panCentro.setLayout(null);
+		//panCentro.setLayout(null);
 		
 
-		
-		
-		Estrenos = new JLabel("ESTRENOS: ");
-		Estrenos.setBounds(10, 11, 97, 21);
-		Estrenos.setFont(new Font("AR DARLING", Font.PLAIN, 16));
-		panCentro.add(Estrenos);
-		
-		table = new JTable();
-		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(0, 34, 382, 270);
-		panCentro.add(scrollPane);
-		
-		
-		
-		
 		menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 384, 22);
 		
-		menuS = new JMenu("Series");
-		
-		menuP = new JMenu("Peliculas");
-		
-		menuD = new JMenu("Documentales");
+		menuS = new JMenu("Series");		
+		menuP = new JMenu("Peliculas");		
+		menuD = new JMenu("Documentales");		
+		menuE = new JMenu("Estrenos");
 		
 		mi1 = new JMenuItem("Series");
 		mi2 = new JMenuItem("Peliculas");
 		mi3 = new JMenuItem("Documentales");
+		mi4 = new JMenuItem("Estrenos");
 		
 		reserv =new JButton("Reservar");
 		getContentPane().setLayout(null);
@@ -98,12 +85,14 @@ public class VentanaMain extends JFrame{
 		menuS.add(mi1);
 		menuP.add(mi2);
 		menuD.add(mi3);
+		menuE.add(mi4);
 		menuBar.add(menuS);
 		menuBar.add(menuP);
 		menuBar.add(menuD);
-		this.getContentPane().add(menuBar);
-		this.getContentPane().add(panScrol);
-		this.getContentPane().add(panSur);
+		menuBar.add(menuE);
+		this.getContentPane().add(menuBar, BorderLayout.NORTH);
+		this.getContentPane().add(panScrol,BorderLayout.CENTER);
+		this.getContentPane().add(panSur,BorderLayout.SOUTH);
 		
 		
 		
@@ -132,6 +121,23 @@ public class VentanaMain extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				cargaDocumentales();
+			}
+		});
+		
+		mi4.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				Estrenos = new JLabel("ESTRENOS: ");
+				Estrenos.setBounds(10, 11, 97, 21);
+				Estrenos.setFont(new Font("AR DARLING", Font.PLAIN, 16));
+				panCentro.add(Estrenos);
+				
+				table = new JTable();
+				JScrollPane scrollPane = new JScrollPane(table);
+				scrollPane.setBounds(0, 34, 382, 270);
+				panCentro.add(scrollPane);
 			}
 		});
 		
