@@ -216,21 +216,24 @@ public class BD {
 	public static int existeAdmin(String nick, String contrasenia) {
 		Connection con = initBD("videoclub.sqlite3");
 		String sql = "SELECT * FROM Admin WHERE nick='"+nick+"'";
+		logger.log(Level.INFO,"Seleccionando admin: "+nick);
 		Statement st;
 		int resultado=0;
 		try {
 			st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
-			if(!rs.next())
+			if(!rs.next()) {
 				resultado = 0;
-			
-			else {
+				logger.log(Level.WARNING,"Admin no exixtente");
+			}else {
 				String c = rs.getString(2);
-				if(c.equals(contrasenia))
+				if(c.equals(contrasenia)) {
 					resultado = 2;
-				else
+					logger.log(Level.FINE,"Admin existente");
+				}else {
 					resultado = 1;
-			}
+					logger.log(Level.WARNING,"Contraseña incorrecta");
+				}}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -314,6 +317,7 @@ public class BD {
 		try {
 			st = con.createStatement();
 			st.executeUpdate(sql);
+			logger.log(Level.INFO,"serie borrada correctamente");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -329,6 +333,7 @@ public class BD {
 		try {
 			st = con.createStatement();
 			st.executeUpdate(sql);
+			logger.log(Level.INFO,"Pelcula borrada correctamente");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -344,6 +349,7 @@ public class BD {
 		try {
 			st = con.createStatement();
 			st.executeUpdate(sql);
+			logger.log(Level.INFO,"Documental borrado correctamente");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -359,6 +365,7 @@ public class BD {
 		try {
 			st = con.createStatement();
 			st.executeUpdate(sql);
+			logger.log(Level.INFO,"Historial actualizado correctamente");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
