@@ -391,11 +391,6 @@ public class Tabla {
 			return ret;
 		}
 		
-		/** Genera un fichero csv (codificado UTF-8) partiendo de los datos actuales de la tabla
-		 * @param file	Fichero de salida
-		 * @param comasEnVezDePuntos	Si se pone true, los dobles se generan con coma decimal en vez de punto decimal
-		 * @throws IOException
-		 */
 		public void generarCSV( File file, boolean comasEnVezDePuntos ) 
 		throws IOException // Error de E/S
 		{
@@ -422,11 +417,7 @@ public class Tabla {
 			protected static boolean LOG_CONSOLE_CSV = false;  // Log en consola de la lectura del csv
 			
 		// Método de carga de tabla desde CSV
-		/** Procesa un fichero csv (codificado UTF-8) y lo carga devolviéndolo en una nueva tabla
-		 * @param file	Fichero del csv
-		 * @return	Nuevo objeto tabla con los contenidos de ese csv
-		 * @throws IOException
-		 */
+		
 		public static Tabla processCSV( File file ) 
 		throws IOException // Error de I/O
 		{
