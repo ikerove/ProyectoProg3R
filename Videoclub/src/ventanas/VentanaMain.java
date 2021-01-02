@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -32,6 +33,9 @@ import baseDatos.BD;
 import datos.Documental;
 import datos.Pelicula;
 import datos.Serie;
+import datos.Tabla;
+
+
 import java.awt.Font;
 import javax.swing.JTable;
 
@@ -132,10 +136,13 @@ public class VentanaMain extends JFrame{
 				Estrenos.setFont(new Font("AR DARLING", Font.PLAIN, 16));
 				panCentro.add(Estrenos);
 				
-				table = new JTable();
-				JScrollPane scrollPane = new JScrollPane(table);
-				scrollPane.setBounds(0, 34, 382, 270);
-				panCentro.add(scrollPane);
+				Tabla table = new Tabla();
+				
+				//Tabla.processCSV(new File( "src/datos.csv" ) ) ;
+			
+		
+				
+				
 			}
 		});
 		
