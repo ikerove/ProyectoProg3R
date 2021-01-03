@@ -2,7 +2,12 @@ package ventanas;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -42,6 +48,8 @@ public class VentanaFicha extends JFrame{
 		this.setSize(400,200);
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		Container cp = this.getContentPane();
+		
+		
 		pSur = new JPanel();
 		btnVolver = new JButton("VOLVER");
 		btnVolver.addActionListener(new ActionListener() {
@@ -100,6 +108,7 @@ public class VentanaFicha extends JFrame{
 		pSur.add(btnPagar);		
 		pCentro = new JPanel(new GridLayout(1, 2));
 		//lblFoto = lblFotoSeleccionada;
+		lblFoto = new JLabel();
 		//pCentro.add(lblFoto);
 		
 		pSegundaColumna = new JPanel(new GridLayout(4,1));
@@ -108,16 +117,25 @@ public class VentanaFicha extends JFrame{
 
 		//lblPrecio = new JLabel(BD.obtenerSerie(lblFoto.toString()).getTitulo());
 
+		ImageIcon imagen = (ImageIcon) lblFotoSeleccionada.getIcon();
+		lblFoto.setIcon(imagen);
+		String datos = BD.obtenerPelicula2(imagen.getDescription());
+		posicionaLinea(pCentro,datos, lblFoto);
+		
+		//pCentro.add(lblFoto);
+		//lblTitulo = new JLabel(BD.obtenerSerie("a"));
 
-
-		String items[] = {"720p","1080p","4k"};
+		//String items[] = {"720p","1080p","4k"};
 		//comboCalidad = new JComboBox<String>(items);
 		//pSegundaColumna.add(lblTitulo);
+		//pSegundaColumna.add(imagen, BorderLayout.NORTH);
 		//pSegundaColumna.add(lblPrecio);
-		pSegundaColumna.add(comboCalidad);
-		pCentro.add(pSegundaColumna);
+		//pSegundaColumna.add(comboCalidad);
+		//pCentro.add(pSegundaColumna);
 		cp.add(pSur, BorderLayout.SOUTH);
 		cp.add(pCentro, BorderLayout.CENTER);
+		
+		
 		
 		this.setVisible(true);
 	}
@@ -170,5 +188,18 @@ public class VentanaFicha extends JFrame{
 		texto = texto + "TOTAL A PAGAR: "+ total+ " €";
 		txtTexto.setText(texto);*/
 		txtTexto.setText(crearTexto());
+	}
+	
+	private void posicionaLinea(Container cont, String etiqueta, Component campo) {
+		JPanel tempPanel = new JPanel();
+		tempPanel.setOpaque(false);
+		tempPanel.setLayout(new FlowLayout(FlowLayout.LEFT)); // flow ajustado a la izquierda
+		JLabel l = new JLabel(etiqueta);
+		//l.setPreferredSize(new Dimension(250, 50));
+		l.setFont(new Font(Font.SANS_SERIF,Font.BOLD,18));
+		l.setForeground(Color.WHITE);
+		tempPanel.add(l);
+		tempPanel.add(campo);
+		cont.add(tempPanel);
 	}
 }

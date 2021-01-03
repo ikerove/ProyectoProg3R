@@ -190,7 +190,7 @@ public class BD {
 				
 				}else {
 					resultado = 1;
-				logger.log(Level.WARNING,"Contraseña incorrecta");
+				logger.log(Level.WARNING,"Contraseï¿½a incorrecta");
 				}}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -232,7 +232,7 @@ public class BD {
 					logger.log(Level.FINE,"Admin existente");
 				}else {
 					resultado = 1;
-					logger.log(Level.WARNING,"Contraseña incorrecta");
+					logger.log(Level.WARNING,"Contraseï¿½a incorrecta");
 				}}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -248,7 +248,7 @@ public class BD {
 		try {
 			st = con.createStatement();
 			st.executeUpdate(sql);
-			logger.log(Level.INFO,"Admin añadido correctamente");
+			logger.log(Level.INFO,"Admin aï¿½adido correctamente");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -264,7 +264,7 @@ public class BD {
 		try {
 			st = con.createStatement();
 			st.executeUpdate(sql);
-			logger.log(Level.INFO,"Serie añadida correctamente");
+			logger.log(Level.INFO,"Serie aï¿½adida correctamente");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -282,7 +282,7 @@ public class BD {
 		try {
 			st = con.createStatement();
 			st.executeUpdate(sql);
-			logger.log(Level.INFO,"Película añadida correctamente");
+			logger.log(Level.INFO,"Pelï¿½cula aï¿½adida correctamente");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -299,7 +299,7 @@ public class BD {
 		try {
 			st = con.createStatement();
 			st.executeUpdate(sql);
-			logger.log(Level.INFO,"Documental añadido correctamente");
+			logger.log(Level.INFO,"Documental aï¿½adido correctamente");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -409,6 +409,77 @@ public class BD {
 		}
 		cerrarBD(con, st);
 		return s;
+	}
+	
+	public static Pelicula obtenerPelicula(String rutaFoto) {
+		Connection con = initBD("videoclub.sqlite3");
+		String sql = "SELECT * FROM pelicula WHERE rutaFoto='"+rutaFoto+"'";
+		Statement st = null;	
+		Pelicula p = null;
+		try {
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(rs.next()) {
+				int codigo = rs.getInt("codigo");
+				String titulo = rs.getString("titulo");
+				String director = rs.getString("director");
+				String genero = rs.getString("genero");
+				int duracion = rs.getInt("duracion");
+				String distribuidora = rs.getString("distribuidora");
+				String fecha = rs.getString("fecha");
+				String calificacion = rs.getString("calificacion");
+				String guion = rs.getString("guion");
+				String musica = rs.getString("musica");
+				boolean oscars = rs.getBoolean("oscars");				
+				float tiempoReserva=rs.getFloat("tiempoReserva");
+				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+				Date d = sdf.parse(fecha);
+				p = new Pelicula(codigo, titulo, director, genero, duracion, distribuidora, d, calificacion, guion, musica, oscars,  rutaFoto,tiempoReserva);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		cerrarBD(con, st);
+		return p;
+	}
+	public static String obtenerPelicula2(String rutaFoto) {
+		Connection con = initBD("videoclub.sqlite3");
+		String sql = "SELECT * FROM pelicula WHERE rutaFoto='"+rutaFoto+"'";
+		Statement st = null;	
+		String p = null;
+		try {
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(rs.next()) {
+				int codigo = rs.getInt("codigo");
+				String titulo = rs.getString("titulo");
+				String director = rs.getString("director");
+				String genero = rs.getString("genero");
+				int duracion = rs.getInt("duracion");
+				String distribuidora = rs.getString("distribuidora");
+				String fecha = rs.getString("fecha");
+				String calificacion = rs.getString("calificacion");
+				String guion = rs.getString("guion");
+				String musica = rs.getString("musica");
+				boolean oscars = rs.getBoolean("oscars");				
+				float tiempoReserva=rs.getFloat("tiempoReserva");
+				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+				Date d = sdf.parse(fecha);
+				p = "Codigo" + codigo+ "Titulo\n" + titulo+ "\n" +  director+ "\n" + genero+ "\n" + duracion+ "\n" + distribuidora+ "\n" + d+ "\n" + calificacion+ "\n" + guion+ "\n" + musica+ "\n" + oscars+ "\n" + rutaFoto+ "\n" +tiempoReserva;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		cerrarBD(con, st);
+		return p;
 	}
 
 	public static Usuario obtenerUsuario(){
