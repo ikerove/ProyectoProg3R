@@ -35,7 +35,7 @@ import datos.Pelicula;
 import datos.Serie;
 
 
-
+import java.awt.Font;
 import javax.swing.JTable;
 
 public class VentanaMain extends JFrame{
