@@ -33,10 +33,9 @@ import baseDatos.BD;
 import datos.Documental;
 import datos.Pelicula;
 import datos.Serie;
-import datos.Tabla;
 
 
-import java.awt.Font;
+
 import javax.swing.JTable;
 
 public class VentanaMain extends JFrame{
@@ -49,7 +48,6 @@ public class VentanaMain extends JFrame{
 	private JButton reserv;
 	private JLabel Estrenos;
 	private JTable table;
-	
 	
 	public VentanaMain() {
 		super();
@@ -140,7 +138,8 @@ public class VentanaMain extends JFrame{
 				JScrollPane scrollPane = new JScrollPane(table);
 				scrollPane.setBounds(0, 34, 382, 270);
 				panCentro.add(scrollPane);
-				//Tabla table = new Tabla();
+				
+				
 				
 				//Tabla.processCSV(new File( "src/datos.csv" ) ) ;
 			
