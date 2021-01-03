@@ -136,7 +136,11 @@ public class VentanaMain extends JFrame{
 				Estrenos.setFont(new Font("AR DARLING", Font.PLAIN, 16));
 				panCentro.add(Estrenos);
 				
-				Tabla table = new Tabla();
+				table = new JTable();
+				JScrollPane scrollPane = new JScrollPane(table);
+				scrollPane.setBounds(0, 34, 382, 270);
+				panCentro.add(scrollPane);
+				//Tabla table = new Tabla();
 				
 				//Tabla.processCSV(new File( "src/datos.csv" ) ) ;
 			
