@@ -194,6 +194,11 @@ public class VentanaFicha extends JFrame{
 		JPanel tempPanel = new JPanel();
 		tempPanel.setOpaque(false);
 		tempPanel.setLayout(new FlowLayout(FlowLayout.LEFT)); // flow ajustado a la izquierda
+		
+		etiqueta = "<html><body>" + etiqueta;
+		etiqueta = etiqueta.replaceAll("\n", "<br>");
+		etiqueta = etiqueta + "</body></html>";
+		
 		JLabel l = new JLabel(etiqueta);
 		//l.setPreferredSize(new Dimension(250, 50));
 		l.setFont(new Font(Font.SANS_SERIF,Font.BOLD,18));
