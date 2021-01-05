@@ -223,7 +223,14 @@ public class VentanaFicha extends JFrame{
 	private void posicionaLinea(Container cont, String etiqueta, Component campo) {
 		JPanel tempPanel = new JPanel();
 		tempPanel.setOpaque(false);
-		//tempPanel.setLayout(new FlowLayout(FlowLayout.LEFT)); // flow ajustado a la izquierda
+
+		tempPanel.setLayout(new FlowLayout(FlowLayout.LEFT)); // flow ajustado a la izquierda
+		
+		etiqueta = "<html><body>" + etiqueta;
+		etiqueta = etiqueta.replaceAll("\n", "<br>");
+		etiqueta = etiqueta + "</body></html>";
+		
+
 		JLabel l = new JLabel(etiqueta);
 		//l.setPreferredSize(new Dimension(200, 250));
 		l.setSize(200, 200);
