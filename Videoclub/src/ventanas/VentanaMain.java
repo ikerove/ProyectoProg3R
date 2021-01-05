@@ -42,12 +42,14 @@ public class VentanaMain extends JFrame{
 	private JPanel panCentro, panSur ;
 	private JScrollPane panScrol;
 	private JMenuBar menuBar;
-	private JMenu menuS, menuP, menuD, menuE;
-	private JMenuItem mi1, mi2, mi3, mi4;
+	private JMenu menuS, menuP, menuD, menuE, menuF;
+	private JMenuItem mi1, mi2, mi3, mi4,mi5;
 	private JFrame v;
 	private JButton reserv;
+	private JLabel Favoritos;
 	private JLabel Estrenos;
 	private JTable table;
+	private JTable table2;
 	
 	public VentanaMain() {
 		super();
@@ -71,12 +73,14 @@ public class VentanaMain extends JFrame{
 		menuS = new JMenu("Series");		
 		menuP = new JMenu("Peliculas");		
 		menuD = new JMenu("Documentales");		
-		menuE = new JMenu("Estrenos");
+		menuE = new JMenu("Favoritos");
+		menuF= new JMenu("Estrenos");
 		
 		mi1 = new JMenuItem("Series");
 		mi2 = new JMenuItem("Peliculas");
 		mi3 = new JMenuItem("Documentales");
-		mi4 = new JMenuItem("Estrenos");
+		mi4 = new JMenuItem("Favoritos");
+		mi5 = new JMenuItem("Estrenos");
 		
 		reserv =new JButton("Reservar");
 		getContentPane().setLayout(new BorderLayout(0, 0));
@@ -86,10 +90,13 @@ public class VentanaMain extends JFrame{
 		menuP.add(mi2);
 		menuD.add(mi3);
 		menuE.add(mi4);
+		menuF.add(mi5);
 		menuBar.add(menuS);
 		menuBar.add(menuP);
 		menuBar.add(menuD);
 		menuBar.add(menuE);
+		menuBar.add(menuF);
+		
 		this.getContentPane().add(menuBar, BorderLayout.NORTH);
 		this.getContentPane().add(panScrol);
 		this.getContentPane().add(panSur, BorderLayout.SOUTH);
@@ -129,26 +136,65 @@ public class VentanaMain extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				Estrenos = new JLabel("ESTRENOS: ");
-				Estrenos.setBounds(10, 11, 97, 21);
-				Estrenos.setFont(new Font("AR DARLING", Font.PLAIN, 16));
-				panCentro.add(Estrenos);
+				Favoritos = new JLabel("Favoritos: ");
+				Favoritos.setBounds(10, 11, 97, 21);
+				Favoritos.setFont(new Font("AR DARLING", Font.PLAIN, 16));
+				panCentro.add(Favoritos);
 				
 				table = new JTable();
 				JScrollPane scrollPane = new JScrollPane(table);
 				scrollPane.setBounds(0, 34, 382, 270);
 				panCentro.add(scrollPane);
 				
+				 BufferedReader br = null;
+			      
+			     try {
+			         
+			         br =new BufferedReader(new FileReader("favoritos.txt"));
+			         String line = br.readLine();
+			         while (null!=line) {
+			            System.out.println(line);
+			            
+			            line = br.readLine();
+			         }
+			         
+			      } catch (Exception ex) {
+			         ex.printStackTrace();
+			      } finally {
+			         if (null!=br) {
+			            try {
+							br.close();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+			         }
+			      }
 				
-				
-				//Tabla.processCSV(new File( "src/datos.csv" ) ) ;
-			
-		
 				
 				
 			}
 		});
 		
+		mi5.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				Estrenos = new JLabel("Estrenos: ");
+				Estrenos.setBounds(10, 11, 97, 21);
+				Estrenos.setFont(new Font("AR DARLING", Font.PLAIN, 16));
+				Estrenos.add(Estrenos);
+				
+				table2 = new JTable();
+				JScrollPane scrollPane = new JScrollPane(table2);
+				scrollPane.setBounds(0, 34, 382, 270);
+				panCentro.add(scrollPane);
+				
+			
+				
+			}
+		});
 		
 		
 		panCentro.addMouseListener(new MouseListener() {
