@@ -166,6 +166,7 @@ public VentanaCliente(String nick) {
         @Override
         public void actionPerformed(ActionEvent e){
             // TODO Auto-generated method stub
+        	guardarFavoritosEnFichero();
             modeloFavoritos = (DefaultListModel<Multimedia>) listaFavoritos.getModel();
             Multimedia sel = null;
             Multimedia cont = null;
@@ -178,6 +179,12 @@ public VentanaCliente(String nick) {
                 guardarJuegoEnFicheroTexto(usuario, modeloFavoritos);
         }
     });
+    String nombreFichero = VentanaUsuario.nick+".dat";
+    File f = new File(nombreFichero);
+    if(f.exists()) {
+    	cargarFavoritosDeFichero();
+    	listaFavoritos.setModel(modeloFavoritos);
+    }
 }
 
 
@@ -202,6 +209,67 @@ private void cargarListaDisponibles() {
 	for(Multimedia ob: objetos)
 		modeloDisponibles.addElement(ob);
 	listaDisponibles.setModel(modeloDisponibles);
+}
+
+
+public void guardarFavoritosEnFichero() {
+	FileOutputStream fos = null;
+    ObjectOutputStream oos = null;
+    try {
+    	String nombreFichero = VentanaUsuario.nick+".dat";
+        fos = new FileOutputStream(nombreFichero);
+        oos = new ObjectOutputStream(fos);
+        modeloFavoritos = (DefaultListModel<Multimedia>) listaFavoritos.getModel();
+        oos.writeObject(modeloFavoritos);
+    } catch (FileNotFoundException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    } finally {
+        if(oos!=null) {
+            try {
+                oos.close();
+                fos.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            
+        }
+    }
+}
+
+public void cargarFavoritosDeFichero() {
+	FileInputStream fis = null;
+	ObjectInputStream ois = null;
+	String nombreFichero = VentanaUsuario.nick+".dat";
+	try {
+		fis = new FileInputStream(nombreFichero);
+		ois = new ObjectInputStream(fis);
+		modeloFavoritos = (DefaultListModel<Multimedia>) ois.readObject();
+	} catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (ClassNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
+		if(ois!=null) {
+			try {
+				ois.close();
+				fis.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+	}
 }
 
 public static void guardarJuegoEnFicheroBinario(String nick, Multimedia sel) {
