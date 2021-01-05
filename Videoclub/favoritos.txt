@@ -1,2 +1,2 @@
 Usuario [nick=iker, con=iker]
-[Pelicula [guion=-, musica=-, oscars=false]]
+[Pelicula [guion=ND, musica=ND, oscars=false]]

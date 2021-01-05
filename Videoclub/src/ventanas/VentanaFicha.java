@@ -45,14 +45,14 @@ public class VentanaFicha extends JFrame{
 		super();
 		JFrame v = this;
 		ventanaAnterior = va;
-		this.setSize(467,334);
-		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-		Container cp = this.getContentPane();
-		
-		
-		pSur = new JPanel();
-		btnVolver = new JButton("VOLVER");
-		btnVolver.addActionListener(new ActionListener() {
+ 		this.setSize(400,200);
+ 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+ 		Container cp = this.getContentPane();
+
+
+ 		pSur = new JPanel();
+ 		btnVolver = new JButton("VOLVER");
+ 		btnVolver.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -105,71 +105,49 @@ public class VentanaFicha extends JFrame{
 		
 		
 		pSur.add(btnVolver);
-		pSur.add(btnPagar);		
-		pCentro = new JPanel();
-		//lblFoto = lblFotoSeleccionada;
-		lblFoto = new JLabel();
-		//pCentro.add(lblFoto);
-		
-		//pSegundaColumna = new JPanel(new GridLayout(4,1));
+ 		pSur.add(btnPagar);		
+ 		pCentro = new JPanel(new GridLayout(1, 2));
+ 		//lblFoto = lblFotoSeleccionada;
+ 		lblFoto = new JLabel();
+ 		//pCentro.add(lblFoto);
+
+ 		pSegundaColumna = new JPanel(new GridLayout(4,1));
 		//lblTitulo = new JLabel(s.getTitulo());
 
+ 		//lblPrecio = new JLabel(BD.obtenerSerie(lblFoto.toString()).getTitulo());
 
-		//lblPrecio = new JLabel(BD.obtenerSerie(lblFoto.toString()).getTitulo());
+ 		ImageIcon imagen = (ImageIcon) lblFotoSeleccionada.getIcon();
+ 		lblFoto.setIcon(imagen);
+ 		String datos = BD.obtenerPelicula2(imagen.getDescription());
+ 		if(imagen.getDescription().contains("serie")) {
+ 			
+ 		}else if(imagen.getDescription().contains("pelicula")) {
+ 			posicionaLinea(pCentro,datos, lblFoto);
+ 		}
+ 		
 
-		ImageIcon imagen = (ImageIcon) lblFotoSeleccionada.getIcon();
-		lblFoto.setIcon(imagen);
-		String datos = BD.obtenerPelicula2(imagen.getDescription());
-		if(imagen.getDescription().contains("serie")) {
-			
-		}else if(imagen.getDescription().contains("pelicula")) {
-			posicionaLinea(pCentro,datos, lblFoto);
-			
-		}else if(imagen.getDescription().contains("documental")){
-			
-		}
-		
-		
-		
-		//pCentro.add(lblFoto);
-		//lblTitulo = new JLabel(BD.obtenerSerie("a"));
+ 		//pCentro.add(lblFoto);
+ 		//lblTitulo = new JLabel(BD.obtenerSerie("a"));
 
-		//String items[] = {"720p","1080p","4k"};
-		//comboCalidad = new JComboBox<String>(items);
-		//pSegundaColumna.add(lblTitulo);
-		//pSegundaColumna.add(imagen, BorderLayout.NORTH);
-		//pSegundaColumna.add(lblPrecio);
-		//pSegundaColumna.add(comboCalidad);
-		//pCentro.add(pSegundaColumna);
-		cp.add(pSur, BorderLayout.SOUTH);
-		cp.add(pCentro, BorderLayout.CENTER);
-		pCentro.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel(datos);
-		lblNewLabel.setBounds(40, 23, 83, 24);
-		pCentro.add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(40, 59, 61, 16);
-		pCentro.add(lblNewLabel_1);
-		
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setBounds(40, 87, 61, 16);
-		pCentro.add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setBounds(40, 115, 61, 16);
-		pCentro.add(lblNewLabel_3);
-		
-		JLabel lblNewLabel_4 = new JLabel("New label");
-		lblNewLabel_4.setBounds(40, 143, 61, 16);
-		pCentro.add(lblNewLabel_4);
-		
-		
-		
-		this.setVisible(true);
-	}
-	
+
+ 		//String items[] = {"720p","1080p","4k"};
+ 		//String items[] = {"720p","1080p","4k"};
+ 		//comboCalidad = new JComboBox<String>(items);
+ 		//pSegundaColumna.add(lblTitulo);
+ 		//pSegundaColumna.add(imagen, BorderLayout.NORTH);
+ 		//pSegundaColumna.add(lblPrecio);
+ 		//pSegundaColumna.add(comboCalidad);
+ 		//pCentro.add(pSegundaColumna);
+ 		//pSegundaColumna.add(comboCalidad);
+ 		//pCentro.add(pSegundaColumna);
+ 		cp.add(pSur, BorderLayout.SOUTH);
+ 		cp.add(pCentro, BorderLayout.CENTER);
+
+
+
+ 		this.setVisible(true);
+ 	}
+
 	
 	
 	private String crearTexto() {
@@ -192,7 +170,6 @@ public class VentanaFicha extends JFrame{
 		try {
 			//Creamos un fichero de texto con el nick del cliente y la fecha actual
 			pw = new PrintWriter(VentanaUsuario.nick+" "+sdf.format(fechaActual)+".txt");
-
 			pw.println(crearTexto());
 	
 		} catch (FileNotFoundException e) {
@@ -216,28 +193,23 @@ public class VentanaFicha extends JFrame{
 			}
 		}
 		texto = texto + "TOTAL A PAGAR: "+ total+ " €";
-		txtTexto.setText(texto);*/
-		txtTexto.setText(crearTexto());
-	}
-	
-	private void posicionaLinea(Container cont, String etiqueta, Component campo) {
-		JPanel tempPanel = new JPanel();
-		tempPanel.setOpaque(false);
+ 		txtTexto.setText(texto);*/
+ 		txtTexto.setText(crearTexto());
+ 	}
 
-		tempPanel.setLayout(new FlowLayout(FlowLayout.LEFT)); // flow ajustado a la izquierda
-		
-		etiqueta = "<html><body>" + etiqueta;
-		etiqueta = etiqueta.replaceAll("\n", "<br>");
-		etiqueta = etiqueta + "</body></html>";
-		
-
-		JLabel l = new JLabel(etiqueta);
-		//l.setPreferredSize(new Dimension(200, 250));
-		l.setSize(200, 200);
-		l.setFont(new Font(Font.SANS_SERIF,Font.BOLD,18));
-		l.setForeground(Color.BLACK);
-		tempPanel.add(l);
-		tempPanel.add(campo);
-		cont.add(tempPanel, BorderLayout.WEST);
-	}
-}
+ 	private void posicionaLinea(Container cont, String etiqueta, Component campo) {
+ 		JPanel tempPanel = new JPanel();
+ 		tempPanel.setOpaque(false);
+ 		tempPanel.setLayout(new FlowLayout(FlowLayout.LEFT)); // flow ajustado a la izquierda
+ 		etiqueta = "<html><body>" + etiqueta;
+ 		etiqueta = etiqueta.replaceAll("\n", "<br>");
+ 		etiqueta = etiqueta + "</body></html>";
+ 		JLabel l = new JLabel(etiqueta);
+ 		//l.setPreferredSize(new Dimension(250, 50));
+ 		l.setFont(new Font(Font.SANS_SERIF,Font.BOLD,18));
+ 		l.setForeground(Color.BLACK);
+ 		tempPanel.add(l);
+ 		tempPanel.add(campo);
+ 		cont.add(tempPanel);
+ 	}
+ }
