@@ -469,7 +469,7 @@ public class BD {
 				float tiempoReserva=rs.getFloat("tiempoReserva");
 				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 				Date d = sdf.parse(fecha);
-				p = "Codigo" + codigo+ "Titulo\n" + titulo+ "\n" +  director+ "\n" + genero+ "\n" + duracion+ "\n" + distribuidora+ "\n" + d+ "\n" + calificacion+ "\n" + guion+ "\n" + musica+ "\n" + oscars+ "\n" + rutaFoto+ "\n" +tiempoReserva;
+				p = "Titulo\n\t" + titulo+ "\n" +  director+ "\n" + genero+ "\n" + duracion+ "\n" + distribuidora+ "\n" + d+ "\n" + calificacion  + oscars+ "\n" +  "\n" +tiempoReserva;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

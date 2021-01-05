@@ -45,7 +45,7 @@ public class VentanaFicha extends JFrame{
 		super();
 		JFrame v = this;
 		ventanaAnterior = va;
-		this.setSize(400,200);
+		this.setSize(467,334);
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		Container cp = this.getContentPane();
 		
@@ -106,12 +106,12 @@ public class VentanaFicha extends JFrame{
 		
 		pSur.add(btnVolver);
 		pSur.add(btnPagar);		
-		pCentro = new JPanel(new GridLayout(1, 2));
+		pCentro = new JPanel();
 		//lblFoto = lblFotoSeleccionada;
 		lblFoto = new JLabel();
 		//pCentro.add(lblFoto);
 		
-		pSegundaColumna = new JPanel(new GridLayout(4,1));
+		//pSegundaColumna = new JPanel(new GridLayout(4,1));
 		//lblTitulo = new JLabel(s.getTitulo());
 
 
@@ -120,7 +120,16 @@ public class VentanaFicha extends JFrame{
 		ImageIcon imagen = (ImageIcon) lblFotoSeleccionada.getIcon();
 		lblFoto.setIcon(imagen);
 		String datos = BD.obtenerPelicula2(imagen.getDescription());
-		posicionaLinea(pCentro,datos, lblFoto);
+		if(imagen.getDescription().contains("serie")) {
+			
+		}else if(imagen.getDescription().contains("pelicula")) {
+			posicionaLinea(pCentro,datos, lblFoto);
+			
+		}else if(imagen.getDescription().contains("documental")){
+			
+		}
+		
+		
 		
 		//pCentro.add(lblFoto);
 		//lblTitulo = new JLabel(BD.obtenerSerie("a"));
@@ -134,6 +143,27 @@ public class VentanaFicha extends JFrame{
 		//pCentro.add(pSegundaColumna);
 		cp.add(pSur, BorderLayout.SOUTH);
 		cp.add(pCentro, BorderLayout.CENTER);
+		pCentro.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel(datos);
+		lblNewLabel.setBounds(40, 23, 83, 24);
+		pCentro.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setBounds(40, 59, 61, 16);
+		pCentro.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("New label");
+		lblNewLabel_2.setBounds(40, 87, 61, 16);
+		pCentro.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("New label");
+		lblNewLabel_3.setBounds(40, 115, 61, 16);
+		pCentro.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("New label");
+		lblNewLabel_4.setBounds(40, 143, 61, 16);
+		pCentro.add(lblNewLabel_4);
 		
 		
 		
@@ -193,13 +223,14 @@ public class VentanaFicha extends JFrame{
 	private void posicionaLinea(Container cont, String etiqueta, Component campo) {
 		JPanel tempPanel = new JPanel();
 		tempPanel.setOpaque(false);
-		tempPanel.setLayout(new FlowLayout(FlowLayout.LEFT)); // flow ajustado a la izquierda
+		//tempPanel.setLayout(new FlowLayout(FlowLayout.LEFT)); // flow ajustado a la izquierda
 		JLabel l = new JLabel(etiqueta);
-		//l.setPreferredSize(new Dimension(250, 50));
+		//l.setPreferredSize(new Dimension(200, 250));
+		l.setSize(200, 200);
 		l.setFont(new Font(Font.SANS_SERIF,Font.BOLD,18));
-		l.setForeground(Color.WHITE);
+		l.setForeground(Color.BLACK);
 		tempPanel.add(l);
 		tempPanel.add(campo);
-		cont.add(tempPanel);
+		cont.add(tempPanel, BorderLayout.WEST);
 	}
 }
