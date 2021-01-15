@@ -24,11 +24,13 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import datos.Posicion;
 import baseDatos.BD;
 import datos.Documental;
 import datos.Pelicula;
@@ -43,7 +45,7 @@ public class VentanaMain extends JFrame{
 	private JScrollPane panScrol;
 	private JMenuBar menuBar;
 	private JMenu menuS, menuP, menuD, menuE, menuF;
-	private JMenuItem mi1, mi2, mi3, mi4,mi5;
+	private JMenuItem mi1, mi2, mi3, mi4,mi5, mi6;
 	private JFrame v;
 	private JButton reserv;
 	private JLabel Favoritos;
@@ -81,13 +83,15 @@ public class VentanaMain extends JFrame{
 		mi3 = new JMenuItem("Documentales");
 		mi4 = new JMenuItem("Favoritos");
 		mi5 = new JMenuItem("Estrenos");
-		
+		mi6= new JMenuItem("Buscar");
+				
 		reserv =new JButton("Reservar");
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		
 		menuS.add(mi1);
 		menuP.add(mi2);
+		menuP.add(mi6);
 		menuD.add(mi3);
 		menuE.add(mi4);
 		menuF.add(mi5);
@@ -196,6 +200,16 @@ public class VentanaMain extends JFrame{
 			}
 		});
 		
+		mi6.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				buscarPeliculas();			
+				
+			}
+		});
+		
 		
 		panCentro.addMouseListener(new MouseListener() {
 			
@@ -256,6 +270,34 @@ public class VentanaMain extends JFrame{
 	}
 	
 	
+	public void buscarPeliculas() {
+		// TODO Auto-generated method stub
+		String tituloPeli = (String) JOptionPane.showInputDialog( null, "Introduce el titulo de la pelicula: ", "Buscar Pelicula", JOptionPane.QUESTION_MESSAGE, null, null, "" );
+		if (tituloPeli ==null) {
+			JOptionPane.showMessageDialog( this, "Debe teclear un titulo de pelicula.", "Mensaje", JOptionPane.WARNING_MESSAGE );
+			return;
+		}
+		
+		
+	}
+
+	private static int busquedaBinaria(ArrayList<Posicion> a, Posicion x, int start, int end)  {
+		int medio;
+		if (start > end) {
+			return -1;
+		}
+		medio = (start + end) / 2;
+		
+		if (a.get(medio).getNombre().compareTo(x.getNombre()) < 0) {
+			return busquedaBinaria(a, x, medio + 1, end);
+		} else {
+			if (a.get(medio).getNombre().compareTo(x.getNombre()) > 0) {
+				return busquedaBinaria(a, x, start, medio - 1); 
+			} else {
+				return medio; 
+			}
+		}
+	}
 	private void cargaSeries() {
 		ArrayList<Serie> series = BD.obtenerSeries();
 		panCentro.removeAll();
