@@ -70,10 +70,13 @@ public class JUnit extends TestCase {
 		Pelicula pelicula=new Pelicula();
 		pelicula.setCodigo(1);
 		assertEquals(1, pelicula.getCodigo());
-		
-		
-		
-		
+	
+	}
+	public void testoToString(){
+	Usuario usuario=new Usuario();
+	usuario.setNick("Alfonso");
+	usuario.setCon("123");
+	assertEquals("Alfonso,123", usuario.toString());
 	
 	}
 }	

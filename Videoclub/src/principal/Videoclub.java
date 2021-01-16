@@ -50,10 +50,6 @@ public class Videoclub {
 		Videoclub.favoritos = favoritos;
 	}
 	
-	
-	
-	
-
 	public static boolean aniadirObjeto(Multimedia o) {
 		if(objetos.containsKey(o.getCodigo())) {
 			logger.log(Level.WARNING,"Objeto previamente a�adido");
