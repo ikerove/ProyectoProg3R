@@ -48,16 +48,13 @@ import datos.Usuario;
 		}
 		public void testgetSerie() {
 			Serie serie= new Serie();
-			  
-		assertNotNull(serie.getCalificacion());
-		assertNotNull(serie.getDirector());
-		assertNotNull(serie.getDistribuidora());
-		assertNotNull(serie.getFormato());
-		assertNotNull(serie.getGenero());
-		assertNotNull(serie.getRutaFoto());
-		assertNotNull(serie.getTexto());
-		assertNotNull(serie.getTitulo());
-		assertNotNull(serie.getCapitulos());
+			serie.setCodigo(1);
+			serie.setTitulo("Arraow");
+			
+			assertEquals("Arrow", serie.getTitulo());
+			assertEquals(1, serie.getCapitulos()); 
+			
+		
 		}
 		
 		}
