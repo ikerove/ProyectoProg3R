@@ -286,6 +286,8 @@ public class BD {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			logger.log(Level.SEVERE, "No se ha podido añadido la Película ");
+			
 		}
 		
 		cerrarBD(con, st);
@@ -369,6 +371,8 @@ public class BD {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			logger.log(Level.SEVERE, "No se ha actualizado el historial ");
+			
 		}
 		
 		cerrarBD(con, st);	
@@ -399,6 +403,7 @@ public class BD {
 				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 				Date d = sdf.parse(fecha);
 				s = new Serie(codigo, titulo, director, genero, duracion, distribuidora, d, calificacion, formato, temporadas, capitulos, duracionCap, rutaFoto);
+				logger.log(Level.INFO,"Serie obtenida correctamente");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -435,6 +440,7 @@ public class BD {
 				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 				Date d = sdf.parse(fecha);
 				p = new Pelicula(codigo, titulo, director, genero, duracion, distribuidora, d, calificacion, guion, musica, oscars,  rutaFoto,tiempoReserva);
+				logger.log(Level.INFO,"Película obtenida correctamente");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -470,6 +476,7 @@ public class BD {
 				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 				Date d = sdf.parse(fecha);
 				p = "Titulo\n\t" + titulo+ "\n" +  director+ "\n" + genero+ "\n" + duracion+ "\n" + distribuidora+ "\n" + d+ "\n" + calificacion  + oscars+ "\n" +  "\n" +tiempoReserva;
+				logger.log(Level.INFO,"Película obtenida correctamente");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -495,6 +502,7 @@ public class BD {
 				String contrasenia = rs.getString("con");
 				
 				u = new Usuario(usuario, contrasenia);
+				logger.log(Level.INFO,"Usuario obtenido correctamente");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -530,6 +538,8 @@ public class BD {
 				Date d = sdf.parse(fecha);
 				Serie s = new Serie(codigo, titulo, director, genero, duracion, distribuidora, d, calificacion, formato, temporadas, capitulos, duracionCap, rutaFoto);
 				series.add(s);
+				
+				logger.log(Level.INFO,"Serie obtenida correctamente");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -608,6 +618,7 @@ public class BD {
 				Documental doc = new Documental(codigo, titulo, director, genero, duracion, distribuidora, d, calificacion, animales,  rutaFoto);
 				
 				documentales.add(doc);
+				logger.log(Level.INFO,"Documental obtenido correctamente");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -654,6 +665,7 @@ public class BD {
 				try {
 					d = sdf.parse(fecha);
 					objetos.add(new Serie(codigo, titulo, director, genero, duracion, distribuidora, d, calificacion, formato, temporadas, capitulos, duracionCap, rutaFoto));
+					
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
