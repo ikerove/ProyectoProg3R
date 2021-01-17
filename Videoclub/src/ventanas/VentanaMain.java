@@ -143,6 +143,7 @@ public class VentanaMain extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				panCentro.removeAll();
 				Favoritos = new JLabel("Favoritos: ");
 				Favoritos.setBounds(10, 11, 97, 21);
 				Favoritos.setFont(new Font("AR DARLING", Font.PLAIN, 16));
@@ -178,7 +179,7 @@ public class VentanaMain extends JFrame{
 			         }
 			      }
 				
-				
+			     panCentro.updateUI();
 				
 			}
 		});
@@ -188,6 +189,7 @@ public class VentanaMain extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				panCentro.removeAll();
 				Estrenos = new JLabel("Estrenos: ");
 				Estrenos.setBounds(10, 11, 97, 21);
 				Estrenos.setFont(new Font("AR DARLING", Font.PLAIN, 16));
@@ -208,7 +210,7 @@ public class VentanaMain extends JFrame{
 				} catch (IOException e2) {
 					e2.printStackTrace();
 				}
-				
+				panCentro.updateUI();
 			}
 		});
 		
@@ -294,7 +296,7 @@ public class VentanaMain extends JFrame{
 		if (i < 0) {
 			JOptionPane.showMessageDialog( this, "La pelicula no se encuentra.", "Mensaje", JOptionPane.WARNING_MESSAGE );
 		} else {
-			JOptionPane.showMessageDialog( this, "La pelicula está disponible.", "Mensaje", JOptionPane.WARNING_MESSAGE );
+			JOptionPane.showMessageDialog( this, "La pelicula estï¿½ disponible.", "Mensaje", JOptionPane.WARNING_MESSAGE );
 		}
 		
 		
