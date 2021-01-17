@@ -212,6 +212,7 @@ public class VentanaMain extends JFrame{
 				}
 				panCentro.updateUI();
 			}
+		
 		});
 		
 		mi6.addActionListener(new ActionListener() {
@@ -299,7 +300,7 @@ public class VentanaMain extends JFrame{
 			JOptionPane.showMessageDialog( this, "La pelicula est� disponible.", "Mensaje", JOptionPane.WARNING_MESSAGE );
 		}
 		
-		
+		panCentro.updateUI();
 	}
 
 	private int busquedaBinaria(ArrayList<Pelicula> a, String x, int start, int end)  {
