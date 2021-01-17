@@ -32,7 +32,7 @@ import datos.Serie;
 
 public class VentanaFicha extends JFrame{
 	private JPanel pSur, pCentro, pSegundaColumna;
-	private JButton btnVolver, btnPagar;
+	private JButton btnVolver, btnPagar, btnCarrito;
 	private JLabel lblFoto, lblTitulo,lblPrecio;
 	private JFrame ventanaAnterior;
 	private JComboBox<String> comboCalidad;
@@ -103,10 +103,21 @@ public class VentanaFicha extends JFrame{
 			}
 		});
 		
+		btnCarrito = new JButton("Añadir al carrito");
+		btnCarrito.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 		
 		
 		pSur.add(btnVolver);
  		pSur.add(btnPagar);		
+ 		pSur.add(btnCarrito);
  		pCentro = new JPanel(new GridLayout(1, 2));
  		//lblFoto = lblFotoSeleccionada;
  		lblFoto = new JLabel();
