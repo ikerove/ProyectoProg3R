@@ -286,7 +286,7 @@ public class BD {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			logger.log(Level.SEVERE, "No se ha podido a馻dido la Pel韈ula ");
+			logger.log(Level.SEVERE, "No se ha podido a锟絘dido la Pel锟絚ula ");
 			
 		}
 		
@@ -416,6 +416,43 @@ public class BD {
 		return s;
 	}
 	
+	public static String obtenerSerie2(String rutaFoto) {
+		Connection con = initBD("videoclub.sqlite3");
+		String sql = "SELECT * FROM serie WHERE rutaFoto='"+rutaFoto+"'";
+		Statement st = null;	
+		String s = null;
+		try {
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(rs.next()) {
+				int codigo = rs.getInt("codigo");
+				String titulo = rs.getString("titulo");
+				String director = rs.getString("director");
+				String genero = rs.getString("genero");
+				int duracion = rs.getInt("duracion");
+				String distribuidora = rs.getString("distribuidora");
+				String fecha = rs.getString("fecha");
+				String calificacion = rs.getString("calificacion");
+				String formato = rs.getString("formato");
+				int temporadas = rs.getInt("temporadas");
+				int capitulos = rs.getInt("capitulos");
+				int duracionCap = rs.getInt("duracionCap");
+				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+				Date d = sdf.parse(fecha);
+				s = "Titulo" + titulo+ "\n" + "Director: "+ director+ "\n" + "G茅nero "+ genero+ "\n" + "Duraci贸n" + duracion+ "\n" + "Distribuidora" + distribuidora+ "\n" + d+ "\n" + "Claificaci贸n" + calificacion;
+				logger.log(Level.INFO,"Serie obtenida correctamente");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		cerrarBD(con, st);
+		return s;
+	}
+	
 	public static Pelicula obtenerPelicula(String rutaFoto) {
 		Connection con = initBD("videoclub.sqlite3");
 		String sql = "SELECT * FROM pelicula WHERE rutaFoto='"+rutaFoto+"'";
@@ -440,7 +477,7 @@ public class BD {
 				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 				Date d = sdf.parse(fecha);
 				p = new Pelicula(codigo, titulo, director, genero, duracion, distribuidora, d, calificacion, guion, musica, oscars,  rutaFoto,tiempoReserva);
-				logger.log(Level.INFO,"Pel韈ula obtenida correctamente");
+				logger.log(Level.INFO,"Pel锟絚ula obtenida correctamente");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -475,8 +512,8 @@ public class BD {
 				float tiempoReserva=rs.getFloat("tiempoReserva");
 				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 				Date d = sdf.parse(fecha);
-				p = "Titulo\n\t" + titulo+ "\n" +  director+ "\n" + genero+ "\n" + duracion+ "\n" + distribuidora+ "\n" + d+ "\n" + calificacion  + oscars+ "\n" +  "\n" +tiempoReserva;
-				logger.log(Level.INFO,"Pel韈ula obtenida correctamente");
+				p = "Titulo" + titulo+ "\n" + "Director: "+ director+ "\n" + "G茅nero "+ genero+ "\n" + "Duraci贸n" + duracion+ "\n" + "Distribuidora" + distribuidora+ "\n" + d+ "\n" + "Claificaci贸n" + calificacion  +   "\n" +tiempoReserva;
+				logger.log(Level.INFO,"Pel锟絚ula obtenida correctamente");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -487,6 +524,41 @@ public class BD {
 		}
 		cerrarBD(con, st);
 		return p;
+	}
+	
+	
+	public static String obtenerDocumental2(String rutaFoto) {
+		Connection con = initBD("videoclub.sqlite3");
+		String sql = "SELECT * FROM documental WHERE rutaFoto='"+rutaFoto+"'";
+		Statement st = null;	
+		String doc = null;
+		try {
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(rs.next()) {
+				int codigo = rs.getInt("codigo");
+				String titulo = rs.getString("titulo");
+				String director = rs.getString("director");
+				String genero = rs.getString("genero");
+				int duracion = rs.getInt("duracion");
+				String distribuidora = rs.getString("distribuidora");
+				String fecha = rs.getString("fecha");
+				String calificacion = rs.getString("calificacion");
+				boolean animales = rs.getBoolean("animales");				
+				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+				Date d = sdf.parse(fecha);
+				doc = "Titulo" + titulo+ "\n" + "Director: "+ director+ "\n" + "G茅nero "+ genero+ "\n" + "Duraci贸n" + duracion+ "\n" + "Distribuidora" + distribuidora+ "\n" + d+ "\n" + "Claificaci贸n" + calificacion  +   "\n";
+				logger.log(Level.INFO,"PDocumental obtenido correctamente");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		cerrarBD(con, st);
+		return doc;
 	}
 
 	public static Usuario obtenerUsuario(){
@@ -581,7 +653,6 @@ public class BD {
 				Date d = sdf.parse(fecha);
 				Pelicula p = new Pelicula(codigo, titulo, director, genero, duracion, distribuidora, d, calificacion, guion, musica, oscars,  rutaFoto,tiempoReserva);
 				peliculas.add(p);
-				logger.log(Level.INFO,"Pelicula obtenida correctamente");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -734,11 +805,7 @@ public class BD {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		logger.log(Level.INFO,"Documental obtenido correctamente");
-
 		cerrarBD(con, st);
 		return objetos;
 	}
-	
-	
 }

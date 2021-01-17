@@ -109,7 +109,6 @@ public class Videoclub {
 			favoritos.put(nombre, new ArrayList<>());
 		}
 		favoritos.get(nombre).add(o);
-		logger.log(Level.INFO,"Añadido a favoritos");
 	}
 	
 	public static Multimedia eliminarDeFavoritos(String nombre, int codigo) {
@@ -126,9 +125,7 @@ public class Videoclub {
 		if(enc) {
 			eliminado = favoritos.get(nombre).get(pos);
 			favoritos.get(nombre).remove(pos);
-			logger.log(Level.INFO,"Eliminado de favoritos");
 			return eliminado;
-			
 		}
 		return null;
 		
