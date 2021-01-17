@@ -68,7 +68,8 @@ public class VentanaFicha extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				generarFactura();
+				//generarFactura();
+				new VentanaThreadPago();
 			/*	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 				BD.borrarSeries();
 				BD.borrarPeliculas();
@@ -118,11 +119,15 @@ public class VentanaFicha extends JFrame{
 
  		ImageIcon imagen = (ImageIcon) lblFotoSeleccionada.getIcon();
  		lblFoto.setIcon(imagen);
- 		String datos = BD.obtenerPelicula2(imagen.getDescription());
+ 		String datosSerie = BD.obtenerSerie2(imagen.getDescription());
+ 		String datosPelicula = BD.obtenerPelicula2(imagen.getDescription());
+ 		String datosDocumental = BD.obtenerDocumental2(imagen.getDescription());
  		if(imagen.getDescription().contains("serie")) {
- 			
+ 			posicionaLinea(pCentro,datosSerie, lblFoto);
  		}else if(imagen.getDescription().contains("pelicula")) {
- 			posicionaLinea(pCentro,datos, lblFoto);
+ 			posicionaLinea(pCentro,datosPelicula, lblFoto);
+ 		}else if(imagen.getDescription().contains("documental")) {
+ 			posicionaLinea(pCentro,datosDocumental, lblFoto);
  		}
  		
 
@@ -170,7 +175,8 @@ public class VentanaFicha extends JFrame{
 		try {
 			//Creamos un fichero de texto con el nick del cliente y la fecha actual
 			pw = new PrintWriter(VentanaUsuario.nick+" "+sdf.format(fechaActual)+".txt");
-			pw.println(crearTexto());
+			//pw.println(crearTexto());
+			pw.println();
 	
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

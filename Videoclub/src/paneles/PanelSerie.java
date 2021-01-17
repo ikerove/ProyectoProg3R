@@ -54,7 +54,7 @@ public class PanelSerie extends JPanel{
 		
 		txtDuracion = new JTextField();
 		txtDuracion.setPreferredSize(new Dimension(100, 50));
-		posicionaLinea(panel, "Introduce la duracion: ", txtDuracion);
+		posicionaLinea(panel, "Introduce la duracion total: ", txtDuracion);
 		
 		txtDistribuidora = new JTextField();
 		txtDistribuidora.setPreferredSize(new Dimension(100, 50));
@@ -82,7 +82,7 @@ public class PanelSerie extends JPanel{
 		
 		txtDuracionCap = new JTextField();
 		txtDuracionCap.setPreferredSize(new Dimension(100, 50));
-		posicionaLinea(panel, "Introduce la duracion: ", txtDuracionCap);
+		posicionaLinea(panel, "Introduce la duracion del capitulo: ", txtDuracionCap);
 		
 		txtRutaFoto = new JTextField();
 		txtRutaFoto.setPreferredSize(new Dimension(100, 50));
