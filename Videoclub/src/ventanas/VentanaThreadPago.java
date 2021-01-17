@@ -3,16 +3,22 @@ package ventanas;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.Window;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import principal.Videoclub;
+
 public class VentanaThreadPago extends JFrame{
 	
 	private JLabel lblTexto;
 	private JPanel pNorte, pCentro;
+	private static Logger logger = Logger.getLogger( Videoclub.class.getName() );
+	
 	
 	public VentanaThreadPago() {
 		super();
@@ -51,10 +57,11 @@ public class VentanaThreadPago extends JFrame{
 				//Cerramos todas las ventanas excepto la de inicio
 				Window [] ventanas = Window.getWindows();
 				for(int i=1;i<ventanas.length;i++)
-					ventanas[i].dispose();
-				
+					ventanas[i].dispose();	
+				logger.log(Level.INFO,"Ventanas cerradas");
 			}
 		};
+		
 		
 		Thread t = new Thread(r);
 		t.start();
