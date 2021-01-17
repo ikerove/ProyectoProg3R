@@ -210,7 +210,7 @@ public class VentanaMain extends JFrame{
 				} catch (IOException e2) {
 					e2.printStackTrace();
 				}
-				panCentro.updateUI();
+				panCentro.updateUI(); 
 			}
 		
 		});
