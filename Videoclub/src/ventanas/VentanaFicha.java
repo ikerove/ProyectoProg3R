@@ -15,6 +15,8 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -39,6 +41,7 @@ public class VentanaFicha extends JFrame{
 	private Serie s;
 	private JTextArea txtTexto;
 	private String nick;
+	private static Logger logger = Logger.getLogger( Videoclub.class.getName() );
 	
 	
 	public VentanaFicha(JLabel lblFotoSeleccionada, JFrame va)  {
@@ -100,6 +103,7 @@ public class VentanaFicha extends JFrame{
 				txtTexto.setText("");
 				Biblioteca.vaciarCarrito(nick);
 				new VentanaThreadPago();*/
+				logger.log(Level.INFO,"Pago realizado");
 			}
 		});
 		
@@ -198,6 +202,7 @@ public class VentanaFicha extends JFrame{
 				pw.close();
 			}
 		}
+		logger.log(Level.INFO,"Factura realizada");
 	}
 	
 	private void cargarCarrito() {
@@ -228,5 +233,6 @@ public class VentanaFicha extends JFrame{
  		tempPanel.add(l);
  		tempPanel.add(campo);
  		cont.add(tempPanel);
+ 		logger.log(Level.INFO,"Posicion lineal obtenida");
  	}
  }
