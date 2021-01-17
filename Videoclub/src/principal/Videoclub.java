@@ -135,6 +135,8 @@ public class Videoclub {
 	}
 	
 	public static ArrayList<Multimedia> obtenerComprasCliente(String nick){
+		logger.log(Level.INFO,"Clientes obtenidos");
 		return favoritos.get(nick);
+		
 	}
 }
