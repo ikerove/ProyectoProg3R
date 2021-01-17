@@ -27,6 +27,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
@@ -35,7 +36,7 @@ import baseDatos.BD;
 import datos.Documental;
 import datos.Pelicula;
 import datos.Serie;
-
+import principal.Tabla;
 
 import java.awt.Font;
 import javax.swing.JTable;
@@ -52,6 +53,8 @@ public class VentanaMain extends JFrame{
 	private JLabel Estrenos;
 	private JTable table;
 	private JTable table2;
+	
+	private ArrayList<Pelicula> peliculas;
 	
 	public VentanaMain() {
 		super();
@@ -195,7 +198,16 @@ public class VentanaMain extends JFrame{
 				scrollPane.setBounds(0, 34, 382, 270);
 				panCentro.add(scrollPane);
 				
-			
+				Tabla ta2 = null;
+				File fichero = new File("estrenos.csv");
+				try {
+					ta2 = Tabla.processCSV(fichero);
+					table2.setModel( ta2.getTableModel());
+					JScrollBar sc = scrollPane.getVerticalScrollBar();
+					sc.setValue(0);
+				} catch (IOException e2) {
+					e2.printStackTrace();
+				}
 				
 			}
 		});
@@ -278,26 +290,34 @@ public class VentanaMain extends JFrame{
 			return;
 		}
 		
+		int i = busquedaBinaria(peliculas, tituloPeli, 0, peliculas.size() - 1);
+		if (i < 0) {
+			JOptionPane.showMessageDialog( this, "La pelicula no se encuentra.", "Mensaje", JOptionPane.WARNING_MESSAGE );
+		} else {
+			JOptionPane.showMessageDialog( this, "La pelicula está disponible.", "Mensaje", JOptionPane.WARNING_MESSAGE );
+		}
+		
 		
 	}
 
-	private static int busquedaBinaria(ArrayList<Posicion> a, Posicion x, int start, int end)  {
+	private int busquedaBinaria(ArrayList<Pelicula> a, String x, int start, int end)  {
 		int medio;
 		if (start > end) {
 			return -1;
 		}
 		medio = (start + end) / 2;
 		
-		if (a.get(medio).getNombre().compareTo(x.getNombre()) < 0) {
+		if (a.get(medio).getTitulo().toUpperCase().compareTo(x.toUpperCase()) < 0) {
 			return busquedaBinaria(a, x, medio + 1, end);
 		} else {
-			if (a.get(medio).getNombre().compareTo(x.getNombre()) > 0) {
+			if (a.get(medio).getTitulo().toUpperCase().compareTo(x.toUpperCase()) > 0) {
 				return busquedaBinaria(a, x, start, medio - 1); 
 			} else {
 				return medio; 
 			}
 		}
 	}
+	
 	private void cargaSeries() {
 		ArrayList<Serie> series = BD.obtenerSeries();
 		panCentro.removeAll();
