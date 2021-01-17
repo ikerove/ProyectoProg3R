@@ -64,6 +64,7 @@ public class Videoclub {
 	}
 	
 	public static Multimedia eliminarObjeto(int codigo) {
+		logger.log(Level.INFO,"Objeto eliminado");
 		return objetos.remove(codigo);
 	}
 	
@@ -90,6 +91,7 @@ public class Videoclub {
 	}
 	
 	public static Multimedia eliminarUsuario(String nick) {
+		logger.log(Level.INFO,"Usuario eliminado");
 		return objetos.remove(nick);
 		
 	}
@@ -101,6 +103,7 @@ public class Videoclub {
 	           System.out.println(pair.getKey() + " = " + pair.getValue());
 	           it.remove(); // avoids a ConcurrentModificationException
 	       }
+	       logger.log(Level.INFO,"Mapa ordenado");
 	}
 	
 	
@@ -109,6 +112,7 @@ public class Videoclub {
 			favoritos.put(nombre, new ArrayList<>());
 		}
 		favoritos.get(nombre).add(o);
+		logger.log(Level.INFO,"Añadido a favoritos");
 	}
 	
 	public static Multimedia eliminarDeFavoritos(String nombre, int codigo) {
@@ -125,7 +129,9 @@ public class Videoclub {
 		if(enc) {
 			eliminado = favoritos.get(nombre).get(pos);
 			favoritos.get(nombre).remove(pos);
+			logger.log(Level.INFO,"Eliminado de favoritos");
 			return eliminado;
+			
 		}
 		return null;
 		
@@ -133,6 +139,7 @@ public class Videoclub {
 	
 	public static ArrayList<Multimedia> obtenerComprasCliente(String nick){
 		logger.log(Level.INFO,"Clientes obtenidos");
+		
 		return favoritos.get(nick);
 		
 	}
