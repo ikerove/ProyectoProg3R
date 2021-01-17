@@ -102,6 +102,7 @@ public class VentanaFicha extends JFrame{
 				new VentanaThreadPago();*/
 			}
 		});
+		
 		btnCarrito = new JButton("Añadir al carrito");
 		btnCarrito.addActionListener(new ActionListener() {
 			
