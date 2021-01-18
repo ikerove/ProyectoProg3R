@@ -63,7 +63,21 @@ public class VentanaMain extends JFrame{
 		this.setTitle("Videoclub");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		
+		// Datos de prueba
+				peliculas = new ArrayList<Pelicula>();
+				peliculas.add(new Pelicula(1, "Pelicula A", "Pablo Unio", "Comedia", 120, "", new Date(), "", "", "", false, "", 0));
+				peliculas.add(new Pelicula(2, "Pelicula B", "Pablo Dosio", "Comedia", 120, "", new Date(), "", "", "", false, "", 0));
+				peliculas.add(new Pelicula(3, "Pelicula C", "Pablo Unio", "Comedia", 120, "", new Date(), "", "", "", false, "", 0));
+				peliculas.add(new Pelicula(4, "Pelicula D", "Pablo Unio", "Comedia", 120, "", new Date(), "", "", "", false, "", 0));
+				peliculas.add(new Pelicula(5, "Pelicula E", "Pablo Unio", "Comedia", 120, "", new Date(), "", "", "", false, "", 0));
+				peliculas.add(new Pelicula(6, "Pelicula F", "Pablo Unio", "Comedia", 120, "", new Date(), "", "", "", false, "", 0));
+				peliculas.add(new Pelicula(7, "Pelicula G", "Pablo Unio", "Comedia", 120, "", new Date(), "", "", "", false, "", 0));
+				peliculas.add(new Pelicula(8, "Pelicula H", "Pablo Unio", "Comedia", 120, "", new Date(), "", "", "", false, "", 0));
+				peliculas.add(new Pelicula(9, "Pelicula I", "Pablo Unio", "Comedia", 120, "", new Date(), "", "", "", false, "", 0));
+				peliculas.add(new Pelicula(10, "Pelicula J", "Pablo Unio", "Comedia", 120, "", new Date(), "", "", "", false, "", 0));
+				peliculas.add(new Pelicula(11, "Pelicula K", "Pablo Unio", "Comedia", 120, "", new Date(), "", "", "", false, "", 0));
+				peliculas.add(new Pelicula(12, "Pelicula L", "Pablo Unio", "Comedia", 120, "", new Date(), "", "", "", false, "", 0));
+				
 		
 		panCentro = new JPanel();
 		panSur = new JPanel();
