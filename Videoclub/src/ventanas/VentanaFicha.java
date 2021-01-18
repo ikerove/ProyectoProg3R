@@ -27,6 +27,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import baseDatos.BD;
+import baseDatos.BDException;
 import principal.Videoclub;
 import datos.Multimedia;
 import datos.Pelicula;
@@ -44,11 +45,11 @@ public class VentanaFicha extends JFrame{
 	private static Logger logger = Logger.getLogger( Videoclub.class.getName() );
 	
 	
-	public VentanaFicha(JLabel lblFotoSeleccionada, JFrame va)  {
+	public VentanaFicha(JLabel lblFotoSeleccionada, JFrame va) throws BDException  {
 		super();
 		JFrame v = this;
 		ventanaAnterior = va;
- 		this.setSize(400,200);
+ 		this.setSize(500,200);
  		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
  		Container cp = this.getContentPane();
 
@@ -107,7 +108,7 @@ public class VentanaFicha extends JFrame{
 			}
 		});
 		
-		btnCarrito = new JButton("Añadir al carrito");
+		/*btnCarrito = new JButton("Añadir al carrito");
 		btnCarrito.addActionListener(new ActionListener() {
 			
 			@Override
@@ -115,13 +116,13 @@ public class VentanaFicha extends JFrame{
 				// TODO Auto-generated method stub
 				
 			}
-		});
+		});*/
 		
 		
 		
 		pSur.add(btnVolver);
  		pSur.add(btnPagar);		
- 		pSur.add(btnCarrito);
+ 		//pSur.add(btnCarrito);
  		pCentro = new JPanel(new GridLayout(1, 2));
  		//lblFoto = lblFotoSeleccionada;
  		lblFoto = new JLabel();

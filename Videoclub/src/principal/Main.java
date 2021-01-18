@@ -3,6 +3,7 @@ package principal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import baseDatos.BDException;
 import datos.Multimedia;
 import datos.Usuario;
 import ventanas.VentanaUsuario;
@@ -16,7 +17,12 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		new VentanaUsuario();
+		try {
+			new VentanaUsuario();
+		} catch (BDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 		/*Multimedia a = new Multimedia(1,"aa");

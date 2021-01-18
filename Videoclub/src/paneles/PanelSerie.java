@@ -21,6 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
 import baseDatos.BD;
+import baseDatos.BDException;
 public class PanelSerie extends JPanel{
 	JPanel panel;
 	JTextField txtCodigo, txtTitulo,txtDirector,txtGenero,txtDuracion,txtDistribuidora, txtFecha, txtCalificacion,txtFormato,txtTemporadas, txtCapitulos, txtDuracionCap, txtRutaFoto;
@@ -100,7 +101,15 @@ public class PanelSerie extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				
-				BD.insertarSerie(Integer.parseInt(txtCodigo.getText()), txtTitulo.getText(),  txtDirector.getText(), txtGenero.getText(),Integer.parseInt(txtDuracion.getText()),txtDistribuidora.getText(),txtFecha.getText(),txtCalificacion.getText(),txtFormato.getText(),Integer.parseInt(txtTemporadas.getText()),Integer.parseInt(txtCapitulos.getText()),Integer.parseInt(txtDuracionCap.getText()), txtRutaFoto.getText());
+				try {
+					BD.insertarSerie(Integer.parseInt(txtCodigo.getText()), txtTitulo.getText(),  txtDirector.getText(), txtGenero.getText(),Integer.parseInt(txtDuracion.getText()),txtDistribuidora.getText(),txtFecha.getText(),txtCalificacion.getText(),txtFormato.getText(),Integer.parseInt(txtTemporadas.getText()),Integer.parseInt(txtCapitulos.getText()),Integer.parseInt(txtDuracionCap.getText()), txtRutaFoto.getText());
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (BDException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		

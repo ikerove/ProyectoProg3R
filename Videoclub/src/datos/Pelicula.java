@@ -59,7 +59,7 @@ public class Pelicula extends Multimedia implements Serializable, InterfaceReser
 
 	@Override
 	public String toString() {
-		return "Pelicula [guion=" + guion + ", musica=" + musica + ", oscars=" + oscars + "]";
+		return "Pelicula [codigo= " + codigo + ", titulo= " + titulo + "]";
 	}
 
 	@Override

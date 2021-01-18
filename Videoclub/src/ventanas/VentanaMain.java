@@ -33,6 +33,7 @@ import javax.swing.JTextField;
 
 import datos.Posicion;
 import baseDatos.BD;
+import baseDatos.BDException;
 import datos.Documental;
 import datos.Pelicula;
 import datos.Serie;
@@ -103,8 +104,8 @@ public class VentanaMain extends JFrame{
 		mi5 = new JMenuItem("Estrenos");
 		mi6= new JMenuItem("Buscar");
 				
-		reserv =new JButton("Reservar");
-		getContentPane().setLayout(new BorderLayout(0, 0));
+		//reserv =new JButton("Reservar");
+		//getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		
 		menuS.add(mi1);
@@ -116,7 +117,7 @@ public class VentanaMain extends JFrame{
 		menuBar.add(menuS);
 		menuBar.add(menuP);
 		menuBar.add(menuD);
-		menuBar.add(menuE);
+		//menuBar.add(menuE);
 		menuBar.add(menuF);
 		
 		this.getContentPane().add(menuBar, BorderLayout.NORTH);
@@ -130,7 +131,12 @@ public class VentanaMain extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub				
-				cargaSeries();
+				try {
+					cargaSeries();
+				} catch (BDException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		
@@ -140,7 +146,12 @@ public class VentanaMain extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				cargaPeliculas();
+				try {
+					cargaPeliculas();
+				} catch (BDException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		
@@ -149,11 +160,16 @@ public class VentanaMain extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				cargaDocumentales();
+				try {
+					cargaDocumentales();
+				} catch (BDException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		
-		mi4.addActionListener(new ActionListener() {
+	/*	mi4.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -197,7 +213,7 @@ public class VentanaMain extends JFrame{
 			     panCentro.updateUI();
 				
 			}
-		});
+		});*/
 		
 		mi5.addActionListener(new ActionListener() {
 			
@@ -277,20 +293,30 @@ public class VentanaMain extends JFrame{
 				
 				JLabel lblFotoSeleccionada = (JLabel) panCentro.getComponentAt(p);
 				v.dispose();
-				new VentanaFicha(lblFotoSeleccionada,v);
+				try {
+					new VentanaFicha(lblFotoSeleccionada,v);
+				} catch (BDException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 				}
 		});
 		
-		panSur.add(reserv);
-		reserv.addActionListener(new ActionListener() {
+		//panSur.add(reserv);
+	/*	reserv.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				cargarReservas();
+				try {
+					cargarReservas();
+				} catch (BDException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
-		});
+		});*/
 		
 
 		
@@ -336,7 +362,7 @@ public class VentanaMain extends JFrame{
 		}
 	}
 	
-	private void cargaSeries() {
+	private void cargaSeries() throws BDException {
 		ArrayList<Serie> series = BD.obtenerSeries();
 		panCentro.removeAll();
 		for(Serie s: series) {
@@ -352,7 +378,7 @@ public class VentanaMain extends JFrame{
 	}
 	
 	
-	private void cargaPeliculas() {
+	private void cargaPeliculas() throws BDException {
 		ArrayList<Pelicula> peliculas = BD.obtenerPeliculas();
 		panCentro.removeAll();
 		for(Pelicula p: peliculas) {
@@ -367,7 +393,7 @@ public class VentanaMain extends JFrame{
 		panCentro.updateUI();
 	}
 	
-	private void cargaDocumentales() {
+	private void cargaDocumentales() throws BDException {
 		ArrayList<Documental> documentales = BD.obtenerDocumentales();
 		panCentro.removeAll();
 		for(Documental d: documentales) {
@@ -385,7 +411,7 @@ public class VentanaMain extends JFrame{
 	
 	
 	
-	private void cargarReservas() {
+	private void cargarReservas() throws BDException {
 		ArrayList<Serie> series = BD.obtenerSeries();
 		panCentro.removeAll();
 		for(Serie s: series) {

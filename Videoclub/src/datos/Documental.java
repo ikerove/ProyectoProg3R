@@ -28,7 +28,7 @@ public class Documental extends Multimedia implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Documental [animales=" + animales + "]";
+		return "Documental [codigo=" + codigo + ", titulo=" + titulo + "]";
 	}
 
 	@Override

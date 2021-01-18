@@ -24,6 +24,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import baseDatos.BD;
+import baseDatos.BDException;
 import paneles.PanelFondo;
 
 
@@ -36,7 +37,7 @@ public class VentanaUsuario extends JFrame {
 	private JButton btnEntrar, btnSalir, btnRegistrar, btnAdmin, btnFavoritos;
 	public static String nick;
 
-	public VentanaUsuario() {
+	public VentanaUsuario() throws BDException {
 		super();
 		
 		
@@ -127,21 +128,28 @@ public class VentanaUsuario extends JFrame {
 				
 				String nick = txtNombre.getText();
 				String contrasenia = txtContrasenia.getText();				
-				int resultado = BD.existeUsuario(nick, contrasenia);
-				
-				if(resultado == 2) {
-					JOptionPane.showMessageDialog(null, "BIENVENIDO AL VIDEOCLUB");
-					//new VentanaCliente(nick);
-					new VentanaMain();
-					btnFavoritos.setVisible(true);
-				}else if(resultado == 1) {
-					JOptionPane.showMessageDialog(null, "La contraseña no es correcta", "ERROR!", JOptionPane.ERROR_MESSAGE);
-				}else {
-					JOptionPane.showMessageDialog(null, "Para poder acceder, primero tienes que registrarte");
-					btnRegistrar.setVisible(true);
+				int resultado;
+				try {
+					resultado = BD.existeUsuario(nick, contrasenia);
+					if(resultado == 2) {
+						JOptionPane.showMessageDialog(null, "BIENVENIDO AL VIDEOCLUB");
+						//new VentanaCliente(nick);
+						new VentanaMain();
+						btnFavoritos.setVisible(true);
+					}else if(resultado == 1) {
+						JOptionPane.showMessageDialog(null, "La contraseña no es correcta", "ERROR!", JOptionPane.ERROR_MESSAGE);
+					}else {
+						JOptionPane.showMessageDialog(null, "Para poder acceder, primero tienes que registrarte");
+						btnRegistrar.setVisible(true);
 
+					}
+					vaciarCampos();
+				} catch (BDException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
-				vaciarCampos();
+				
+				
 			}
 		});
 		
@@ -163,15 +171,22 @@ public class VentanaUsuario extends JFrame {
 				String nick = JOptionPane.showInputDialog("Introduce tu nick: ");
 				String contrasenia = JOptionPane.showInputDialog("Introduce la contraseña: ");
 				if(nick!=null && contrasenia!=null) {
-					int resultado = BD.existeUsuario(nick, contrasenia);
-					if(resultado!=0) {
-						JOptionPane.showMessageDialog(null, "Ese nick ya está en uso", "ERROR!", JOptionPane.ERROR_MESSAGE);
-					}else {
-						BD.insertarUsuario(nick, contrasenia);
-						ImageIcon im = new ImageIcon("imagenes/ok.jpg");
-						JOptionPane.showMessageDialog(null, "Te has registrado correctamente","REGISTRO",JOptionPane.INFORMATION_MESSAGE,im);
-						btnRegistrar.setVisible(false);
+					int resultado;
+					try {
+						resultado = BD.existeUsuario(nick, contrasenia);
+						if(resultado!=0) {
+							JOptionPane.showMessageDialog(null, "Ese nick ya está en uso", "ERROR!", JOptionPane.ERROR_MESSAGE);
+						}else {
+							BD.insertarUsuario(nick, contrasenia);
+							ImageIcon im = new ImageIcon("imagenes/ok.jpg");
+							JOptionPane.showMessageDialog(null, "Te has registrado correctamente","REGISTRO",JOptionPane.INFORMATION_MESSAGE,im);
+							btnRegistrar.setVisible(false);
+						}
+					} catch (BDException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
+					
 				}
 			}
 		});
@@ -185,22 +200,29 @@ public class VentanaUsuario extends JFrame {
 				String contraseniaAdmin = JOptionPane.showInputDialog("Introduce la contraseña: ");
 				//String contrasenia2 = "VIDEOCLUB";
 				if(nickAdmin!=null && contraseniaAdmin!=null){
-					int resultado = BD.existeAdmin(nickAdmin, contraseniaAdmin);
-					if(resultado!=0) {
-						//JOptionPane.showMessageDialog(null, "Ese admin ya existe", "ERROR!", JOptionPane.ERROR_MESSAGE);
-						new VentanaUtilidades();
-					}else {
-						JOptionPane.showMessageDialog(null, "Admin incorrecto", "ERROR!", JOptionPane.ERROR_MESSAGE);
-						String contrasenia2 = JOptionPane.showInputDialog("Inserte contrasenia de administrador");
-						if(contrasenia2.equals("VIDEOCLUB")) {
-							BD.insertarAdmin(nickAdmin, contraseniaAdmin);
-							ImageIcon im = new ImageIcon("imagenes/ok.jpg");
-							JOptionPane.showMessageDialog(null, "Nuevo administrador registrado","REGISTRO",JOptionPane.INFORMATION_MESSAGE,im);
+					int resultado;
+					try {
+						resultado = BD.existeAdmin(nickAdmin, contraseniaAdmin);
+						if(resultado!=0) {
+							//JOptionPane.showMessageDialog(null, "Ese admin ya existe", "ERROR!", JOptionPane.ERROR_MESSAGE);
 							new VentanaUtilidades();
-						}else{
-							JOptionPane.showMessageDialog(null, "Contrasenia incorrecta", "ERROR!", JOptionPane.ERROR_MESSAGE);
+						}else {
+							JOptionPane.showMessageDialog(null, "Admin incorrecto", "ERROR!", JOptionPane.ERROR_MESSAGE);
+							String contrasenia2 = JOptionPane.showInputDialog("Inserte contrasenia de administrador");
+							if(contrasenia2.equals("VIDEOCLUB")) {
+								BD.insertarAdmin(nickAdmin, contraseniaAdmin);
+								ImageIcon im = new ImageIcon("imagenes/ok.jpg");
+								JOptionPane.showMessageDialog(null, "Nuevo administrador registrado","REGISTRO",JOptionPane.INFORMATION_MESSAGE,im);
+								new VentanaUtilidades();
+							}else{
+								JOptionPane.showMessageDialog(null, "Contrasenia incorrecta", "ERROR!", JOptionPane.ERROR_MESSAGE);
+							}
 						}
+					} catch (BDException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
+					
 				}
 			}
 			

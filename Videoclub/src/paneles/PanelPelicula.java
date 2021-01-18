@@ -22,6 +22,8 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
 import baseDatos.BD;
+import baseDatos.BDException;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -119,7 +121,15 @@ public class PanelPelicula extends JPanel{
 				if(txtOscars.isSelected()) {
 					oscars = true;
 				}
-				BD.insertarPelicula(Integer.parseInt(txtCodigo.getText()), txtTitulo.getText(),  txtDirector.getText(), txtGenero.getText(),Integer.parseInt(txtDuracion.getText()),txtDistribuidora.getText(),txtFecha.getText(),txtCalificacion.getText(),txtGuion.getText(),txtMusica.getText(),oscars, txtRutaFoto.getText(),Float.parseFloat(txtTiempoReserva.getText()));
+				try {
+					BD.insertarPelicula(Integer.parseInt(txtCodigo.getText()), txtTitulo.getText(),  txtDirector.getText(), txtGenero.getText(),Integer.parseInt(txtDuracion.getText()),txtDistribuidora.getText(),txtFecha.getText(),txtCalificacion.getText(),txtGuion.getText(),txtMusica.getText(),oscars, txtRutaFoto.getText(),Float.parseFloat(txtTiempoReserva.getText()));
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (BDException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		

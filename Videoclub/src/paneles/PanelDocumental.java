@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
 import baseDatos.BD;
+import baseDatos.BDException;
 
 public class PanelDocumental extends JPanel{
 	JPanel panel;
@@ -93,7 +94,15 @@ public class PanelDocumental extends JPanel{
 				if(txtAnimales.isSelected()) {
 					animales = true;
 				}
-				BD.insertarDocumental(Integer.parseInt(txtCodigo.getText()), txtTitulo.getText(),  txtDirector.getText(), txtGenero.getText(),Integer.parseInt(txtDuracion.getText()),txtDistribuidora.getText(),txtFecha.getText(),txtCalificacion.getText(),animales, txtRutaFoto.getText());
+				try {
+					BD.insertarDocumental(Integer.parseInt(txtCodigo.getText()), txtTitulo.getText(),  txtDirector.getText(), txtGenero.getText(),Integer.parseInt(txtDuracion.getText()),txtDistribuidora.getText(),txtFecha.getText(),txtCalificacion.getText(),animales, txtRutaFoto.getText());
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (BDException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		

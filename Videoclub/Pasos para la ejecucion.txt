@@ -1,0 +1,27 @@
+Pasos para realizar la ejecución del proyecto:
+
+1. Inicio de sesión rellenando cada textfield
+	1.1 En caso de no tener cuenta pulsar en boton iniciar sesión para poder ver el boton registrarse.
+	1.2 Introducimos nick y contraseña. Despues de eso podremos iniciar sesion volviendo a rellenar los parametros pedidos.
+	1.3
+2. Podemos iniciar sesion tambien como administradores para poder añadir archivos multimedia
+	2.1 En caso de que no estemos registrados como administradores, al intentar poner nick y contraseña, las escribiremos mal, y te pedirá una contraseña que es VIDEOCLUB, así podremos registrarnos.
+	2.1 La primera linea es para las series, la segunda para las peliculas y la tercera para los documentales
+	2.2 una vez añadimos todos los parametros le damos al boton añadir y ya los tendremos en nuestra base de datos.
+	
+	
+3. Una vez iniciado sesión podremos añadir nuestra lista de favoritos pulsando el boton de favoritos( Que se encuentra ampliando un poco la ventana donde hemos iniciado sesión)
+	3.1 Aquí podremos observar a la izquierda todos los archivos multimedia que tenemos y a la derecha estarán nuestros favoritos.
+	3.2 Podemos observar en la parte de abajo que tenemos tres botones. Cada uno realizará la funcion asignada.
+		3.2.1 Para añadir un favorito seleccionamos uno de los archivos multimedia y le damos al boton del mismo nombre y nos aparecerá a la derecha.
+		3.2.2 Para eliminar, seleccionamos un objeto de la derecha y pulsamos el boton correspondiente, y volverá a la izquierda.
+		3.2.3 Una vez que terminemos de editar nuestros favoritos le daremos a guardar favoritos.
+		
+4. Pasando a la ventana principal encontraremos un menú con varias opciones
+	4.1 Series, Peliculas, Documentales y estrenos
+		4.2 Aquí podremos elegir en cada menú lo que queremos visualizar
+		4.3 Si elegimos Series, Peliculas o Documentales, nos apareceran las portadas de cada sección.
+		4.3.1 En peliculas hemos añadido un método buscar (metodo recursivo para buscar Peliculas mediante busqueda binaria) y para probarlo hemos añadido unos datos de prueba.
+		4.4 En caso de que queramos saber más de portada, la pincharemos y podremos ver sus datos.
+		4.5 En caso de que nos guste, le daremos al boton de pagar, nos aparecerá una ventana de carga y ya tendremos nuestro archivo multimedia comprado!
+	4.2 En caso de elegir estrenos podremos ver una tabla de los proximos articulos que añadiremos a nuestra aplicacion.

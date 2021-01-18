@@ -32,6 +32,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 import baseDatos.BD;
+import baseDatos.BDException;
 import datos.Multimedia;
 import datos.Pelicula;
 import datos.Serie;
@@ -44,7 +45,7 @@ public class VentanaCliente extends JFrame{
     private JList<Multimedia> listaDisponibles, listaFavoritos;
     private DefaultListModel<Multimedia> modeloDisponibles, modeloFavoritos;
     private JButton btnAniadir, btnEliminar, btnGuardar;
-    private Usuario usuario = BD.obtenerUsuario();
+    private Usuario usuario ;
     private String nick;
     private static Logger logger = Logger.getLogger( Videoclub.class.getName() );
 	
@@ -119,7 +120,7 @@ public VentanaCliente(String nick) {
                 }
 				listaDisponibles.setModel(modeloDisponibles);
 				listaFavoritos.setModel(modeloFavoritos);
-				logger.log(Level.INFO,"Añadido a favoritos");
+				logger.log(Level.INFO,"Aï¿½adido a favoritos");
 			}
 		}
 		
@@ -172,6 +173,12 @@ public VentanaCliente(String nick) {
         @Override
         public void actionPerformed(ActionEvent e){
             // TODO Auto-generated method stub
+        	try {
+				usuario = BD.obtenerUsuario();
+			} catch (BDException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
         	guardarFavoritosEnFichero();
             modeloFavoritos = (DefaultListModel<Multimedia>) listaFavoritos.getModel();
             Multimedia sel = null;
@@ -185,7 +192,7 @@ public VentanaCliente(String nick) {
                 guardarJuegoEnFicheroTexto(usuario, modeloFavoritos);
         }
     });
-    String nombreFichero = VentanaUsuario.nick+".dat";
+    String nombreFichero ="FAVORITOS.dat";
     File f = new File(nombreFichero);
     if(f.exists()) {
     	cargarFavoritosDeFichero();
@@ -213,10 +220,17 @@ public VentanaCliente(String nick) {
 	}
 });*/
 private void cargarListaDisponibles() {
-	ArrayList<Multimedia> objetos = BD.obtenerObjetos();
-	for(Multimedia ob: objetos)
-		modeloDisponibles.addElement(ob);
-	listaDisponibles.setModel(modeloDisponibles);
+	ArrayList<Multimedia> objetos;
+	try {
+		objetos = BD.obtenerObjetos();
+		for(Multimedia ob: objetos)
+			modeloDisponibles.addElement(ob);
+		listaDisponibles.setModel(modeloDisponibles);
+	} catch (BDException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
 }
 
 
@@ -224,7 +238,7 @@ public void guardarFavoritosEnFichero() {
 	FileOutputStream fos = null;
     ObjectOutputStream oos = null;
     try {
-    	String nombreFichero = VentanaUsuario.nick+".dat";
+    	String nombreFichero = "FAVORITOS.dat";
         fos = new FileOutputStream(nombreFichero);
         oos = new ObjectOutputStream(fos);
         modeloFavoritos = (DefaultListModel<Multimedia>) listaFavoritos.getModel();
@@ -254,7 +268,7 @@ public void guardarFavoritosEnFichero() {
 public void cargarFavoritosDeFichero() {
 	FileInputStream fis = null;
 	ObjectInputStream ois = null;
-	String nombreFichero = VentanaUsuario.nick+".dat";
+	String nombreFichero = "FAVORITOS.dat";
 	try {
 		fis = new FileInputStream(nombreFichero);
 		ois = new ObjectInputStream(fis);

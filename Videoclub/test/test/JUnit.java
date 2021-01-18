@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.TreeMap;
 
 import baseDatos.BD;
+import baseDatos.BDException;
 import datos.Documental;
 import datos.Multimedia;
 import datos.Pelicula;
@@ -16,7 +17,7 @@ import principal.Videoclub;
 
 //Pruebas unitarias
 public class JUnit extends TestCase {
-	public void testconexionBD() {
+	public void testconexionBD() throws BDException {
 		assertEquals("Se ha establediconexcion", BD.initBD("videoclub.sqlite3"));
 	}
 
