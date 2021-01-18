@@ -1,4 +1,4 @@
-package principal;
+package datos;
 
 
 	import java.io.*;
@@ -9,11 +9,7 @@ package principal;
 	import javax.swing.event.TableModelListener;
 	import javax.swing.table.TableModel;
 
-	/** Tabla de datos bidimensional de cualquier tipo para análisis posterior<br/>
-	 * Composición: una serie de cabeceras (columnas) con un tipo por columna, con una serie de datos en filas que responden a la estructura de las columnas<br/>
-	 * El dato de cada celda puede ser cualquier objeto, también puede ser null
-	 * @author andoni.eguiluz @ ingenieria.deusto.es
-	 */
+
 	public class Tabla {
 		
 		// =================================================

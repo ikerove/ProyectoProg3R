@@ -37,7 +37,7 @@ import baseDatos.BDException;
 import datos.Documental;
 import datos.Pelicula;
 import datos.Serie;
-import principal.Tabla;
+import datos.Tabla;
 
 import java.awt.Font;
 import javax.swing.JTable;
