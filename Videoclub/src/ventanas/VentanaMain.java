@@ -59,7 +59,7 @@ public class VentanaMain extends JFrame{
 	public VentanaMain() {
 		super();
 		v = this;
-		this.setSize(400,400);
+		this.setSize(500,500);
 		this.setTitle("Videoclub");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
@@ -366,6 +366,10 @@ public class VentanaMain extends JFrame{
 		}
 		panCentro.updateUI();
 	}
+	
+	
+	
+	
 	private void cargarReservas() {
 		ArrayList<Serie> series = BD.obtenerSeries();
 		panCentro.removeAll();
