@@ -83,6 +83,7 @@ public class VentanaMain extends JFrame{
 		panSur = new JPanel();
 		
 		
+		
 		panScrol = new JScrollPane(panCentro,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		//panCentro.setLayout(null);
 		
