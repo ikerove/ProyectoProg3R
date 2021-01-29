@@ -42,7 +42,7 @@ public class JUnit extends TestCase {
 		Usuario u2 = new Usuario("nombre", "contrasenia");
 		Usuario u3 = new Usuario("nombre", "contrasenia");
 
-		map.remove(0, u1);
+	
 
 		assertEquals(false, map.remove(0, u1));
 
