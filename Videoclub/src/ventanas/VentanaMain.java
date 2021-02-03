@@ -57,6 +57,7 @@ public class VentanaMain extends JFrame{
 	
 	private ArrayList<Pelicula> peliculas;
 	
+	
 	public VentanaMain() {
 		super();
 		v = this;
@@ -64,7 +65,7 @@ public class VentanaMain extends JFrame{
 		this.setTitle("Videoclub");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		// Datos de prueba
+		// Datos de prueba para comprobar el método recursivo buscarPeliculas()
 				peliculas = new ArrayList<Pelicula>();
 				peliculas.add(new Pelicula(1, "Pelicula A", "Pablo Unio", "Comedia", 120, "", new Date(), "", "", "", false, "", 0));
 				peliculas.add(new Pelicula(2, "Pelicula B", "Pablo Dosio", "Comedia", 120, "", new Date(), "", "", "", false, "", 0));
@@ -124,8 +125,9 @@ public class VentanaMain extends JFrame{
 		this.getContentPane().add(panScrol);
 		this.getContentPane().add(panSur, BorderLayout.SOUTH);
 		
-		
-		
+		/**
+		 * Esto hace que al clicar al mi1(un JMenuItem) llame al metodo de la BD cargaSeries()
+		 */
 		mi1.addActionListener(new ActionListener() {
 			
 			@Override
@@ -141,6 +143,9 @@ public class VentanaMain extends JFrame{
 		});
 		
 		
+		/**
+		 * Esto hace que al clicar al mi2(un JMenuItem) llame al metodo de la BD cargaPeliculas()
+		 */
 		mi2.addActionListener(new ActionListener() {
 			
 			@Override
@@ -155,6 +160,10 @@ public class VentanaMain extends JFrame{
 			}
 		});
 		
+		
+		/**
+		 * Esto hace que al clicar al mi3(un JMenuItem) llamado documentales, llame al metodo de la BD cargaDocumentales()
+		 */
 		mi3.addActionListener(new ActionListener() {
 			
 			@Override
@@ -215,6 +224,10 @@ public class VentanaMain extends JFrame{
 			}
 		});*/
 		
+		/**
+		 * Esto hace que al clicar al mi5(un JMenuItem) llamado estrenos, se crea el diseño de el panel, se crea una tabla y 
+		 dentro de la tabla se metera el fichero estrenos.csv
+		 */
 		mi5.addActionListener(new ActionListener() {
 			
 			@Override
@@ -246,6 +259,10 @@ public class VentanaMain extends JFrame{
 		
 		});
 		
+		
+		/**
+		 * Esto hace que al clicar al mi6(un JMenuItem) llamado buscarPelis carga el método recursivo buscarPeliculas() 
+		 */
 		mi6.addActionListener(new ActionListener() {
 			
 			@Override
@@ -325,6 +342,10 @@ public class VentanaMain extends JFrame{
 		
 	}
 	
+	/**
+	 * método recursivo para buscar péliculas  introduciendo el título de la pelicula y te dira si esta disponible o no. Para buscarlo también hace uso del 
+	 * método recursivo de busquedaBinaria
+	 */
 	
 	public void buscarPeliculas() {
 		// TODO Auto-generated method stub
@@ -343,7 +364,15 @@ public class VentanaMain extends JFrame{
 		
 		panCentro.updateUI();
 	}
-
+/**
+ * es un algoritmo eficiente para encontrar un elemento en una lista ordenada de elementos. Funciona al dividir repetidamente
+ *  a la mitad la porción de la lista que podría contener al elemento, hasta reducir las ubicaciones posibles a solo una
+ * @param a
+ * @param x
+ * @param start
+ * @param end
+ * @return
+ */
 	private int busquedaBinaria(ArrayList<Pelicula> a, String x, int start, int end)  {
 		int medio;
 		if (start > end) {
