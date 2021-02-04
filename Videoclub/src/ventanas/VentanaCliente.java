@@ -219,6 +219,11 @@ public VentanaCliente(String nick) {
 		return c;
 	}
 });*/
+
+/**
+ * Cargar lista la lista disponible
+ */
+
 private void cargarListaDisponibles() {
 	ArrayList<Multimedia> objetos;
 	try {
@@ -232,7 +237,9 @@ private void cargarListaDisponibles() {
 	}
 	
 }
-
+/**
+ * Guarda e un fichero los favoritos.
+ */
 
 public void guardarFavoritosEnFichero() {
 	FileOutputStream fos = null;
@@ -264,6 +271,9 @@ public void guardarFavoritosEnFichero() {
         }
     }
 }
+/**
+ * Carga el fichero de los favoritos.
+ */
 
 public void cargarFavoritosDeFichero() {
 	FileInputStream fis = null;
