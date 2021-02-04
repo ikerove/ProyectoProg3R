@@ -24,7 +24,11 @@ public class Propertyes {
             JOptionPane.showMessageDialog(null, "Error cargando configuración\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+    /**
+     * Asignar un valor al property
+     * @param property
+     * @param value
+     */
     public static void setPropertyValue(String property, String value){
         try{
             configOutput = new FileOutputStream("data/config.properties");
