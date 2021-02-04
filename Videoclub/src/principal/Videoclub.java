@@ -62,12 +62,19 @@ public class Videoclub {
 		}
 		
 	}
-	
+	/**
+	 * Elimina un objeto
+	 * @param codigo
+	 * @return
+	 */
 	public static Multimedia eliminarObjeto(int codigo) {
 		logger.log(Level.INFO,"Objeto eliminado");
 		return objetos.remove(codigo);
 	}
-	
+	/**
+	 * Imprimir un mapa
+	 * @param mapa
+	 */
 	public static void printMap(HashMap mapa) {
 	       Iterator it = mapa.entrySet().iterator();
 	       while (it.hasNext()) {
@@ -77,7 +84,11 @@ public class Videoclub {
 	       }
 	}
 	
-	
+	/**
+	 * Añadir un usuario
+	 * @param u
+	 * @return true or false
+	 */
 	public static boolean aniadirUsuario(Usuario u) {
 		if(usuarios.containsKey(u.getNick())) {
 			logger.log(Level.WARNING,"Usuario previamente aï¿½adido");
@@ -89,13 +100,20 @@ public class Videoclub {
 			return true;
 		}
 	}
-	
+	/**
+	 * Eliminar un usuario
+	 * @param nick
+	 * @return objetos.remove(nick)
+	 */
 	public static Multimedia eliminarUsuario(String nick) {
 		logger.log(Level.INFO,"Usuario eliminado");
 		return objetos.remove(nick);
 		
 	}
-	
+	/**
+	 * Imprimir un Treemap
+	 * @param mapa
+	 */
 	public static void printTreeMap(TreeMap mapa) {
 	       Iterator it = mapa.entrySet().iterator();
 	       while (it.hasNext()) {
@@ -106,7 +124,11 @@ public class Videoclub {
 	       logger.log(Level.INFO,"Mapa ordenado");
 	}
 	
-	
+	/**
+	 * Añadir cualquier tde multimedia a favoritos
+	 * @param nombre
+	 * @param o
+	 */
 	public static void aniadirAFavoritos(String nombre,Multimedia o) {
 		if(!favoritos.containsKey(nombre)) {
 			favoritos.put(nombre, new ArrayList<>());
@@ -114,7 +136,12 @@ public class Videoclub {
 		favoritos.get(nombre).add(o);
 		logger.log(Level.INFO,"Añadido a favoritos");
 	}
-	
+	/**
+	 * Eliminar de favoritos el objeto añadido
+	 * @param nombre
+	 * @param codigo
+	 * @return
+	 */
 	public static Multimedia eliminarDeFavoritos(String nombre, int codigo) {
 		boolean enc=false;
 		int pos = 0;
@@ -136,7 +163,11 @@ public class Videoclub {
 		return null;
 		
 	}
-	
+	/**
+	 * Obtener las compras realizadas por un cliente
+	 * @param nick
+	 * @return
+	 */
 	public static ArrayList<Multimedia> obtenerComprasCliente(String nick){
 		logger.log(Level.INFO,"Clientes obtenidos");
 		
