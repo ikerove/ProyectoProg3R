@@ -19,7 +19,9 @@ public class PanelFondo extends JPanel {
 		this.setLayout(new BorderLayout());
 		this.fondo = fondo;
 	}
-	
+	/**
+	 * La funcionalidad es pintar el fondo de un componente.
+	 */
 	public void paintComponent(Graphics g){
 		Dimension tamanio = getSize();
 		ImageIcon imagenFondo = new ImageIcon(fondo);
