@@ -1,2 +1,2 @@
 Usuario [nick=iker, con=iker]
-[Serie [codigo=1, titulo=Stranger Things], Pelicula [codigo= 1, titulo= Iron Man]]
+[Documental [codigo=1, titulo=Los Manuscritos del Mar Muerto]]

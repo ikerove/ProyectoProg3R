@@ -179,7 +179,14 @@ public class BD {
 		}
 	}
 	
-	
+	/**
+	 * Comprobamos si el usuario está añadido en la base de datos
+	 * @param nick
+	 * @param contrasenia
+	 * @return
+	 * @throws BDException
+	 */
+
 	public static int existeUsuario(String nick, String contrasenia) throws BDException {
 		Connection con = initBD("videoclub.sqlite3");
 		String sql = "SELECT * FROM Usuario WHERE nick='"+nick+"'";
@@ -211,6 +218,13 @@ public class BD {
 		return resultado;
 	}
 	
+	/**
+	 * Añadimos el usuario a la base de datos
+	 * @param nick
+	 * @param contrasenia
+	 * @throws BDException
+	 */
+
 	public static void insertarUsuario(String nick, String contrasenia) throws BDException {
 		Connection con = initBD("videoclub.sqlite3");
 		String sql = "INSERT INTO Usuario VALUES('"+nick+"','"+contrasenia+"')";
@@ -226,6 +240,14 @@ public class BD {
 		}
 	}
 	
+	/**
+	 * Comprobamos si el administrador está en la base de datos
+	 * @param nick
+	 * @param contrasenia
+	 * @return
+	 * @throws BDException
+	 */
+
 	public static int existeAdmin(String nick, String contrasenia) throws BDException {
 		Connection con = initBD("videoclub.sqlite3");
 		String sql = "SELECT * FROM Admin WHERE nick='"+nick+"'";
@@ -255,6 +277,13 @@ public class BD {
 		return resultado;
 	}
 	
+	/**
+	 * Añadimos el administrador a la base de datos
+	 * @param nick
+	 * @param contrasenia
+	 * @throws BDException
+	 */
+
 	public static void insertarAdmin(String nick, String contrasenia) throws BDException {
 		Connection con = initBD("videoclub.sqlite3");
 		String sql = "INSERT INTO Admin VALUES('"+nick+"','"+contrasenia+"')";
@@ -270,6 +299,24 @@ public class BD {
 		}
 	}
 	
+	/**
+	 * Insertamos la serie en la base de datos
+	 * @param codigo
+	 * @param titulo
+	 * @param director
+	 * @param genero
+	 * @param duracion
+	 * @param distribuidora
+	 * @param fecha
+	 * @param calificacion
+	 * @param formato
+	 * @param temporadas
+	 * @param capitulos
+	 * @param duracionCap
+	 * @param rutaFoto
+	 * @throws BDException
+	 */
+
 	public static void insertarSerie(int codigo, String titulo, String director, String genero, int duracion, String distribuidora,
 			String fecha, String calificacion, String formato, int temporadas, int capitulos, int duracionCap, String rutaFoto) throws BDException {
 		Connection con = initBD("videoclub.sqlite3");
@@ -290,6 +337,24 @@ public class BD {
 		cerrarBD(con, st);
 	}
 	
+	/**
+	 * Insertamos la pelicula en la base de datos
+	 * @param codigo
+	 * @param titulo
+	 * @param director
+	 * @param genero
+	 * @param duracion
+	 * @param distribuidora
+	 * @param fecha
+	 * @param calificacion
+	 * @param guion
+	 * @param musica
+	 * @param oscars
+	 * @param rutaFoto
+	 * @param tiempoReserva
+	 * @throws BDException
+	 */
+
 	public static void insertarPelicula(int codigo, String titulo, String director, String genero, int duracion, String distribuidora,
 			String fecha, String calificacion, String guion, String musica, boolean oscars, String rutaFoto,float tiempoReserva) throws BDException {
 		Connection con = initBD("videoclub.sqlite3");
@@ -309,6 +374,21 @@ public class BD {
 		cerrarBD(con, st);
 	}
 	
+	/**
+	 * Insertamos un documental en la base de datos
+	 * @param codigo
+	 * @param titulo
+	 * @param director
+	 * @param genero
+	 * @param duracion
+	 * @param distribuidora
+	 * @param fecha
+	 * @param calificacion
+	 * @param animales
+	 * @param rutaFoto
+	 * @throws BDException
+	 */
+
 	public static void insertarDocumental(int codigo, String titulo, String director, String genero, int duracion, String distribuidora,
 			String fecha, String calificacion,boolean animales, String rutaFoto) throws BDException {
 		Connection con = initBD("videoclub.sqlite3");
@@ -327,7 +407,11 @@ public class BD {
 		cerrarBD(con, st);
 	}
 	
-	
+	/**
+	 * Borramos las series
+	 * @throws BDException
+	 */
+
 	
 	public static void borrarSeries() throws BDException {
 		Connection con = initBD("videoclub.sqlite3");
@@ -346,6 +430,12 @@ public class BD {
 		cerrarBD(con, st);	
 	}
 	
+	/**
+	 * Borramos las peliculas
+	 * @throws BDException
+	 */
+
+	
 	public static void borrarPeliculas() throws BDException {
 		Connection con = initBD("videoclub.sqlite3");
 		String sql = "DELETE FROM Pelicula";
@@ -363,6 +453,11 @@ public class BD {
 		cerrarBD(con, st);	
 	}
 	
+	/**
+	 * Borramos los documentales
+	 * @throws BDException
+	 */
+
 	public static void borrarDocumentales() throws BDException {
 		Connection con = initBD("videoclub.sqlite3");
 		String sql = "DELETE FROM Documental";
@@ -380,6 +475,15 @@ public class BD {
 		cerrarBD(con, st);	
 	}
 	
+	/**
+	 * Actualizamos el historial de de compras
+	 * @param nick
+	 * @param codigo
+	 * @param unidades
+	 * @param fecha
+	 * @throws BDException
+	 */
+
 	public static void actualizarHistorial(String nick,int codigo, int unidades, String fecha) throws BDException {
 		Connection con = initBD("videoclub.sqlite3");
 		String sql = "INSERT INTO historial VALUES ('"+nick+"',"+codigo+","+unidades+",'"+fecha+"')";
@@ -398,7 +502,12 @@ public class BD {
 		cerrarBD(con, st);	
 	}
 	
-	
+	/**
+	 * Obtenemos la serie elegida de la base de datos
+	 * @param rutaFoto
+	 * @return
+	 * @throws BDException
+	 */	
 	public static Serie obtenerSerie(String rutaFoto) throws BDException {
 		Connection con = initBD("videoclub.sqlite3");
 		String sql = "SELECT * FROM serie WHERE rutaFoto='"+rutaFoto+"'";
@@ -437,6 +546,13 @@ public class BD {
 		return s;
 	}
 	
+	/**
+	 * Obtenemos la serie elegida con otros parametros
+	 * @param rutaFoto
+	 * @return
+	 * @throws BDException
+	 */
+
 	public static String obtenerSerie2(String rutaFoto) throws BDException {
 		Connection con = initBD("videoclub.sqlite3");
 		String sql = "SELECT * FROM serie WHERE rutaFoto='"+rutaFoto+"'";
@@ -475,6 +591,13 @@ public class BD {
 		return s;
 	}
 	
+	/**
+	 * Obtenemos la pelicula elegida de la base de datos
+	 * @param rutaFoto
+	 * @return
+	 * @throws BDException
+	 */
+
 	public static Pelicula obtenerPelicula(String rutaFoto) throws BDException {
 		Connection con = initBD("videoclub.sqlite3");
 		String sql = "SELECT * FROM pelicula WHERE rutaFoto='"+rutaFoto+"'";
@@ -512,6 +635,14 @@ public class BD {
 		cerrarBD(con, st);
 		return p;
 	}
+	
+	/**
+	 * Obtenemos la serie elegida con otros parametros
+	 * @param rutaFoto
+	 * @return
+	 * @throws BDException
+	 */
+
 	public static String obtenerPelicula2(String rutaFoto) throws BDException {
 		Connection con = initBD("videoclub.sqlite3");
 		String sql = "SELECT * FROM pelicula WHERE rutaFoto='"+rutaFoto+"'";
@@ -550,7 +681,13 @@ public class BD {
 		return p;
 	}
 	
-	
+	/**
+	 * Obtenemos el documental elegido con otros parametros
+	 * @param rutaFoto
+	 * @return
+	 * @throws BDException
+	 */
+
 	public static String obtenerDocumental2(String rutaFoto) throws BDException {
 		Connection con = initBD("videoclub.sqlite3");
 		String sql = "SELECT * FROM documental WHERE rutaFoto='"+rutaFoto+"'";
@@ -585,6 +722,12 @@ public class BD {
 		cerrarBD(con, st);
 		return doc;
 	}
+	
+	/**
+	 * Obtenemos el usuario solicitado
+	 * @return
+	 * @throws BDException
+	 */
 
 	public static Usuario obtenerUsuario() throws BDException{
 		Connection con = initBD("videoclub.sqlite3");
@@ -611,6 +754,11 @@ public class BD {
 		return u;
 	}
 	
+	/**
+	 * Devuelve un arraylist con todas las series que estan en la tabla de serie
+	 * @return
+	 * @throws BDException
+	 */
 	public static ArrayList<Serie> obtenerSeries() throws BDException{
 		ArrayList<Serie> series = new ArrayList<Serie>();
 		Connection con = initBD("videoclub.sqlite3");
@@ -653,7 +801,11 @@ public class BD {
 		return series;
 	}
 	
-	
+	/**
+	 * Devuelve todas las peliculas que están en la tabla de pelicula
+	 * @return
+	 * @throws BDException
+	 */
 	
 	public static ArrayList<Pelicula> obtenerPeliculas() throws BDException{
 		ArrayList<Pelicula> peliculas = new ArrayList<Pelicula>();
@@ -695,6 +847,11 @@ public class BD {
 		return peliculas;
 	}
 	
+	/**
+	 * Devuelve todos los documentales que hay en la tabla de documental
+	 * @return
+	 * @throws BDException
+	 */
 	public static ArrayList<Documental> obtenerDocumentales() throws BDException{
 		ArrayList<Documental> documentales = new ArrayList<Documental>();
 		Connection con = initBD("videoclub.sqlite3");
@@ -738,7 +895,11 @@ public class BD {
 	
 	
 	
-	
+	/**
+	 * Devuelve todos los objetos multimedia que existen en las tablas serie, pelicula y documental
+	 * @return
+	 * @throws BDException
+	 */
 	
 	public static ArrayList<Multimedia> obtenerObjetos() throws BDException{
 		Connection con = initBD("videoclub.sqlite3");

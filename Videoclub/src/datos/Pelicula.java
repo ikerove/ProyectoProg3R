@@ -4,7 +4,11 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-//Esta clase es para las Peliculas y los atributos que tienen
+/**Esta clase es para las Peliculas y los atributos que tienen
+ * 
+ * @author ikerrodriguez
+ *
+ */
 public class Pelicula extends Multimedia implements Serializable, InterfaceReserva{
 	private String guion;
 	private String musica;

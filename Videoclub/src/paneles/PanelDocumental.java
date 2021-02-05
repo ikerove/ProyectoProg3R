@@ -84,6 +84,9 @@ public class PanelDocumental extends JPanel{
 		
 		
 		//EVENTOS
+		/**
+		 * Añade los parametros insertados en cada texfield a la tabla documental de la base de datos
+		 */
 		btnAniadir.addActionListener(new ActionListener() {
 			
 			@Override

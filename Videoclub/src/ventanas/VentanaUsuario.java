@@ -32,7 +32,7 @@ import baseDatos.BDException;
 import paneles.PanelFondo;
 
 
-//Ventana de inicio de sesión donde se meten usuario y contraseña
+//Ventana de inicio de sesiï¿½n donde se meten usuario y contraseï¿½a
 public class VentanaUsuario extends JFrame {
 	private JPanel panelCentro, panelBase, panelBotonera ;
 	private JTextField txtNombre;
@@ -84,13 +84,13 @@ public class VentanaUsuario extends JFrame {
 		txtContrasenia.setPreferredSize(new Dimension (200, 50));
 		posicionaLinea(panelCentro, "Introduzca la contrasenia", txtContrasenia);
 		
-		//TAREA properties para que recuerde el último usuario logueado correctamente y para que lo saque en pantalla si existe
+		//TAREA properties para que recuerde el ï¿½ltimo usuario logueado correctamente y para que lo saque en pantalla si existe
 		String usuario = "";
 		try {
 			properties = new Properties();
 			properties.loadFromXML( new FileInputStream( "proyectoprog3r.properties" ) );
 			usuario = properties.getProperty( "USUARIO" );
-		} catch (Exception e1) {}  // Cuando el xml aún no existe no se hace nada
+		} catch (Exception e1) {}  // Cuando el xml aï¿½n no existe no se hace nada
 		
 		if (!usuario.equals("")) {
 			txtNombre.setText(usuario);
@@ -102,7 +102,7 @@ public class VentanaUsuario extends JFrame {
 		 
 		
 		btnEntrar = new JButton();
-		btnEntrar.setToolTipText("Añade los parametros pedidos y pulsa el boton");
+		btnEntrar.setToolTipText("Aï¿½ade los parametros pedidos y pulsa el boton");
 		btnEntrar.setText("Iniciar sesion");
 		panelBotonera.add(btnEntrar);
 		
@@ -143,6 +143,9 @@ public class VentanaUsuario extends JFrame {
 			}
 		});
 		
+		/**
+		 * Boton para iniciar sesion en la aplicacion
+		 */
 		btnEntrar.addActionListener(new ActionListener() {
 			
 			@Override
@@ -157,18 +160,18 @@ public class VentanaUsuario extends JFrame {
 					if(resultado == 2) {
 						JOptionPane.showMessageDialog(null, "BIENVENIDO AL VIDEOCLUB");
 						
-						// TAREA properties para que recuerde el último usuario logueado correctamente y para que lo saque en pantalla si existe
+						// TAREA properties para que recuerde el ï¿½ltimo usuario logueado correctamente y para que lo saque en pantalla si existe
 						try {
 							properties.setProperty( "USUARIO", nick );
-							properties.storeToXML( new FileOutputStream( new java.io.File("proyectoprog3r.properties") ), "Configuración de Videoclub" );
-						} catch (Exception ex) { }  // No se ha podido guardar el fichero de configuración
+							properties.storeToXML( new FileOutputStream( new java.io.File("proyectoprog3r.properties") ), "Configuraciï¿½n de Videoclub" );
+						} catch (Exception ex) { }  // No se ha podido guardar el fichero de configuraciï¿½n
 						// Fin TAREA 
 						
 						//new VentanaCliente(nick);
 						new VentanaMain();
 						btnFavoritos.setVisible(true);
 					}else if(resultado == 1) {
-						JOptionPane.showMessageDialog(null, "La contraseña no es correcta", "ERROR!", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "La contraseï¿½a no es correcta", "ERROR!", JOptionPane.ERROR_MESSAGE);
 					}else {
 						JOptionPane.showMessageDialog(null, "Para poder acceder, primero tienes que registrarte");
 						btnRegistrar.setVisible(true);
@@ -193,6 +196,9 @@ public class VentanaUsuario extends JFrame {
 			}
 		});
 		
+		/**
+		 * Boton para poder registrarse en nuestra aplicacion
+		 */
 		btnRegistrar.addActionListener(new ActionListener() {
 			
 			@Override
@@ -200,13 +206,13 @@ public class VentanaUsuario extends JFrame {
 				// TODO Auto-generated method stub
 				vaciarCampos();
 				String nick = JOptionPane.showInputDialog("Introduce tu nick: ");
-				String contrasenia = JOptionPane.showInputDialog("Introduce la contraseña: ");
+				String contrasenia = JOptionPane.showInputDialog("Introduce la contraseï¿½a: ");
 				if(nick!=null && contrasenia!=null) {
 					int resultado;
 					try {
 						resultado = BD.existeUsuario(nick, contrasenia);
 						if(resultado!=0) {
-							JOptionPane.showMessageDialog(null, "Ese nick ya está en uso", "ERROR!", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Ese nick ya estï¿½ en uso", "ERROR!", JOptionPane.ERROR_MESSAGE);
 						}else {
 							BD.insertarUsuario(nick, contrasenia);
 							ImageIcon im = new ImageIcon("imagenes/ok.jpg");
@@ -222,13 +228,16 @@ public class VentanaUsuario extends JFrame {
 			}
 		});
 		
+		/**
+		 * Boton para logearse como administrador y poder hacer las funcionalidades correspondientes
+		 */
 		btnAdmin.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				String nickAdmin = JOptionPane.showInputDialog("Introduce tu nick: ");
-				String contraseniaAdmin = JOptionPane.showInputDialog("Introduce la contraseña: ");
+				String contraseniaAdmin = JOptionPane.showInputDialog("Introduce la contraseï¿½a: ");
 				//String contrasenia2 = "VIDEOCLUB";
 				if(nickAdmin!=null && contraseniaAdmin!=null){
 					int resultado;
