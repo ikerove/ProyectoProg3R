@@ -38,6 +38,7 @@ import datos.Documental;
 import datos.Pelicula;
 import datos.Serie;
 import datos.Tabla;
+import datos.Ventas;
 
 import java.awt.Font;
 import javax.swing.JTable;
@@ -55,6 +56,11 @@ public class VentanaMain extends JFrame{
 	private JTable table;
 	private JTable table2;
 	
+	
+	private String tipo_venta;
+	private JMenu menuV;
+	private JMenuItem mi7;
+		
 	private ArrayList<Pelicula> peliculas;
 	
 	
@@ -65,7 +71,7 @@ public class VentanaMain extends JFrame{
 		this.setTitle("Videoclub");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		// Datos de prueba para comprobar el método recursivo buscarPeliculas()
+		// Datos de prueba para comprobar el mï¿½todo recursivo buscarPeliculas()
 				peliculas = new ArrayList<Pelicula>();
 				peliculas.add(new Pelicula(1, "Pelicula A", "Pablo Unio", "Comedia", 120, "", new Date(), "", "", "", false, "", 0));
 				peliculas.add(new Pelicula(2, "Pelicula B", "Pablo Dosio", "Comedia", 120, "", new Date(), "", "", "", false, "", 0));
@@ -98,6 +104,23 @@ public class VentanaMain extends JFrame{
 		menuE = new JMenu("Favoritos");
 		menuF= new JMenu("Estrenos");
 		
+		menuV= new JMenu("Ventas");
+		mi7= new JMenuItem("Listar Ventas");
+		menuV.add(mi7);
+		menuBar.add(menuV);
+
+		mi7.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					tipo_venta = "Ventas";
+					cargaVentas();
+				} catch (BDException e1) {
+				}
+			}
+		});
+			
 		mi1 = new JMenuItem("Series");
 		mi2 = new JMenuItem("Peliculas");
 		mi3 = new JMenuItem("Documentales");
@@ -134,6 +157,10 @@ public class VentanaMain extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub				
 				try {
+					
+					
+					tipo_venta = "Serie";
+					
 					cargaSeries();
 				} catch (BDException e1) {
 					// TODO Auto-generated catch block
@@ -152,6 +179,9 @@ public class VentanaMain extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
+					
+					tipo_venta = "Pelicula";
+					
 					cargaPeliculas();
 				} catch (BDException e1) {
 					// TODO Auto-generated catch block
@@ -170,6 +200,10 @@ public class VentanaMain extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
+					
+					tipo_venta = "Documental";
+					
+					
 					cargaDocumentales();
 				} catch (BDException e1) {
 					// TODO Auto-generated catch block
@@ -225,7 +259,7 @@ public class VentanaMain extends JFrame{
 		});*/
 		
 		/**
-		 * Esto hace que al clicar al mi5(un JMenuItem) llamado estrenos, se crea el diseño de el panel, se crea una tabla y 
+		 * Esto hace que al clicar al mi5(un JMenuItem) llamado estrenos, se crea el diseï¿½o de el panel, se crea una tabla y 
 		 dentro de la tabla se metera el fichero estrenos.csv
 		 */
 		mi5.addActionListener(new ActionListener() {
@@ -261,7 +295,7 @@ public class VentanaMain extends JFrame{
 		
 		
 		/**
-		 * Esto hace que al clicar al mi6(un JMenuItem) llamado buscarPelis carga el método recursivo buscarPeliculas() 
+		 * Esto hace que al clicar al mi6(un JMenuItem) llamado buscarPelis carga el mï¿½todo recursivo buscarPeliculas() 
 		 */
 		mi6.addActionListener(new ActionListener() {
 			
@@ -311,7 +345,11 @@ public class VentanaMain extends JFrame{
 				JLabel lblFotoSeleccionada = (JLabel) panCentro.getComponentAt(p);
 				v.dispose();
 				try {
-					new VentanaFicha(lblFotoSeleccionada,v);
+					
+					//new VentanaFicha(lblFotoSeleccionada,v);
+					new VentanaFicha(lblFotoSeleccionada, v, tipo_venta, lblFotoSeleccionada.getName(), VentanaUsuario.properties.getProperty("USUARIO"), lblFotoSeleccionada.getText());
+					
+					
 				} catch (BDException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -343,8 +381,8 @@ public class VentanaMain extends JFrame{
 	}
 	
 	/**
-	 * método recursivo para buscar péliculas  introduciendo el título de la pelicula y te dira si esta disponible o no. Para buscarlo también hace uso del 
-	 * método recursivo de busquedaBinaria
+	 * mï¿½todo recursivo para buscar pï¿½liculas  introduciendo el tï¿½tulo de la pelicula y te dira si esta disponible o no. Para buscarlo tambiï¿½n hace uso del 
+	 * mï¿½todo recursivo de busquedaBinaria
 	 */
 	
 	public void buscarPeliculas() {
@@ -359,14 +397,14 @@ public class VentanaMain extends JFrame{
 		if (i < 0) {
 			JOptionPane.showMessageDialog( this, "La pelicula no se encuentra.", "Mensaje", JOptionPane.WARNING_MESSAGE );
 		} else {
-			JOptionPane.showMessageDialog( this, "La pelicula estï¿½ disponible.", "Mensaje", JOptionPane.WARNING_MESSAGE );
+			JOptionPane.showMessageDialog( this, "La pelicula esta disponible.", "Mensaje", JOptionPane.WARNING_MESSAGE );
 		}
 		
 		panCentro.updateUI();
 	}
 /**
  * es un algoritmo eficiente para encontrar un elemento en una lista ordenada de elementos. Funciona al dividir repetidamente
- *  a la mitad la porción de la lista que podría contener al elemento, hasta reducir las ubicaciones posibles a solo una
+ *  a la mitad la porciï¿½n de la lista que podrï¿½a contener al elemento, hasta reducir las ubicaciones posibles a solo una
  * @param a
  * @param x
  * @param start
@@ -391,6 +429,23 @@ public class VentanaMain extends JFrame{
 		}
 	}
 	
+	
+	private void cargaVentas() throws BDException {
+		ArrayList<Ventas> ventas = BD.obtenerVentas(VentanaUsuario.properties.getProperty("USUARIO"));
+		panCentro.removeAll();
+		for(Ventas v: ventas) {
+			JLabel lblFoto = new JLabel();
+			lblFoto.setSize(100,100);
+			ImageIcon im = new ImageIcon(v.getRuta());
+			ImageIcon imagenConDimensiones = new ImageIcon(im.getImage().getScaledInstance(lblFoto.getWidth(),lblFoto.getHeight(),Image.SCALE_DEFAULT));
+			imagenConDimensiones.setDescription(v.getRuta());
+			lblFoto.setIcon(imagenConDimensiones); 
+			
+			panCentro.add(lblFoto);
+		}
+		panCentro.updateUI();
+	}
+	
 	private void cargaSeries() throws BDException {
 		ArrayList<Serie> series = BD.obtenerSeries();
 		panCentro.removeAll();
@@ -401,6 +456,10 @@ public class VentanaMain extends JFrame{
 			ImageIcon imagenConDimensiones = new ImageIcon(im.getImage().getScaledInstance(lblFoto.getWidth(),lblFoto.getHeight(),Image.SCALE_DEFAULT));
 			imagenConDimensiones.setDescription(s.getRutaFoto());
 			lblFoto.setIcon(imagenConDimensiones); 
+			
+			lblFoto.setName(s.getCodigo()+"");
+			lblFoto.setText(s.getRutaFoto());
+			
 			panCentro.add(lblFoto);
 		}
 		panCentro.updateUI();
@@ -417,6 +476,10 @@ public class VentanaMain extends JFrame{
 			ImageIcon imagenConDimensiones = new ImageIcon(im.getImage().getScaledInstance(lblFoto.getWidth(),lblFoto.getHeight(),Image.SCALE_DEFAULT));
 			imagenConDimensiones.setDescription(p.getRutaFoto());
 			lblFoto.setIcon(imagenConDimensiones); 
+			
+			lblFoto.setName(p.getCodigo()+"");
+			lblFoto.setText(p.getRutaFoto());
+			
 			panCentro.add(lblFoto);
 		}
 		panCentro.updateUI();
@@ -432,6 +495,10 @@ public class VentanaMain extends JFrame{
 			ImageIcon imagenConDimensiones = new ImageIcon(im.getImage().getScaledInstance(lblFoto.getWidth(),lblFoto.getHeight(),Image.SCALE_DEFAULT));
 			imagenConDimensiones.setDescription(d.getRutaFoto());
 			lblFoto.setIcon(imagenConDimensiones); 
+			
+			lblFoto.setName(d.getCodigo()+"");
+			lblFoto.setText(d.getRutaFoto());
+			
 			panCentro.add(lblFoto);
 		}
 		panCentro.updateUI();
@@ -480,6 +547,7 @@ public class VentanaMain extends JFrame{
 	}
 	}
 	
+
 
 
 

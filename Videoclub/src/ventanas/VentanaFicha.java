@@ -43,10 +43,26 @@ public class VentanaFicha extends JFrame{
 	private JTextArea txtTexto;
 	private String nick;
 	private static Logger logger = Logger.getLogger( Videoclub.class.getName() );
+
 	
+	//public VentanaFicha(JLabel lblFotoSeleccionada, JFrame va) throws BDException  {
+	private String tipo_venta;
+	private String codigo_venta;
+	private String usuario;
+	private String ruta;
 	
-	public VentanaFicha(JLabel lblFotoSeleccionada, JFrame va) throws BDException  {
+
+	
+	//public VentanaFicha(JLabel lblFotoSeleccionada, JFrame va) throws BDException  {
+	public VentanaFicha(JLabel lblFotoSeleccionada, JFrame va, String tipo_venta, String codigo_venta, 
+						String usuario, String ruta) throws BDException  {
 		super();
+		this.tipo_venta = tipo_venta;
+		this.codigo_venta = codigo_venta;
+		this.usuario = usuario;
+		this.ruta = ruta;
+	
+		
 		JFrame v = this;
 		ventanaAnterior = va;
  		this.setSize(500,200);
@@ -66,49 +82,71 @@ public class VentanaFicha extends JFrame{
 			}
 		});
 		
-		btnPagar= new JButton("PAGAR");
-		btnPagar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				//generarFactura();
-				new VentanaThreadPago();
-			/*	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-				BD.borrarSeries();
-				BD.borrarPeliculas();
-				BD.borrarDocumentales();
-				//DefaultListModel<Objeto> m = (DefaultListModel<Objeto>) VentanaCliente.listaDisponibles.getModel();
-				//DefaultListModel<Objeto> m1 = listaDisponibles.
-				for(int i=0;i<m.getSize();i++) {
-					Objeto ob = m.getElementAt(i);
-					if(ob instanceof Serie) {
-						Serie s = (Serie)ob;
-						
-						//BD.insertarSerie(s.getCodigo(), s.getTitulo(),s.getDirector(),s.getGenero(),s.getDuracion(),s.getDistribuidora(),s.getFecha(),s.getCalificacion(),s.getFormato(),s.getTemporadas(),s.getCapitulos(),s.getDuracionCap(),s.getRutaFoto());
-						BD.insertarSerie(s.getCodigo(), s.getTitulo(),s.getDirector(),s.getGenero(),s.getDuracion(),s.getDistribuidora(),sdf.format(s.getFecha()),s.getCalificacion(),s.getFormato(),s.getTemporadas(),s.getCapitulos(),s.getDuracionCap(),s.getRutaFoto());
-					}else if(ob instanceof Pelicula) {
-						Pelicula p = (Pelicula)ob;
-						BD.insertarPelicula(p.getCodigo(), p.getTitulo(),p.getDirector(),p.getGenero(),p.getDuracion(),p.getDistribuidora(),sdf.format(p.getFecha()),p.getCalificacion(), p.getGuion(),p.getMusica(),p.isOscars(), p.getRutaFoto());
-					}
-				}
-			/*	DefaultListModel<Objeto> ms = (DefaultListModel<Objeto>) VentanaCliente.listaFavoritos.getModel();
-				for(int i=0;i<ms.getSize();i++) {
-					Objeto ob = ms.getElementAt(i);
-					int unidades = 1;
-					if(ob instanceof Libro)
-						unidades = ((Libro)ob).getUnidades();
-					Date actual = new Date(System.currentTimeMillis());
-					BD.actualizarHistorico(VentanaPrincipal.nick, ob.getCodigo(), unidades, sdf.format(actual));
-				}
-				txtTexto.setText("");
-				Biblioteca.vaciarCarrito(nick);
-				new VentanaThreadPago();*/
-				logger.log(Level.INFO,"Pago realizado");
-			}
-		});
 		
-		/*btnCarrito = new JButton("AÃ±adir al carrito");
+		pSur.add(btnVolver);
+
+ 		
+ 		if (!tipo_venta.equals("Ventas")) {
+ 		
+			btnPagar= new JButton("PAGAR");
+			btnPagar.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					//generarFactura();
+					new VentanaThreadPago();
+				/*	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+					BD.borrarSeries();
+					BD.borrarPeliculas();
+					BD.borrarDocumentales();
+					//DefaultListModel<Objeto> m = (DefaultListModel<Objeto>) VentanaCliente.listaDisponibles.getModel();
+					//DefaultListModel<Objeto> m1 = listaDisponibles.
+					for(int i=0;i<m.getSize();i++) {
+						Objeto ob = m.getElementAt(i);
+						if(ob instanceof Serie) {
+							Serie s = (Serie)ob;
+							
+							//BD.insertarSerie(s.getCodigo(), s.getTitulo(),s.getDirector(),s.getGenero(),s.getDuracion(),s.getDistribuidora(),s.getFecha(),s.getCalificacion(),s.getFormato(),s.getTemporadas(),s.getCapitulos(),s.getDuracionCap(),s.getRutaFoto());
+							BD.insertarSerie(s.getCodigo(), s.getTitulo(),s.getDirector(),s.getGenero(),s.getDuracion(),s.getDistribuidora(),sdf.format(s.getFecha()),s.getCalificacion(),s.getFormato(),s.getTemporadas(),s.getCapitulos(),s.getDuracionCap(),s.getRutaFoto());
+						}else if(ob instanceof Pelicula) {
+							Pelicula p = (Pelicula)ob;
+							BD.insertarPelicula(p.getCodigo(), p.getTitulo(),p.getDirector(),p.getGenero(),p.getDuracion(),p.getDistribuidora(),sdf.format(p.getFecha()),p.getCalificacion(), p.getGuion(),p.getMusica(),p.isOscars(), p.getRutaFoto());
+						}
+					}
+				/*	DefaultListModel<Objeto> ms = (DefaultListModel<Objeto>) VentanaCliente.listaFavoritos.getModel();
+					for(int i=0;i<ms.getSize();i++) {
+						Objeto ob = ms.getElementAt(i);
+						int unidades = 1;
+						if(ob instanceof Libro)
+							unidades = ((Libro)ob).getUnidades();
+						Date actual = new Date(System.currentTimeMillis());
+						BD.actualizarHistorico(VentanaPrincipal.nick, ob.getCodigo(), unidades, sdf.format(actual));
+					}
+					txtTexto.setText("");
+					Biblioteca.vaciarCarrito(nick);
+					new VentanaThreadPago();*/
+	
+					
+					SimpleDateFormat fmt = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+				    String dateFormatted = fmt.format(new Date());
+	
+					try {
+						BD.insertarVenta(Integer.parseInt(codigo_venta), tipo_venta, dateFormatted, usuario, ruta);
+						logger.log(Level.INFO, "Venta registrada correctamente");
+					} catch (Exception e1) {
+						logger.log(Level.SEVERE, "Venta erronea: "+e1.getMessage());
+						e1.printStackTrace();
+					}
+					
+					ventanaAnterior.setVisible(true);
+					
+				}
+			});
+			
+	 		pSur.add(btnPagar);	
+ 		}
+		/*btnCarrito = new JButton("Añadir al carrito");
 		btnCarrito.addActionListener(new ActionListener() {
 			
 			@Override
@@ -118,10 +156,7 @@ public class VentanaFicha extends JFrame{
 			}
 		});*/
 		
-		
-		
-		pSur.add(btnVolver);
- 		pSur.add(btnPagar);		
+	
  		//pSur.add(btnCarrito);
  		pCentro = new JPanel(new GridLayout(1, 2));
  		//lblFoto = lblFotoSeleccionada;
@@ -180,7 +215,7 @@ public class VentanaFicha extends JFrame{
 				total = total + 5;
 			}
 		}
-		texto = texto + "TOTAL A PAGAR: "+ total+ " â‚¬";
+		texto = texto + "TOTAL A PAGAR: "+ total+ " €";
 		return texto;
 	}
 	
@@ -215,7 +250,7 @@ public class VentanaFicha extends JFrame{
 				total = total + ((Libro)sel).getPrecio() * ((Libro)sel).getUnidades();
 			}
 		}
-		texto = texto + "TOTAL A PAGAR: "+ total+ " â‚¬";
+		texto = texto + "TOTAL A PAGAR: "+ total+ " €";
  		txtTexto.setText(texto);*/
  		txtTexto.setText(crearTexto());
  	}
