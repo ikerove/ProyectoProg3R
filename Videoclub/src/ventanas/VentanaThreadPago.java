@@ -39,6 +39,9 @@ public class VentanaThreadPago extends JFrame{
 	    pNorte.add(lblTexto);
 	    
 	    //CREACIÓN DEL THREAD
+	    /**Hilo para hacer el proceso de pago
+	     * 
+	     */
 	    Runnable r = new Runnable() {
 			
 			@Override

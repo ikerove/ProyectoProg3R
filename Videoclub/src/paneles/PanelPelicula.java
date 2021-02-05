@@ -50,13 +50,7 @@ public class PanelPelicula extends JPanel{
 		txtTitulo.setPreferredSize(new Dimension(100, 50));
 		posicionaLinea(panel, "Introduce el titulo: ", txtTitulo);
 		
-	/*
-		tipo = new JComboBox<>(TipoArticulo.values());
-		tipo.setSelectedItem(TipoArticulo.LIBRO);
-		tipo.setEnabled(false);
-		tipo.setPreferredSize(new Dimension(100, 50));
-		posicionaLinea(panel, "Tipo: ", tipo);*/
-		
+	
 		txtDirector = new JTextField();
 		txtDirector.setPreferredSize(new Dimension(100, 50));
 		posicionaLinea(panel, "Introduce el director: ", txtDirector);
@@ -102,15 +96,16 @@ public class PanelPelicula extends JPanel{
 		txtTiempoReserva.setPreferredSize(new Dimension(100, 50));
 		posicionaLinea(panel, "Tiempo de reserva restante: ", txtTiempoReserva);
 		
-		/*SpinnerNumberModel snm = new SpinnerNumberModel(1, 1, 1, 1);
-		unidades = new JSpinner(snm);
-		posicionaLinea(panel, "Selecciona el numero de unidades: ", unidades);*/
+		
 		
 		btnAniadir = new JButton("AÑADIR");
 		posicionaLinea(panel, "", btnAniadir);
 		
 		
 		//EVENTOS
+		/**
+		 * Añade los parametros insertados en cada texfield a la tabla pelicula de la base de datos
+		 */
 		btnAniadir.addActionListener(new ActionListener() {
 			
 			@Override
