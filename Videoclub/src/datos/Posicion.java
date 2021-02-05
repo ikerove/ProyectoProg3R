@@ -1,6 +1,10 @@
 package datos;
 
-
+/**
+ * Devuelve la posicion para comparar un objeto
+ * @author ikerrodriguez
+ *
+ */
 public class Posicion implements Comparable {
 
 	private String nombre;

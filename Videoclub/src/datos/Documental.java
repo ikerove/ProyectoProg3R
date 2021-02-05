@@ -4,7 +4,11 @@ import java.io.Serializable;
 import java.util.Date;
 
 
-//Esta clase es para los Domunetales y los atributos que tienen
+/**Esta clase es para los Domunetales y los atributos que tienen
+ * 
+ * @author ikerrodriguez
+ *
+ */
 public class Documental extends Multimedia implements Serializable{
 	private boolean animales;
 
