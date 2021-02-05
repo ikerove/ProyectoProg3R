@@ -97,9 +97,6 @@ public VentanaCliente(String nick) {
     cargarListaDisponibles();
     
     //EVENTOS
-    /**
-     * Añade el objeto multimedia seleccionado a la otra Jlist
-     */
     btnAniadir.addActionListener(new ActionListener() {
 		
 		@Override
@@ -130,9 +127,7 @@ public VentanaCliente(String nick) {
 	});
     
     setVisible(true);
-    /**
-     * Elimina de la JList seleccionada el objeto y vuelve a la anterior
-     */
+
     btnEliminar.addActionListener(new ActionListener() {
 			
         @Override
@@ -144,7 +139,21 @@ public VentanaCliente(String nick) {
                 modeloFavoritos = (DefaultListModel<Multimedia>) listaFavoritos.getModel();
                 Multimedia sel = modeloFavoritos.getElementAt(pos);
                 if(sel instanceof Serie) {
-                   
+                   /* Libro lSel = (Libro)sel;
+                    int p = 0;
+                    boolean enc = false;
+                    Libro l = null;
+                    while(!enc && p<modeloDisponibles.size()) {
+                        l = (Libro) modeloDisponibles.getElementAt(p);
+                        if(l.getISBN().equals(lSel.getISBN()))
+                            enc = true;
+                        else
+                            p++;
+                    }
+                    if(enc) {
+                        l.setUnidades(l.getUnidades()+1);
+                        modeloDisponibles.setElementAt(l, p);
+                    }*/
                     modeloDisponibles.addElement(sel);
                     modeloFavoritos.removeElementAt(pos);
                 }else {
@@ -159,9 +168,7 @@ public VentanaCliente(String nick) {
     });
 
 
-    /**
-     * Guarda la lista de la derecha con nuestros favoritos en un fichero
-     */
+
     btnGuardar.addActionListener(new ActionListener(){
         @Override
         public void actionPerformed(ActionEvent e){
@@ -196,7 +203,22 @@ public VentanaCliente(String nick) {
 }
 
 
+//ESTO ES LO DE LOS COLORES
 
+/*listaDisponibles.setCellRenderer(new DefaultListCellRenderer() {
+	public Component getListCellRendererComponent(JList<?> list,
+            Object value,
+            int index,
+            boolean isSelected,
+            boolean cellHasFocus) {
+
+		Component c = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+		if(value instanceof Serie)
+			if(((Libro)value).getUnidades()==0)
+				c.setBackground(Color.RED);
+		return c;
+	}
+});*/
 
 /**
  * Cargar lista la lista disponible

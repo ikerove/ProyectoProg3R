@@ -25,7 +25,7 @@ import baseDatos.BDException;
 public class PanelSerie extends JPanel{
 	JPanel panel;
 	JTextField txtCodigo, txtTitulo,txtDirector,txtGenero,txtDuracion,txtDistribuidora, txtFecha, txtCalificacion,txtFormato,txtTemporadas, txtCapitulos, txtDuracionCap, txtRutaFoto;
-	
+	//JComboBox<TipoArticulo> tipo;
 	JSpinner unidades;
 	
 	JButton btnAniadir;
@@ -94,9 +94,7 @@ public class PanelSerie extends JPanel{
 		posicionaLinea(panel, "", btnAniadir);
 		
 		
-		/**
-		 * Añade los parametros insertados en cada texfield a la tabla serie de la base de datos
-		 */
+		
 		btnAniadir.addActionListener(new ActionListener() {
 			
 			@Override

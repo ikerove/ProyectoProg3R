@@ -4,11 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 
-/**Esta clase es para las Series y los atributos que tienen
- * 
- * @author ikerrodriguez
- *
- */
+//Esta clase es para las Series y los atributos que tienen
 public class Serie extends Multimedia implements Serializable{
 	private String formato;
 	private int temporadas;

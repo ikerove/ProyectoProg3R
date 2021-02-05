@@ -1,10 +1,5 @@
 package datos;
 
-/**Variables que almacena un usuario
- * 
- * @author ikerrodriguez
- *
- */
 public class Usuario {
 	private String nick;
 	private String con;

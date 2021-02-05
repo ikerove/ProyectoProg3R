@@ -3,11 +3,7 @@ package datos;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**Esta clase es la clase padre de todos los contenidos multimedia y atributos que heredan las clases hijas
- * 
- * @author ikerrodriguez
- *
- */
+//Esta clase es la clase padre de todos los contenidos multimedia y atributos que heredan las clases hijas
 public abstract class Multimedia implements InterfaceReserva {
 	protected int codigo;
 	protected String titulo;
