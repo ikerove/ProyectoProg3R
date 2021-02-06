@@ -8,10 +8,12 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -50,9 +52,9 @@ public class VentanaCliente extends JFrame{
     private static Logger logger = Logger.getLogger( Videoclub.class.getName() );
 	
 
-public VentanaCliente(String nick) {
+public VentanaCliente() {
 	super();
-	this.nick = nick;
+	//this.nick = nick;
 	int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     setSize(ancho,alto);
@@ -182,7 +184,7 @@ public VentanaCliente(String nick) {
                     cont = sel;
                 }
                 //guardarJuegoEnFichero2(nick, cont);
-                guardarJuegoEnFicheroTexto(usuario, modeloFavoritos);
+                //guardarJuegoEnFicheroTexto(usuario, modeloFavoritos);
         }
     });
     String nombreFichero ="FAVORITOS.dat";
@@ -197,147 +199,169 @@ public VentanaCliente(String nick) {
 
 
 
-
-/**
- * Cargar lista la lista disponible
- */
-
-private void cargarListaDisponibles() {
-	ArrayList<Multimedia> objetos;
-	try {
-		objetos = BD.obtenerObjetos();
-		for(Multimedia ob: objetos)
-			modeloDisponibles.addElement(ob);
-		listaDisponibles.setModel(modeloDisponibles);
-	} catch (BDException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
 	
-}
-/**
- * Guarda e un fichero los favoritos.
- */
-
-public void guardarFavoritosEnFichero() {
-	FileOutputStream fos = null;
-    ObjectOutputStream oos = null;
-    try {
-    	String nombreFichero = "FAVORITOS.dat";
-        fos = new FileOutputStream(nombreFichero);
-        oos = new ObjectOutputStream(fos);
-        modeloFavoritos = (DefaultListModel<Multimedia>) listaFavoritos.getModel();
-        oos.writeObject(modeloFavoritos);
-        logger.log(Level.INFO,"Fichero guardado");
-    } catch (FileNotFoundException e) {
-        // TODO Auto-generated catch block
-    	logger.log(Level.INFO,"Fichero no encontrado");
-        e.printStackTrace();
-    } catch (IOException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-    } finally {
-        if(oos!=null) {
-            try {
-                oos.close();
-                fos.close();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            
-        }
-    }
-}
-/**
- * Carga el fichero de los favoritos.
- */
-
-public void cargarFavoritosDeFichero() {
-	FileInputStream fis = null;
-	ObjectInputStream ois = null;
-	String nombreFichero = "FAVORITOS.dat";
-	try {
-		fis = new FileInputStream(nombreFichero);
-		ois = new ObjectInputStream(fis);
-		modeloFavoritos = (DefaultListModel<Multimedia>) ois.readObject();
-		logger.log(Level.INFO,"Carga realizada");
-	} catch (FileNotFoundException e) {
-		// TODO Auto-generated catch block
-		logger.log(Level.WARNING,"Fichero no encontrado");
-		e.printStackTrace();
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (ClassNotFoundException e) {
-		logger.log(Level.WARNING,"NO encontrado");
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} finally {
-		if(ois!=null) {
-			try {
-				ois.close();
-				fis.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		}
-	}
+	/**
+	 * Cargar lista la lista disponible
+	 */
 	
-}
-
-public static void guardarJuegoEnFicheroBinario(String nick, Multimedia sel) {
-    FileOutputStream fos = null;
-    ObjectOutputStream oos = null;
-    try {
-        fos = new FileOutputStream("juego.dat");
-        oos = new ObjectOutputStream(fos);
-        oos.writeObject(nick);
-        oos.writeObject(sel);
-        logger.log(Level.INFO,"Guardado en fichero binario");
-    } catch (FileNotFoundException e) {
-        // TODO Auto-generated catch block
-    	logger.log(Level.WARNING,"Fichero no encontrado");
-        e.printStackTrace();
-    } catch (IOException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-    } finally {
-        if(oos!=null) {
-            try {
-                oos.close();
-                fos.close();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            
-        }
-    }
-    
-}
-
-public static void guardarJuegoEnFicheroTexto(Usuario usuario,/* Objeto sel*/DefaultListModel modeloFavoritos) {
-    PrintWriter pw = null;
+	private void cargarListaDisponibles() {
+		ArrayList<Multimedia> objetos;
 		try {
-			//Creamos un fichero de texto con el nick del cliente y la fecha actual
-			pw = new PrintWriter("favoritos.txt");
-            pw.println(usuario);
-            //pw.println(sel);
-            pw.println(modeloFavoritos);
-            logger.log(Level.INFO,"Guardado en fichero binario");
+			objetos = BD.obtenerObjetos();
+			for(Multimedia ob: objetos)
+				modeloDisponibles.addElement(ob);
+			listaDisponibles.setModel(modeloDisponibles);
+		} catch (BDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	/**
+	 * Guarda e un fichero los favoritos.
+	 */
+	
+	public void guardarFavoritosEnFichero() {
+		FileOutputStream fos = null;
+	    ObjectOutputStream oos = null;
+	    try {
+	    	String nombreFichero = "FAVORITOS.dat";
+	        fos = new FileOutputStream(nombreFichero);
+	        oos = new ObjectOutputStream(fos);
+	        modeloFavoritos = (DefaultListModel<Multimedia>) listaFavoritos.getModel();
+	        oos.writeObject(modeloFavoritos);
+	        logger.log(Level.INFO,"Fichero guardado");
+	    } catch (FileNotFoundException e) {
+	        // TODO Auto-generated catch block
+	    	logger.log(Level.INFO,"Fichero no encontrado");
+	        e.printStackTrace();
+	    } catch (IOException e) {
+	        // TODO Auto-generated catch block
+	        e.printStackTrace();
+	    } finally {
+	        if(oos!=null) {
+	            try {
+	                oos.close();
+	                fos.close();
+	            } catch (IOException e) {
+	                // TODO Auto-generated catch block
+	                e.printStackTrace();
+	            }
+	            
+	        }
+	    }
+	}
+	/**
+	 * Carga el fichero de los favoritos.
+	 */
+	
+	@SuppressWarnings("unchecked")
+	public void cargarFavoritosDeFichero() {
+		FileInputStream fis = null;
+		ObjectInputStream ois = null;
+		String nombreFichero = "FAVORITOS.dat";
+		try {
+			fis = new FileInputStream(nombreFichero);
+			ois = new ObjectInputStream(fis);
+			modeloFavoritos = (DefaultListModel<Multimedia>) ois.readObject();
+			logger.log(Level.INFO,"Carga realizada");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-	    	logger.log(Level.WARNING,"Fichero no encontrado");
+			logger.log(Level.WARNING,"Fichero no encontrado");
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			logger.log(Level.WARNING,"NO encontrado");
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			if(pw!=null) {
-				pw.flush();
-				pw.close();
+			if(ois!=null) {
+				try {
+					ois.close();
+					fis.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 			}
 		}
-    
-}
-}
+		
+	}
+	
+	public static void guardarJuegoEnFicheroBinario(String nick, Multimedia sel) {
+	    FileOutputStream fos = null;
+	    ObjectOutputStream oos = null;
+	    try {
+	        fos = new FileOutputStream("juego.dat");
+	        oos = new ObjectOutputStream(fos);
+	        oos.writeObject(nick);
+	        oos.writeObject(sel);
+	        logger.log(Level.INFO,"Guardado en fichero binario");
+	    } catch (FileNotFoundException e) {
+	        // TODO Auto-generated catch block
+	    	logger.log(Level.WARNING,"Fichero no encontrado");
+	        e.printStackTrace();
+	    } catch (IOException e) {
+	        // TODO Auto-generated catch block
+	        e.printStackTrace();
+	    } finally {
+	        if(oos!=null) {
+	            try {
+	                oos.close();
+	                fos.close();
+	            } catch (IOException e) {
+	                // TODO Auto-generated catch block
+	                e.printStackTrace();
+	            }
+	            
+	        }
+	    }
+	    
+	}
+	
+	public static void guardarJuegoEnFicheroTexto(Usuario usuario,/* Objeto sel*/DefaultListModel modeloFavoritos) {
+	    PrintWriter pw = null;
+			try {
+				//Creamos un fichero de texto con el nick del cliente y la fecha actual
+				pw = new PrintWriter("favoritos.txt");
+	            pw.println(usuario);
+	            //pw.println(sel);
+	            pw.println(modeloFavoritos);
+	            logger.log(Level.INFO,"Guardado en fichero binario");
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+		    	logger.log(Level.WARNING,"Fichero no encontrado");
+				e.printStackTrace();
+			} finally {
+				if(pw!=null) {
+					pw.flush();
+					pw.close();
+				}
+			}
+	    
+	}
+	
+	public static void cargarFavoritosFichero() {
+		File file = new File("favoritos.txt"); 
+		  
+		  BufferedReader br;
+		try {
+			br = new BufferedReader(new FileReader(file));
+			String st; 
+			  while ((st = br.readLine()) != null) 
+			    System.out.println(st); 
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		  
+		  
+		  } 
+	}
+

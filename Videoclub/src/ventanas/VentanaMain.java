@@ -101,13 +101,13 @@ public class VentanaMain extends JFrame{
 		menuS = new JMenu("Series");		
 		menuP = new JMenu("Peliculas");		
 		menuD = new JMenu("Documentales");		
-		menuE = new JMenu("Favoritos");
-		menuF= new JMenu("Estrenos");
+		menuF = new JMenu("Favoritos");
+		menuE= new JMenu("Estrenos");
 		
 		menuV= new JMenu("Ventas");
 		mi7= new JMenuItem("Listar Ventas");
-		menuV.add(mi7);
-		menuBar.add(menuV);
+		
+		
 
 		mi7.addActionListener(new ActionListener() {
 			
@@ -136,13 +136,15 @@ public class VentanaMain extends JFrame{
 		menuP.add(mi2);
 		menuP.add(mi6);
 		menuD.add(mi3);
-		menuE.add(mi4);
-		menuF.add(mi5);
+		menuF.add(mi4);
+		menuE.add(mi5);		
+		menuV.add(mi7);
 		menuBar.add(menuS);
 		menuBar.add(menuP);
 		menuBar.add(menuD);
-		//menuBar.add(menuE);
-		menuBar.add(menuF);
+		menuBar.add(menuE);
+		menuBar.add(menuF);		
+		menuBar.add(menuV);
 		
 		this.getContentPane().add(menuBar, BorderLayout.NORTH);
 		this.getContentPane().add(panScrol);
@@ -212,51 +214,16 @@ public class VentanaMain extends JFrame{
 			}
 		});
 		
-	/*	mi4.addActionListener(new ActionListener() {
+		mi4.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				panCentro.removeAll();
-				Favoritos = new JLabel("Favoritos: ");
-				Favoritos.setBounds(10, 11, 97, 21);
-				Favoritos.setFont(new Font("AR DARLING", Font.PLAIN, 16));
-				panCentro.add(Favoritos);
 				
-				table = new JTable();
-				JScrollPane scrollPane = new JScrollPane(table);
-				scrollPane.setBounds(0, 34, 382, 270);
-				panCentro.add(scrollPane);
-				
-				 BufferedReader br = null;
-			      
-			     try {
-			         
-			         br =new BufferedReader(new FileReader("favoritos.txt"));
-			         String line = br.readLine();
-			         while (null!=line) {
-			            System.out.println(line);
-			            
-			            line = br.readLine();
-			         }
-			         
-			      } catch (Exception ex) {
-			         ex.printStackTrace();
-			      } finally {
-			         if (null!=br) {
-			            try {
-							br.close();
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-			         }
-			      }
-				
-			     panCentro.updateUI();
+				new VentanaCliente();
 				
 			}
-		});*/
+		});
 		
 		/**
 		 * Esto hace que al clicar al mi5(un JMenuItem) llamado estrenos, se crea el dise�o de el panel, se crea una tabla y 
@@ -457,9 +424,9 @@ public class VentanaMain extends JFrame{
 			imagenConDimensiones.setDescription(s.getRutaFoto());
 			lblFoto.setIcon(imagenConDimensiones); 
 			
-			lblFoto.setName(s.getCodigo()+"");
+		/*	lblFoto.setName(s.getCodigo()+"");
 			lblFoto.setText(s.getRutaFoto());
-			
+		*/			
 			panCentro.add(lblFoto);
 		}
 		panCentro.updateUI();
@@ -477,9 +444,9 @@ public class VentanaMain extends JFrame{
 			imagenConDimensiones.setDescription(p.getRutaFoto());
 			lblFoto.setIcon(imagenConDimensiones); 
 			
-			lblFoto.setName(p.getCodigo()+"");
+		/*  lblFoto.setName(p.getCodigo()+"");
 			lblFoto.setText(p.getRutaFoto());
-			
+		*/	
 			panCentro.add(lblFoto);
 		}
 		panCentro.updateUI();
@@ -496,9 +463,9 @@ public class VentanaMain extends JFrame{
 			imagenConDimensiones.setDescription(d.getRutaFoto());
 			lblFoto.setIcon(imagenConDimensiones); 
 			
-			lblFoto.setName(d.getCodigo()+"");
+		/*	lblFoto.setName(d.getCodigo()+"");
 			lblFoto.setText(d.getRutaFoto());
-			
+		*/
 			panCentro.add(lblFoto);
 		}
 		panCentro.updateUI();
