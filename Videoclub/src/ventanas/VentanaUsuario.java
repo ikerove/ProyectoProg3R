@@ -52,7 +52,7 @@ public class VentanaUsuario extends JFrame {
 		setSize(500,250);
 		setTitle("Inicio de sesion");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		//setExtendedState(MAXIMIZED_BOTH);
+		
 		
 		panelCentro = new PanelFondo("imagenes/fondo.jpg");
 		panelCentro.setLayout(new BoxLayout(panelCentro, BoxLayout.Y_AXIS));
@@ -70,15 +70,13 @@ public class VentanaUsuario extends JFrame {
 		getContentPane().add(panelBotonera, BorderLayout.SOUTH);
 		
 		
-		//usuario = new JLabel();
-		//usuario.setText("Introduzca el nombre de usuario");
+		
 		
 		txtNombre = new JTextField();
 		txtNombre.setPreferredSize(new Dimension (200, 50));
 		posicionaLinea(panelCentro, "Introduzca el usuario", txtNombre);
 		
-		//contrasenia = new JLabel();
-		//contrasenia.setText("Introduzca la contrasenia");
+		
 		
 		txtContrasenia = new JPasswordField();
 		txtContrasenia.setPreferredSize(new Dimension (200, 50));

@@ -96,37 +96,7 @@ public class VentanaFicha extends JFrame{
 					// TODO Auto-generated method stub
 					//generarFactura();
 					new VentanaThreadPago();
-				/*	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-					BD.borrarSeries();
-					BD.borrarPeliculas();
-					BD.borrarDocumentales();
-					//DefaultListModel<Objeto> m = (DefaultListModel<Objeto>) VentanaCliente.listaDisponibles.getModel();
-					//DefaultListModel<Objeto> m1 = listaDisponibles.
-					for(int i=0;i<m.getSize();i++) {
-						Objeto ob = m.getElementAt(i);
-						if(ob instanceof Serie) {
-							Serie s = (Serie)ob;
-							
-							//BD.insertarSerie(s.getCodigo(), s.getTitulo(),s.getDirector(),s.getGenero(),s.getDuracion(),s.getDistribuidora(),s.getFecha(),s.getCalificacion(),s.getFormato(),s.getTemporadas(),s.getCapitulos(),s.getDuracionCap(),s.getRutaFoto());
-							BD.insertarSerie(s.getCodigo(), s.getTitulo(),s.getDirector(),s.getGenero(),s.getDuracion(),s.getDistribuidora(),sdf.format(s.getFecha()),s.getCalificacion(),s.getFormato(),s.getTemporadas(),s.getCapitulos(),s.getDuracionCap(),s.getRutaFoto());
-						}else if(ob instanceof Pelicula) {
-							Pelicula p = (Pelicula)ob;
-							BD.insertarPelicula(p.getCodigo(), p.getTitulo(),p.getDirector(),p.getGenero(),p.getDuracion(),p.getDistribuidora(),sdf.format(p.getFecha()),p.getCalificacion(), p.getGuion(),p.getMusica(),p.isOscars(), p.getRutaFoto());
-						}
-					}
-				/*	DefaultListModel<Objeto> ms = (DefaultListModel<Objeto>) VentanaCliente.listaFavoritos.getModel();
-					for(int i=0;i<ms.getSize();i++) {
-						Objeto ob = ms.getElementAt(i);
-						int unidades = 1;
-						if(ob instanceof Libro)
-							unidades = ((Libro)ob).getUnidades();
-						Date actual = new Date(System.currentTimeMillis());
-						BD.actualizarHistorico(VentanaPrincipal.nick, ob.getCodigo(), unidades, sdf.format(actual));
-					}
-					txtTexto.setText("");
-					Biblioteca.vaciarCarrito(nick);
-					new VentanaThreadPago();*/
-	
+				
 					
 					SimpleDateFormat fmt = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 				    String dateFormatted = fmt.format(new Date());
@@ -146,27 +116,16 @@ public class VentanaFicha extends JFrame{
 			
 	 		pSur.add(btnPagar);	
  		}
-		/*btnCarrito = new JButton("Añadir al carrito");
-		btnCarrito.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});*/
+		
 		
 	
- 		//pSur.add(btnCarrito);
+ 		
  		pCentro = new JPanel(new GridLayout(1, 2));
- 		//lblFoto = lblFotoSeleccionada;
  		lblFoto = new JLabel();
- 		//pCentro.add(lblFoto);
+
 
  		pSegundaColumna = new JPanel(new GridLayout(4,1));
-		//lblTitulo = new JLabel(s.getTitulo());
 
- 		//lblPrecio = new JLabel(BD.obtenerSerie(lblFoto.toString()).getTitulo());
 
  		ImageIcon imagen = (ImageIcon) lblFotoSeleccionada.getIcon();
  		lblFoto.setIcon(imagen);
@@ -182,20 +141,7 @@ public class VentanaFicha extends JFrame{
  		}
  		
 
- 		//pCentro.add(lblFoto);
- 		//lblTitulo = new JLabel(BD.obtenerSerie("a"));
-
-
- 		//String items[] = {"720p","1080p","4k"};
- 		//String items[] = {"720p","1080p","4k"};
- 		//comboCalidad = new JComboBox<String>(items);
- 		//pSegundaColumna.add(lblTitulo);
- 		//pSegundaColumna.add(imagen, BorderLayout.NORTH);
- 		//pSegundaColumna.add(lblPrecio);
- 		//pSegundaColumna.add(comboCalidad);
- 		//pCentro.add(pSegundaColumna);
- 		//pSegundaColumna.add(comboCalidad);
- 		//pCentro.add(pSegundaColumna);
+ 		
  		cp.add(pSur, BorderLayout.SOUTH);
  		cp.add(pCentro, BorderLayout.CENTER);
 
@@ -215,7 +161,7 @@ public class VentanaFicha extends JFrame{
 				total = total + 5;
 			}
 		}
-		texto = texto + "TOTAL A PAGAR: "+ total+ " €";
+		texto = texto + "TOTAL A PAGAR: "+ total+ " ï¿½";
 		return texto;
 	}
 	
@@ -250,7 +196,7 @@ public class VentanaFicha extends JFrame{
 				total = total + ((Libro)sel).getPrecio() * ((Libro)sel).getUnidades();
 			}
 		}
-		texto = texto + "TOTAL A PAGAR: "+ total+ " €";
+		texto = texto + "TOTAL A PAGAR: "+ total+ " ï¿½";
  		txtTexto.setText(texto);*/
  		txtTexto.setText(crearTexto());
  	}

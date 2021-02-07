@@ -325,20 +325,7 @@ public class VentanaMain extends JFrame{
 				}
 		});
 		
-		//panSur.add(reserv);
-	/*	reserv.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				try {
-					cargarReservas();
-				} catch (BDException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});*/
+		
 		
 
 		
@@ -424,9 +411,7 @@ public class VentanaMain extends JFrame{
 			imagenConDimensiones.setDescription(s.getRutaFoto());
 			lblFoto.setIcon(imagenConDimensiones); 
 			
-		/*	lblFoto.setName(s.getCodigo()+"");
-			lblFoto.setText(s.getRutaFoto());
-		*/			
+					
 			panCentro.add(lblFoto);
 		}
 		panCentro.updateUI();
@@ -444,9 +429,7 @@ public class VentanaMain extends JFrame{
 			imagenConDimensiones.setDescription(p.getRutaFoto());
 			lblFoto.setIcon(imagenConDimensiones); 
 			
-		/*  lblFoto.setName(p.getCodigo()+"");
-			lblFoto.setText(p.getRutaFoto());
-		*/	
+		
 			panCentro.add(lblFoto);
 		}
 		panCentro.updateUI();
@@ -463,9 +446,6 @@ public class VentanaMain extends JFrame{
 			imagenConDimensiones.setDescription(d.getRutaFoto());
 			lblFoto.setIcon(imagenConDimensiones); 
 			
-		/*	lblFoto.setName(d.getCodigo()+"");
-			lblFoto.setText(d.getRutaFoto());
-		*/
 			panCentro.add(lblFoto);
 		}
 		panCentro.updateUI();
@@ -474,44 +454,7 @@ public class VentanaMain extends JFrame{
 	
 	
 	
-	private void cargarReservas() throws BDException {
-		ArrayList<Serie> series = BD.obtenerSeries();
-		panCentro.removeAll();
-		for(Serie s: series) {
-			JLabel lblFoto = new JLabel();
-			lblFoto.setSize(100,100);
-			ImageIcon im = new ImageIcon(s.getRutaFoto());
-			ImageIcon imagenConDimensiones = new ImageIcon(im.getImage().getScaledInstance(lblFoto.getWidth(),lblFoto.getHeight(),Image.SCALE_DEFAULT));
-			imagenConDimensiones.setDescription(s.getRutaFoto());
-			lblFoto.setIcon(imagenConDimensiones); 
-			panCentro.add(lblFoto);
-		}
-		panCentro.updateUI();
-		ArrayList<Pelicula> peliculas = BD.obtenerPeliculas();
-		
-		for(Pelicula p: peliculas) {
-			JLabel lblFoto = new JLabel();
-			lblFoto.setSize(100,100);
-			ImageIcon im = new ImageIcon(p.getRutaFoto());
-			ImageIcon imagenConDimensiones = new ImageIcon(im.getImage().getScaledInstance(lblFoto.getWidth(),lblFoto.getHeight(),Image.SCALE_DEFAULT));
-			imagenConDimensiones.setDescription(p.getRutaFoto());
-			lblFoto.setIcon(imagenConDimensiones); 
-			panCentro.add(lblFoto);
-		}
-		panCentro.updateUI();
-		ArrayList<Documental> documentales = BD.obtenerDocumentales();
-		
-		for(Documental d: documentales) {
-			JLabel lblFoto = new JLabel();
-			lblFoto.setSize(100,100);
-			ImageIcon im = new ImageIcon(d.getRutaFoto());
-			ImageIcon imagenConDimensiones = new ImageIcon(im.getImage().getScaledInstance(lblFoto.getWidth(),lblFoto.getHeight(),Image.SCALE_DEFAULT));
-			imagenConDimensiones.setDescription(d.getRutaFoto());
-			lblFoto.setIcon(imagenConDimensiones); 
-			panCentro.add(lblFoto);
-		}
-		panCentro.updateUI();
-	}
+	
 	}
 	
 

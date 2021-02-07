@@ -1101,7 +1101,7 @@ public class BD {
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} //Convierte de String a Date
+				} 
 				
 				
 			}

@@ -21,9 +21,7 @@ public class VentanaUtilidades extends JFrame{
 		int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 	    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
 	    setSize(ancho,alto);
-	    setExtendedState(MAXIMIZED_BOTH); //Maximizar la ventana
-	    //setResizable(false);
-	    //setAlwaysOnTop(true); //Siempre por encima del resto de ventanas (mientras esté visible)
+	    setExtendedState(MAXIMIZED_BOTH); //Maximizar la ventana	    
 	    setTitle("ADMINISTRACIÓN");
 	    setIconImage(new ImageIcon("imagenes/newton.jpg").getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT));
 	    setDefaultCloseOperation(EXIT_ON_CLOSE);

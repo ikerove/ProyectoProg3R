@@ -36,8 +36,7 @@ public class VentanaPago extends JFrame{
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     setSize(ancho,alto);
     setExtendedState(MAXIMIZED_BOTH); //Maximizar la ventana
-    //setResizable(false);
-    //setAlwaysOnTop(true); //Siempre por encima del resto de ventanas (mientras esté visible)
+    
     setTitle("CLIENTES");
     setIconImage(new ImageIcon("imagenes/newton.jpg").getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT));
     setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
